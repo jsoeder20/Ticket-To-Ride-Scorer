@@ -1,14 +1,15 @@
 import torch
 import numpy as np
 import torch.nn as nn
+from torch.utils.data import Dataset, DataLoader
 from torch.optim import Adam
 import matplotlib.pyplot as plt
-from torchvision import datasets
-from torch.utils.data import Dataset, DataLoader
+from torchvision import datasets, transforms
+
 import time
-from torchvision import transforms
 from PIL import Image
 import os
+import cv2
 
 
 class CNN(nn.Module):
@@ -42,7 +43,9 @@ class CustomDataset(Dataset):
         for filename in os.listdir(folder):
             if filename != '.DS_Store':
                 img_path = os.path.join(folder, filename)
-                image = Image.open(img_path)
+                image = cv2.imread(img_path)
+                desired_height, desired_width = 125, 50
+                image = cv2.resize(image, (desired_width, desired_height))
                 label = filename.split('-')[0]
                 self.data.append(image)
                 self.targets.append(label)
@@ -114,7 +117,6 @@ class TrainClassifier:
             print("START")
             print(self.train_loader)
             for batch in self.train_loader:
-                print(batch)
                 x, y = batch
                 batch_loss = self.train_batch(x, y)
                 epoch_losses.append(batch_loss)

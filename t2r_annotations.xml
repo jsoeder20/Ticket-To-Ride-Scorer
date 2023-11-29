@@ -1,0 +1,1349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations>
+  <version>1.1</version>
+  <meta>
+    <job>
+      <id>429615</id>
+      <size>1</size>
+      <mode>annotation</mode>
+      <overlap>0</overlap>
+      <bugtracker></bugtracker>
+      <created>2023-11-25 16:31:34.938812+00:00</created>
+      <updated>2023-11-25 20:03:59.416766+00:00</updated>
+      <subset>default</subset>
+      <start_frame>0</start_frame>
+      <stop_frame>0</stop_frame>
+      <frame_filter></frame_filter>
+      <segments>
+        <segment>
+          <id>430014</id>
+          <start>0</start>
+          <stop>0</stop>
+          <url>https://app.cvat.ai/api/jobs/429615</url>
+        </segment>
+      </segments>
+      <owner>
+        <username>john56</username>
+        <email>jsoeder20@gmail.com</email>
+      </owner>
+      <assignee></assignee>
+      <labels>
+        <label>
+          <name>lis-mad</name>
+          <color>#12c8a9</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>cad-lis</name>
+          <color>#b7e4b1</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>cad-mad</name>
+          <color>#4ca669</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mad-pam-b</name>
+          <color>#3b79df</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mad-pam-w</name>
+          <color>#692c8f</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bar-mad</name>
+          <color>#4177cd</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bar-pam</name>
+          <color>#8ee569</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bar-mar</name>
+          <color>#d124e6</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mar-pam</name>
+          <color>#381f7d</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mar-par</name>
+          <color>#fac487</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mar-zur</name>
+          <color>#18192b</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mar-rom</name>
+          <color>#e34001</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>pam-par-b</name>
+          <color>#3be61d</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>pam-par-g</name>
+          <color>#25f5ae</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bre-pam</name>
+          <color>#5ba9f8</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bre-par</name>
+          <color>#bb2ee7</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bre-die</name>
+          <color>#f0c470</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>die-par</name>
+          <color>#6ba3a8</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bru-par-y</name>
+          <color>#0ae880</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bru-par-r</name>
+          <color>#8169c5</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>par-zur</name>
+          <color>#c077c6</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>fra-par-w</name>
+          <color>#4c1c63</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>fra-par-o</name>
+          <color>#7a574a</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>die-lon-l</name>
+          <color>#a4eb90</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>die-lon-r</name>
+          <color>#d3890a</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bru-die</name>
+          <color>#6fe7be</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ams-lon</name>
+          <color>#9fd53b</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>edi-lon-b</name>
+          <color>#1c5ca3</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>edi-lon-o</name>
+          <color>#c7495c</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ams-ess</name>
+          <color>#cc36a4</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ams-bru</name>
+          <color>#a95ddb</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ams-fra</name>
+          <color>#9c4a9a</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bru-fra</name>
+          <color>#d38873</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ess-fra</name>
+          <color>#133a4e</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ber-fra-b</name>
+          <color>#f2b932</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ber-fra-r</name>
+          <color>#3da117</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ber-ess</name>
+          <color>#304435</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ess-kob-l</name>
+          <color>#4be899</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ess-kob-r</name>
+          <color>#ed54dd</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>fra-mun</name>
+          <color>#9a5b90</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mun-zur</name>
+          <color>#5bb252</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mun-ven</name>
+          <color>#791673</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mun-wie</name>
+          <color>#20ac56</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ven-zur</name>
+          <color>#4b31cb</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ven-zag</name>
+          <color>#8a247b</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>rom-ven</name>
+          <color>#93ed48</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bri-rom</name>
+          <color>#35978d</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>wie-zag</name>
+          <color>#5afc2e</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bud-wie-w</name>
+          <color>#9ffcf4</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bud-wie-r</name>
+          <color>#250443</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bud-sar</name>
+          <color>#3798cf</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>buc-bud</name>
+          <color>#9c9a3c</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bud-kyi</name>
+          <color>#f8f638</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kyi-war</name>
+          <color>#38150f</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>war-wie</name>
+          <color>#24a2ce</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>dan-war</name>
+          <color>#bcf190</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>war-wil</name>
+          <color>#2ba6ce</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>dan-ric</name>
+          <color>#0fc538</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ber-dan</name>
+          <color>#ffe60c</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>pet-ric</name>
+          <color>#7b1bbb</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>pet-wil</name>
+          <color>#3e104c</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>smo-wil</name>
+          <color>#35626b</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mos-smo</name>
+          <color>#0a8b82</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mos-pet</name>
+          <color>#f4b56c</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>pet-sto</name>
+          <color>#5a6c24</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kob-sto-y</name>
+          <color>#a442d0</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kob-sto-w</name>
+          <color>#15ed4f</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kha-mos</name>
+          <color>#2d7707</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kha-kyi</name>
+          <color>#4df481</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kha-ros</name>
+          <color>#9e9e94</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>buc-sev</name>
+          <color>#2a2fff</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ros-sev</name>
+          <color>#ee9053</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ros-soc</name>
+          <color>#cb90a6</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>sev-soc</name>
+          <color>#28b352</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>erz-soc</name>
+          <color>#28ec45</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>erz-sev</name>
+          <color>#b3a744</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ang-erz</name>
+          <color>#c72486</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ang-con</name>
+          <color>#1d25b0</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ang-smy</name>
+          <color>#44c156</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>con-smy</name>
+          <color>#e6b0aa</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>con-sev</name>
+          <color>#d791b8</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>buc-con</name>
+          <color>#7d3cf6</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>con-sof</name>
+          <color>#4c868e</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ath-smy</name>
+          <color>#6659a6</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>pal-smy</name>
+          <color>#69e601</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>pal-rom</name>
+          <color>#9dbdcb</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ath-bri</name>
+          <color>#142ef5</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ath-sar</name>
+          <color>#a77127</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ath-sof</name>
+          <color>#5b6308</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>sar-zag</name>
+          <color>#511001</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>sar-sof</name>
+          <color>#b24f5a</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>PLACEHOLDER</name>
+          <color>#ff0000</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bri-pal</name>
+          <color>#bb216a</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ber-wie</name>
+          <color>#4840be</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bud-zag</name>
+          <color>#fe4926</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>buc-sof</name>
+          <color>#2f3b85</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>buc-kyi</name>
+          <color>#ba78d3</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kyi-smo</name>
+          <color>#8dced7</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kyi-wil</name>
+          <color>#201621</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ric-wil</name>
+          <color>#4207b2</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ber-war-y</name>
+          <color>#da5396</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ber-war-p</name>
+          <color>#cdfa47</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+      </labels>
+    </job>
+    <dumped>2023-11-25 23:30:39.251622+00:00</dumped>
+  </meta>
+  <image id="0" name="cropped_blank.jpg" width="3582" height="2388">
+    <box label="mar-pam" source="manual" occluded="0" xtl="942.38" ytl="1570.99" xbr="1067.65" ybr="1620.97" rotation="1.60" z_order="0">
+    </box>
+    <box label="mar-pam" source="manual" occluded="0" xtl="1068.63" ytl="1600.55" xbr="1193.89" ybr="1650.52" rotation="26.90" z_order="0">
+    </box>
+    <box label="mar-pam" source="manual" occluded="0" xtl="839.51" ytl="1638.19" xbr="964.78" ybr="1688.17" rotation="109.30" z_order="0">
+    </box>
+    <box label="mar-pam" source="manual" occluded="0" xtl="773.31" ytl="1705.69" xbr="898.57" ybr="1755.67" rotation="19.30" z_order="0">
+    </box>
+    <box label="pam-par-g" source="manual" occluded="0" xtl="728.29" ytl="1600.23" xbr="853.56" ybr="1650.20" rotation="302.90" z_order="0">
+    </box>
+    <box label="pam-par-b" source="manual" occluded="0" xtl="684.48" ytl="1581.84" xbr="809.75" ybr="1631.81" rotation="305.00" z_order="0">
+    </box>
+    <box label="pam-par-g" source="manual" occluded="0" xtl="791.04" ytl="1488.81" xbr="916.30" ybr="1538.78" rotation="113.60" z_order="0">
+    </box>
+    <box label="pam-par-b" source="manual" occluded="0" xtl="745.92" ytl="1471.55" xbr="871.19" ybr="1521.53" rotation="110.90" z_order="0">
+    </box>
+    <box label="pam-par-b" source="manual" occluded="0" xtl="788.27" ytl="1353.41" xbr="913.54" ybr="1403.39" rotation="105.90" z_order="0">
+    </box>
+    <box label="pam-par-g" source="manual" occluded="0" xtl="835.08" ytl="1369.76" xbr="960.35" ybr="1419.73" rotation="107.50" z_order="0">
+    </box>
+    <box label="pam-par-g" source="manual" occluded="0" xtl="860.34" ytl="1246.42" xbr="985.61" ybr="1296.39" rotation="99.20" z_order="0">
+    </box>
+    <box label="pam-par-b" source="manual" occluded="0" xtl="814.27" ytl="1230.07" xbr="939.54" ybr="1280.05" rotation="98.80" z_order="0">
+    </box>
+    <box label="mar-par" source="manual" occluded="0" xtl="910.95" ytl="1280.26" xbr="1036.21" ybr="1330.24" rotation="90.40" z_order="0">
+    </box>
+    <box label="mar-par" source="manual" occluded="0" xtl="950.53" ytl="1403.30" xbr="1075.80" ybr="1453.28" rotation="53.90" z_order="0">
+    </box>
+    <box label="mar-par" source="manual" occluded="0" xtl="1045.76" ytl="1486.76" xbr="1171.03" ybr="1536.73" rotation="26.90" z_order="0">
+    </box>
+    <box label="mar-par" source="manual" occluded="0" xtl="1142.05" ytl="1570.21" xbr="1267.32" ybr="1620.19" rotation="54.60" z_order="0">
+    </box>
+    <box label="bre-par" source="manual" occluded="0" xtl="636.76" ytl="1122.35" xbr="762.03" ybr="1172.32" rotation="5.90" z_order="0">
+    </box>
+    <box label="bre-par" source="manual" occluded="0" xtl="514.29" ytl="1107.54" xbr="639.56" ybr="1157.52" rotation="6.00" z_order="0">
+    </box>
+    <box label="bre-par" source="manual" occluded="0" xtl="764.62" ytl="1137.15" xbr="889.89" ybr="1187.13" rotation="6.60" z_order="0">
+    </box>
+    <box label="bre-pam" source="manual" occluded="0" xtl="498.14" ytl="1166.76" xbr="623.41" ybr="1216.74" rotation="22.80" z_order="0">
+    </box>
+    <box label="bre-pam" source="manual" occluded="0" xtl="599.08" ytl="1246.17" xbr="724.35" ybr="1296.15" rotation="58.20" z_order="0">
+    </box>
+    <box label="bre-pam" source="manual" occluded="0" xtl="643.49" ytl="1364.60" xbr="768.76" ybr="1414.58" rotation="82.80" z_order="0">
+    </box>
+    <box label="bre-pam" source="manual" occluded="0" xtl="651.57" ytl="1493.81" xbr="776.84" ybr="1543.79" rotation="93.80" z_order="0">
+    </box>
+    <box label="mad-pam-b" source="manual" occluded="0" xtl="557.35" ytl="1690.74" xbr="682.62" ybr="1740.72" rotation="328.30" z_order="0">
+    </box>
+    <box label="mad-pam-w" source="manual" occluded="0" xtl="593.24" ytl="1727.75" xbr="718.51" ybr="1777.73" rotation="329.40" z_order="0">
+    </box>
+    <box label="mad-pam-w" source="manual" occluded="0" xtl="495.67" ytl="1804.02" xbr="620.94" ybr="1854.00" rotation="313.00" z_order="0">
+    </box>
+    <box label="mad-pam-w" source="manual" occluded="0" xtl="413.79" ytl="1897.11" xbr="539.06" ybr="1947.09" rotation="309.00" z_order="0">
+    </box>
+    <box label="mad-pam-b" source="manual" occluded="0" xtl="460.90" ytl="1773.74" xbr="586.17" ybr="1823.71" rotation="316.10" z_order="0">
+    </box>
+    <box label="mad-pam-b" source="manual" occluded="0" xtl="376.78" ytl="1867.95" xbr="502.05" ybr="1917.93" rotation="308.90" z_order="0">
+    </box>
+    <box label="cad-mad" source="manual" occluded="0" xtl="411.26" ytl="2006.16" xbr="536.53" ybr="2056.14" rotation="41.70" z_order="0">
+    </box>
+    <box label="cad-mad" source="manual" occluded="0" xtl="483.04" ytl="2111.59" xbr="608.31" ybr="2161.57" rotation="68.20" z_order="0">
+    </box>
+    <box label="cad-mad" source="manual" occluded="0" xtl="419.11" ytl="2180.01" xbr="544.38" ybr="2229.98" rotation="341.60" z_order="0">
+    </box>
+    <box label="cad-lis" source="manual" occluded="0" xtl="239.66" ytl="2186.74" xbr="364.93" ybr="2236.71" rotation="11.20" z_order="0">
+    </box>
+    <box label="cad-lis" source="manual" occluded="0" xtl="137.60" ytl="2104.86" xbr="262.87" ybr="2154.84" rotation="65.10" z_order="0">
+    </box>
+    <box label="lis-mad" source="manual" occluded="0" xtl="98.34" ytl="1935.50" xbr="223.61" ybr="1985.48" rotation="89.40" z_order="0">
+    </box>
+    <box label="lis-mad" source="manual" occluded="0" xtl="138.72" ytl="1852.51" xbr="263.99" ybr="1902.49" rotation="0.70" z_order="0">
+    </box>
+    <box label="lis-mad" source="manual" occluded="0" xtl="263.21" ytl="1891.76" xbr="388.48" ybr="1941.74" rotation="33.20" z_order="0">
+    </box>
+    <box label="bar-mad" source="manual" occluded="0" xtl="484.48" ytl="1968.48" xbr="609.75" ybr="2018.45" rotation="3.40" z_order="0">
+    </box>
+    <box label="bar-mad" source="manual" occluded="0" xtl="609.72" ytl="1974.08" xbr="734.99" ybr="2024.06" rotation="3.40" z_order="0">
+    </box>
+    <box label="bar-pam" source="manual" occluded="0" xtl="697.99" ytl="1892.05" xbr="823.25" ybr="1942.03" rotation="84.50" z_order="0">
+    </box>
+    <box label="bar-pam" source="manual" occluded="0" xtl="685.07" ytl="1764.46" xbr="810.33" ybr="1814.44" rotation="84.20" z_order="0">
+    </box>
+    <box label="bar-mar" source="manual" occluded="0" xtl="780.35" ytl="1909.82" xbr="905.62" ybr="1959.79" rotation="312.40" z_order="0">
+    </box>
+    <box label="bar-mar" source="manual" occluded="0" xtl="867.57" ytl="1819.37" xbr="992.83" ybr="1869.35" rotation="318.30" z_order="0">
+    </box>
+    <box label="bar-mar" source="manual" occluded="0" xtl="970.93" ytl="1743.47" xbr="1096.20" ybr="1793.44" rotation="333.00" z_order="0">
+    </box>
+    <box label="bar-mar" source="manual" occluded="0" xtl="1087.21" ytl="1688.55" xbr="1212.48" ybr="1738.53" rotation="342.80" z_order="0">
+    </box>
+    <box label="mar-rom" source="manual" occluded="0" xtl="1274.80" ytl="1616.13" xbr="1400.07" ybr="1666.11" rotation="324.10" z_order="0">
+    </box>
+    <box label="mar-rom" source="manual" occluded="0" xtl="1373.96" ytl="1539.51" xbr="1499.23" ybr="1589.48" rotation="322.10" z_order="0">
+    </box>
+    <box label="mar-rom" source="manual" occluded="0" xtl="1457.80" ytl="1583.23" xbr="1583.07" ybr="1633.21" rotation="53.20" z_order="0">
+    </box>
+    <box label="mar-rom" source="manual" occluded="0" xtl="1530.82" ytl="1681.94" xbr="1656.09" ybr="1731.92" rotation="55.50" z_order="0">
+    </box>
+    <box label="mar-zur" source="manual" occluded="0" xtl="1234.34" ytl="1550.29" xbr="1359.60" ybr="1600.26" rotation="105.40" z_order="0">
+    </box>
+    <box label="mar-zur" source="manual" occluded="0" xtl="1269.26" ytl="1429.17" xbr="1394.52" ybr="1479.15" rotation="105.40" z_order="0">
+    </box>
+    <box label="par-zur" source="manual" occluded="0" xtl="1194.96" ytl="1360.07" xbr="1320.22" ybr="1410.05" rotation="0.50" z_order="0">
+    </box>
+    <box label="par-zur" source="manual" occluded="0" xtl="1068.64" ytl="1334.07" xbr="1193.91" ybr="1384.05" rotation="26.90" z_order="0">
+    </box>
+    <box label="par-zur" source="manual" occluded="0" xtl="978.00" ytl="1251.60" xbr="1103.27" ybr="1301.57" rotation="59.00" z_order="0">
+    </box>
+    <box label="fra-par-w" source="manual" occluded="0" xtl="1005.61" ytl="1130.30" xbr="1130.88" ybr="1180.28" rotation="342.90" z_order="0">
+    </box>
+    <box label="fra-par-o" source="manual" occluded="0" xtl="1025.67" ytl="1173.40" xbr="1150.94" ybr="1223.38" rotation="344.70" z_order="0">
+    </box>
+    <box label="fra-par-o" source="manual" occluded="0" xtl="1142.32" ytl="1122.87" xbr="1267.59" ybr="1172.85" rotation="331.60" z_order="0">
+    </box>
+    <box label="fra-par-w" source="manual" occluded="0" xtl="1121.52" ytl="1078.29" xbr="1246.79" ybr="1128.27" rotation="330.10" z_order="0">
+    </box>
+    <box label="fra-par-w" source="manual" occluded="0" xtl="1227.03" ytl="1012.17" xbr="1352.29" ybr="1062.14" rotation="324.80" z_order="0">
+    </box>
+    <box label="fra-par-o" source="manual" occluded="0" xtl="1250.06" ytl="1053.03" xbr="1375.33" ybr="1103.01" rotation="324.60" z_order="0">
+    </box>
+    <box label="bru-par-r" source="manual" occluded="0" xtl="945.43" ytl="1073.84" xbr="1070.69" ybr="1123.81" rotation="294.90" z_order="0">
+    </box>
+    <box label="bru-par-r" source="manual" occluded="0" xtl="1002.64" ytl="965.36" xbr="1127.91" ybr="1015.33" rotation="297.30" z_order="0">
+    </box>
+    <box label="bru-par-y" source="manual" occluded="0" xtl="964.00" ytl="943.07" xbr="1089.27" ybr="993.04" rotation="299.70" z_order="0">
+    </box>
+    <box label="bru-par-y" source="manual" occluded="0" xtl="905.30" ytl="1051.55" xbr="1030.57" ybr="1101.52" rotation="298.10" z_order="0">
+    </box>
+    <box label="die-par" source="manual" occluded="0" xtl="799.05" ytl="1065.66" xbr="924.32" ybr="1115.64" rotation="46.00" z_order="0">
+    </box>
+    <box label="bru-die" source="manual" occluded="0" xtl="816.89" ytl="962.38" xbr="942.15" ybr="1012.36" rotation="325.70" z_order="0">
+    </box>
+    <box label="bru-die" source="manual" occluded="0" xtl="920.91" ytl="891.06" xbr="1046.18" ybr="941.03" rotation="325.50" z_order="0">
+    </box>
+    <box label="bru-fra" source="manual" occluded="0" xtl="1094.03" ytl="874.71" xbr="1219.30" ybr="924.69" rotation="346.90" z_order="0">
+    </box>
+    <box label="bru-fra" source="manual" occluded="0" xtl="1218.13" ytl="910.30" xbr="1343.40" ybr="960.28" rotation="44.50" z_order="0">
+    </box>
+    <box label="ams-fra" source="manual" occluded="0" xtl="1251.30" ytl="878.21" xbr="1376.57" ybr="928.18" rotation="41.00" z_order="0">
+    </box>
+    <box label="ams-fra" source="manual" occluded="0" xtl="1162.50" ytl="790.47" xbr="1287.76" ybr="840.45" rotation="43.10" z_order="0">
+    </box>
+    <box label="bre-die" source="manual" occluded="0" xtl="618.44" ytl="994.51" xbr="743.71" ybr="1044.49" rotation="358.50" z_order="0">
+    </box>
+    <box label="bre-die" source="manual" occluded="0" xtl="492.61" ytl="1030.46" xbr="617.88" ybr="1080.44" rotation="332.70" z_order="0">
+    </box>
+    <box label="ams-lon" source="manual" occluded="0" xtl="850.83" ytl="695.36" xbr="976.10" ybr="745.33" z_order="0">
+    </box>
+    <box label="ams-lon" source="manual" occluded="0" xtl="977.94" ytl="697.92" xbr="1103.20" ybr="747.90" rotation="2.30" z_order="0">
+    </box>
+    <box label="die-lon-r" source="manual" occluded="0" xtl="749.40" ytl="912.34" xbr="874.67" ybr="962.32" rotation="277.40" z_order="0">
+    </box>
+    <box label="die-lon-l" source="manual" occluded="0" xtl="704.46" ytl="904.63" xbr="829.73" ybr="954.61" rotation="276.60" z_order="0">
+    </box>
+    <box label="die-lon-r" source="manual" occluded="0" xtl="760.95" ytl="787.80" xbr="886.22" ybr="837.78" rotation="274.40" z_order="0">
+    </box>
+    <box label="die-lon-l" source="manual" occluded="0" xtl="714.73" ytl="783.95" xbr="840.00" ybr="833.92" rotation="273.50" z_order="0">
+    </box>
+    <box label="edi-lon-o" source="manual" occluded="0" xtl="739.27" ytl="608.80" xbr="864.54" ybr="658.78" rotation="67.00" z_order="0">
+    </box>
+    <box label="edi-lon-b" source="manual" occluded="0" xtl="694.69" ytl="623.96" xbr="819.96" ybr="673.94" rotation="68.00" z_order="0">
+    </box>
+    <box label="edi-lon-b" source="manual" occluded="0" xtl="650.11" ytl="511.62" xbr="775.38" ybr="561.59" rotation="68.40" z_order="0">
+    </box>
+    <box label="edi-lon-b" source="manual" occluded="0" xtl="602.86" ytl="397.49" xbr="728.12" ybr="447.47" rotation="66.30" z_order="0">
+    </box>
+    <box label="edi-lon-b" source="manual" occluded="0" xtl="554.71" ytl="286.93" xbr="679.98" ybr="336.91" rotation="66.00" z_order="0">
+    </box>
+    <box label="edi-lon-o" source="manual" occluded="0" xtl="595.72" ytl="269.10" xbr="720.99" ybr="319.08" rotation="66.90" z_order="0">
+    </box>
+    <box label="edi-lon-o" source="manual" occluded="0" xtl="642.98" ytl="382.33" xbr="768.25" ybr="432.31" rotation="66.80" z_order="0">
+    </box>
+    <box label="edi-lon-o" source="manual" occluded="0" xtl="691.12" ytl="495.57" xbr="816.39" ybr="545.54" rotation="67.70" z_order="0">
+    </box>
+    <box label="ams-ess" source="manual" occluded="0" xtl="1186.25" ytl="604.96" xbr="1311.52" ybr="654.94" rotation="11.60" z_order="0">
+    </box>
+    <box label="ams-ess" source="manual" occluded="0" xtl="1095.18" ytl="622.58" xbr="1220.45" ybr="672.56" rotation="281.80" z_order="0">
+    </box>
+    <box label="ams-ess" source="manual" occluded="0" xtl="1295.84" ytl="674.84" xbr="1421.10" ybr="724.81" rotation="51.50" z_order="0">
+    </box>
+    <box label="ess-kob-l" source="manual" occluded="0" xtl="1387.64" ytl="645.53" xbr="1512.91" ybr="695.51" rotation="305.20" z_order="0">
+    </box>
+    <box label="ess-kob-r" source="manual" occluded="0" xtl="1425.09" ytl="672.28" xbr="1550.35" ybr="722.26" rotation="302.00" z_order="0">
+    </box>
+    <box label="ess-kob-r" source="manual" occluded="0" xtl="1495.52" ytl="567.96" xbr="1620.79" ybr="617.94" rotation="304.40" z_order="0">
+    </box>
+    <box label="ess-kob-r" source="manual" occluded="0" xtl="1563.29" ytl="462.75" xbr="1688.55" ybr="512.73" rotation="305.10" z_order="0">
+    </box>
+    <box label="ess-kob-l" source="manual" occluded="0" xtl="1458.08" ytl="543.00" xbr="1583.34" ybr="592.97" rotation="304.30" z_order="0">
+    </box>
+    <box label="ess-kob-l" source="manual" occluded="0" xtl="1528.51" ytl="438.68" xbr="1653.78" ybr="488.66" rotation="305.80" z_order="0">
+    </box>
+    <box label="ber-ess" source="manual" occluded="0" xtl="1485.72" ytl="733.80" xbr="1610.98" ybr="783.78" rotation="8.10" z_order="0">
+    </box>
+    <box label="ber-ess" source="manual" occluded="0" xtl="1609.65" ytl="749.85" xbr="1734.92" ybr="799.83" rotation="5.10" z_order="0">
+    </box>
+    <box label="ess-fra" source="manual" occluded="0" xtl="1369.81" ytl="893.40" xbr="1495.07" ybr="943.38" rotation="334.80" z_order="0">
+    </box>
+    <box label="ess-fra" source="manual" occluded="0" xtl="1430.44" ytl="820.29" xbr="1555.70" ybr="870.26" rotation="65.80" z_order="0">
+    </box>
+    <box label="ber-fra-b" source="manual" occluded="0" xtl="1386.75" ytl="932.63" xbr="1512.01" ybr="982.61" rotation="337.20" z_order="0">
+    </box>
+    <box label="ber-fra-r" source="manual" occluded="0" xtl="1406.36" ytl="972.75" xbr="1531.63" ybr="1022.73" rotation="334.50" z_order="0">
+    </box>
+    <box label="ber-fra-r" source="manual" occluded="0" xtl="1516.92" ytl="921.04" xbr="1642.19" ybr="971.02" rotation="335.70" z_order="0">
+    </box>
+    <box label="ber-fra-r" source="manual" occluded="0" xtl="1631.94" ytl="865.76" xbr="1757.21" ybr="915.74" rotation="334.70" z_order="0">
+    </box>
+    <box label="ber-fra-b" source="manual" occluded="0" xtl="1500.88" ytl="880.03" xbr="1626.14" ybr="930.00" rotation="335.10" z_order="0">
+    </box>
+    <box label="ber-fra-b" source="manual" occluded="0" xtl="1614.11" ytl="826.53" xbr="1739.38" ybr="876.51" rotation="335.50" z_order="0">
+    </box>
+    <box label="fra-mun" source="manual" occluded="0" xtl="1345.15" ytl="1064.19" xbr="1470.41" ybr="1114.17" rotation="76.20" z_order="0">
+    </box>
+    <box label="fra-mun" source="manual" occluded="0" xtl="1407.20" ytl="1131.60" xbr="1532.47" ybr="1181.57" rotation="345.20" z_order="0">
+    </box>
+    <box label="mun-zur" source="manual" occluded="0" xtl="1349.43" ytl="1273.90" xbr="1474.69" ybr="1323.88" rotation="316.30" z_order="0">
+    </box>
+    <box label="mun-zur" source="manual" occluded="0" xtl="1442.51" ytl="1191.51" xbr="1567.78" ybr="1241.49" rotation="317.40" z_order="0">
+    </box>
+    <box label="ven-zur" source="manual" occluded="0" xtl="1365.48" ytl="1378.75" xbr="1490.74" ybr="1428.73" rotation="26.90" z_order="0">
+    </box>
+    <box label="ven-zur" source="manual" occluded="0" xtl="1475.68" ytl="1438.67" xbr="1600.95" ybr="1488.65" rotation="26.90" z_order="0">
+    </box>
+    <box label="mun-ven" source="manual" occluded="0" xtl="1539.87" ytl="1356.28" xbr="1665.14" ybr="1406.26" rotation="78.90" z_order="0">
+    </box>
+    <box label="mun-ven" source="manual" occluded="0" xtl="1517.41" ytl="1239.66" xbr="1642.67" ybr="1289.64" rotation="77.90" z_order="0">
+    </box>
+    <box label="mun-wie" source="manual" occluded="0" xtl="1569.83" ytl="1192.58" xbr="1695.10" ybr="1242.56" rotation="53.90" z_order="0">
+    </box>
+    <box label="mun-wie" source="manual" occluded="0" xtl="1680.04" ytl="1252.50" xbr="1805.30" ybr="1302.48" rotation="4.80" z_order="0">
+    </box>
+    <box label="mun-wie" source="manual" occluded="0" xtl="1802.01" ytl="1211.84" xbr="1927.28" ybr="1261.82" rotation="320.40" z_order="0">
+    </box>
+    <box label="ven-zag" source="manual" occluded="0" xtl="1650.08" ytl="1418.34" xbr="1775.34" ybr="1468.32" rotation="345.40" z_order="0">
+    </box>
+    <box label="ven-zag" source="manual" occluded="0" xtl="1768.84" ytl="1438.67" xbr="1894.11" ybr="1488.64" rotation="31.60" z_order="0">
+    </box>
+    <box label="rom-ven" source="manual" occluded="0" xtl="1577.32" ytl="1536.03" xbr="1702.59" ybr="1586.01" rotation="78.80" z_order="0">
+    </box>
+    <box label="rom-ven" source="manual" occluded="0" xtl="1598.72" ytl="1661.21" xbr="1723.99" ybr="1711.19" rotation="80.40" z_order="0">
+    </box>
+    <box label="bri-rom" source="manual" occluded="0" xtl="1696.08" ytl="1722.20" xbr="1821.35" ybr="1772.18" rotation="354.60" z_order="0">
+    </box>
+    <box label="bri-rom" source="manual" occluded="0" xtl="1813.78" ytl="1770.35" xbr="1939.04" ybr="1820.32" rotation="51.00" z_order="0">
+    </box>
+    <box label="pal-rom" source="manual" occluded="0" xtl="1665.06" ytl="1792.81" xbr="1790.32" ybr="1842.79" rotation="26.90" z_order="0">
+    </box>
+    <box label="sar-zag" source="manual" occluded="0" xtl="1919.70" ytl="1685.82" xbr="2044.97" ybr="1735.80" rotation="33.00" z_order="0">
+    </box>
+    <box label="sar-zag" source="manual" occluded="0" xtl="1854.43" ytl="1578.83" xbr="1979.70" ybr="1628.81" rotation="85.00" z_order="0">
+    </box>
+    <box label="sar-zag" source="manual" occluded="0" xtl="2043.81" ytl="1707.22" xbr="2169.08" ybr="1757.20" rotation="340.90" z_order="0">
+    </box>
+    <box label="pal-rom" source="manual" occluded="0" xtl="1761.44" ytl="1878.27" xbr="1886.71" ybr="1928.25" rotation="53.50" z_order="0">
+    </box>
+    <box label="pal-rom" source="manual" occluded="0" xtl="1800.39" ytl="2000.47" xbr="1925.66" ybr="2050.45" rotation="92.40" z_order="0">
+    </box>
+    <box label="pal-rom" source="manual" occluded="0" xtl="1755.33" ytl="2123.43" xbr="1880.60" ybr="2173.40" rotation="128.50" z_order="0">
+    </box>
+    <box label="bri-pal" source="manual" occluded="0" xtl="1793.51" ytl="2150.92" xbr="1918.78" ybr="2200.90" rotation="127.20" z_order="0">
+    </box>
+    <box label="bri-pal" source="manual" occluded="0" xtl="1872.94" ytl="2051.64" xbr="1998.21" ybr="2101.61" rotation="132.50" z_order="0">
+    </box>
+    <box label="bri-pal" source="manual" occluded="0" xtl="1898.14" ytl="1926.39" xbr="2023.41" ybr="1976.37" rotation="68.80" z_order="0">
+    </box>
+    <box label="ath-bri" source="manual" occluded="0" xtl="1940.91" ytl="1911.88" xbr="2066.18" ybr="1961.85" rotation="67.90" z_order="0">
+    </box>
+    <box label="ath-bri" source="manual" occluded="0" xtl="1988.26" ytl="2027.96" xbr="2113.53" ybr="2077.94" rotation="67.90" z_order="0">
+    </box>
+    <box label="ath-bri" source="manual" occluded="0" xtl="2082.96" ytl="2117.32" xbr="2208.23" ybr="2167.29" rotation="20.50" z_order="0">
+    </box>
+    <box label="ath-bri" source="manual" occluded="0" xtl="2212.03" ytl="2127.24" xbr="2337.30" ybr="2177.22" rotation="352.10" z_order="0">
+    </box>
+    <box label="pal-smy" source="manual" occluded="0" xtl="1871.41" ytl="2191.40" xbr="1996.68" ybr="2241.37" z_order="0">
+    </box>
+    <box label="pal-smy" source="manual" occluded="0" xtl="1998.19" ytl="2194.45" xbr="2123.46" ybr="2244.43" z_order="0">
+    </box>
+    <box label="pal-smy" source="manual" occluded="0" xtl="2118.86" ytl="2194.45" xbr="2244.12" ybr="2244.43" z_order="0">
+    </box>
+    <box label="pal-smy" source="manual" occluded="0" xtl="2247.92" ytl="2196.74" xbr="2373.19" ybr="2246.72" z_order="0">
+    </box>
+    <box label="pal-smy" source="manual" occluded="0" xtl="2370.88" ytl="2196.74" xbr="2496.15" ybr="2246.72" z_order="0">
+    </box>
+    <box label="pal-smy" source="manual" occluded="0" xtl="2495.37" ytl="2198.27" xbr="2620.63" ybr="2248.25" z_order="0">
+    </box>
+    <box label="ath-smy" source="manual" occluded="0" xtl="2384.63" ytl="2100.52" xbr="2509.90" ybr="2150.49" z_order="0">
+    </box>
+    <box label="ath-sar" source="manual" occluded="0" xtl="2199.05" ytl="2069.97" xbr="2324.31" ybr="2119.94" rotation="1.90" z_order="0">
+    </box>
+    <box label="ath-smy" source="manual" occluded="0" xtl="2510.64" ytl="2127.24" xbr="2635.91" ybr="2177.22" rotation="22.00" z_order="0">
+    </box>
+    <box label="ath-sar" source="manual" occluded="0" xtl="2130.31" ytl="1775.17" xbr="2255.58" ybr="1825.15" rotation="273.90" z_order="0">
+    </box>
+    <box label="ath-sar" source="manual" occluded="0" xtl="2122.67" ytl="1901.19" xbr="2247.94" ybr="1951.16" rotation="273.90" z_order="0">
+    </box>
+    <box label="ath-sar" source="manual" occluded="0" xtl="2115.80" ytl="2024.91" xbr="2241.07" ybr="2074.88" rotation="273.90" z_order="0">
+    </box>
+    <box label="ath-sof" source="manual" occluded="0" xtl="2243.34" ytl="1895.84" xbr="2368.61" ybr="1945.82" rotation="275.90" z_order="0">
+    </box>
+    <box label="ath-sof" source="manual" occluded="0" xtl="2295.27" ytl="1778.23" xbr="2420.54" ybr="1828.21" rotation="312.10" z_order="0">
+    </box>
+    <box label="ath-sof" source="manual" occluded="0" xtl="2270.07" ytl="2022.62" xbr="2395.34" ybr="2072.59" rotation="244.20" z_order="0">
+    </box>
+    <box label="ber-wie" source="manual" occluded="0" xtl="1724.09" ytl="889.20" xbr="1849.36" ybr="939.18" rotation="256.50" z_order="0">
+    </box>
+    <box label="ber-wie" source="manual" occluded="0" xtl="1770.28" ytl="1004.02" xbr="1895.54" ybr="1053.99" rotation="242.40" z_order="0">
+    </box>
+    <box label="ber-wie" source="manual" occluded="0" xtl="1838.90" ytl="1105.63" xbr="1964.17" ybr="1155.61" rotation="233.10" z_order="0">
+    </box>
+    <box label="bud-wie-r" source="manual" occluded="0" xtl="1970.87" ytl="1220.45" xbr="2096.14" ybr="1270.42" rotation="211.20" z_order="0">
+    </box>
+    <box label="bud-wie-w" source="manual" occluded="0" xtl="1948.44" ytl="1254.76" xbr="2073.70" ybr="1304.74" rotation="211.40" z_order="0">
+    </box>
+    <box label="wie-zag" source="manual" occluded="0" xtl="1860.02" ytl="1267.96" xbr="1985.28" ybr="1317.93" rotation="273.90" z_order="0">
+    </box>
+    <box label="wie-zag" source="manual" occluded="0" xtl="1850.78" ytl="1388.05" xbr="1976.05" ybr="1438.03" rotation="273.90" z_order="0">
+    </box>
+    <box label="bud-zag" source="manual" occluded="0" xtl="1997.26" ytl="1337.90" xbr="2122.53" ybr="1387.88" rotation="299.10" z_order="0">
+    </box>
+    <box label="bud-zag" source="manual" occluded="0" xtl="1918.08" ytl="1434.24" xbr="2043.35" ybr="1484.22" rotation="320.60" z_order="0">
+    </box>
+    <box label="con-sof" source="manual" occluded="0" xtl="2436.64" ytl="1764.14" xbr="2561.91" ybr="1814.12" rotation="28.60" z_order="0">
+    </box>
+    <box label="con-sof" source="manual" occluded="0" xtl="2546.61" ytl="1824.62" xbr="2671.88" ybr="1874.60" rotation="28.60" z_order="0">
+    </box>
+    <box label="con-sof" source="manual" occluded="0" xtl="2656.59" ytl="1885.11" xbr="2781.86" ybr="1935.09" rotation="28.60" z_order="0">
+    </box>
+    <box label="ang-con" source="manual" occluded="0" xtl="2817.15" ytl="1979.69" xbr="2942.42" ybr="2029.67" rotation="37.00" z_order="0">
+    </box>
+    <box label="ang-con" source="manual" occluded="0" xtl="2921.63" ytl="2054.47" xbr="3046.89" ybr="2104.45" rotation="34.90" z_order="0">
+    </box>
+    <box label="con-smy" source="manual" occluded="0" xtl="2682.98" ytl="1996.18" xbr="2808.25" ybr="2046.16" rotation="116.60" z_order="0">
+    </box>
+    <box label="con-smy" source="manual" occluded="0" xtl="2625.79" ytl="2108.36" xbr="2751.06" ybr="2158.34" rotation="117.90" z_order="0">
+    </box>
+    <box label="ang-smy" source="manual" occluded="0" xtl="2680.78" ytl="2204.04" xbr="2806.05" ybr="2254.01" rotation="3.70" z_order="0">
+    </box>
+    <box label="ang-smy" source="manual" occluded="0" xtl="2806.15" ytl="2201.84" xbr="2931.42" ybr="2251.81" rotation="357.70" z_order="0">
+    </box>
+    <box label="ang-smy" source="manual" occluded="0" xtl="2930.42" ytl="2163.35" xbr="3055.69" ybr="2213.32" rotation="331.60" z_order="0">
+    </box>
+    <box label="ang-erz" source="manual" occluded="0" xtl="3090.99" ytl="2152.35" xbr="3216.25" ybr="2202.33" rotation="28.60" z_order="0">
+    </box>
+    <box label="ang-erz" source="manual" occluded="0" xtl="3215.26" ytl="2174.34" xbr="3340.53" ybr="2224.32" rotation="350.90" z_order="0">
+    </box>
+    <box label="ang-erz" source="manual" occluded="0" xtl="3294.44" ytl="2120.46" xbr="3419.71" ybr="2170.43" rotation="78.50" z_order="0">
+    </box>
+    <box label="erz-sev" source="manual" occluded="0" xtl="3195.46" ytl="1980.79" xbr="3320.73" ybr="2030.77" rotation="31.70" z_order="0">
+    </box>
+    <box label="erz-sev" source="manual" occluded="0" xtl="3103.08" ytl="1888.41" xbr="3228.35" ybr="1938.39" rotation="56.20" z_order="0">
+    </box>
+    <box label="erz-sev" source="manual" occluded="0" xtl="3055.80" ytl="1770.74" xbr="3181.06" ybr="1820.71" rotation="82.10" z_order="0">
+    </box>
+    <box label="erz-sev" source="manual" occluded="0" xtl="3048.10" ytl="1643.17" xbr="3173.37" ybr="1693.14" rotation="88.90" z_order="0">
+    </box>
+    <box label="con-sev" source="manual" occluded="0" xtl="2876.54" ytl="1805.93" xbr="3001.80" ybr="1855.91" rotation="36.30" z_order="0">
+    </box>
+    <box label="con-sev" source="manual" occluded="0" xtl="2961.22" ytl="1766.34" xbr="3086.49" ybr="1816.31" rotation="307.50" z_order="0">
+    </box>
+    <box label="con-sev" source="manual" occluded="0" xtl="2998.61" ytl="1644.26" xbr="3123.88" ybr="1694.24" rotation="269.20" z_order="0">
+    </box>
+    <box label="con-sev" source="manual" occluded="0" xtl="2791.86" ytl="1855.42" xbr="2917.12" ybr="1905.39" rotation="305.90" z_order="0">
+    </box>
+    <box label="buc-con" source="manual" occluded="0" xtl="2701.68" ytl="1824.62" xbr="2826.94" ybr="1874.60" rotation="65.70" z_order="0">
+    </box>
+    <box label="buc-con" source="manual" occluded="0" xtl="2651.09" ytl="1704.75" xbr="2776.36" ybr="1754.73" rotation="65.70" z_order="0">
+    </box>
+    <box label="buc-con" source="manual" occluded="0" xtl="2602.70" ytl="1591.48" xbr="2727.97" ybr="1641.46" rotation="65.70" z_order="0">
+    </box>
+    <box label="bud-sar" source="manual" occluded="0" xtl="2113.31" ytl="1600.28" xbr="2238.58" ybr="1650.25" rotation="83.80" z_order="0">
+    </box>
+    <box label="bud-sar" source="manual" occluded="0" xtl="2092.42" ytl="1473.81" xbr="2217.68" ybr="1523.78" rotation="83.80" z_order="0">
+    </box>
+    <box label="bud-sar" source="manual" occluded="0" xtl="2074.82" ytl="1352.83" xbr="2200.09" ybr="1402.81" rotation="83.80" z_order="0">
+    </box>
+    <box label="buc-bud" source="manual" occluded="0" xtl="2139.71" ytl="1292.35" xbr="2264.97" ybr="1342.32" rotation="25.30" z_order="0">
+    </box>
+    <box label="buc-bud" source="manual" occluded="0" xtl="2248.58" ytl="1351.73" xbr="2373.85" ybr="1401.71" rotation="25.30" z_order="0">
+    </box>
+    <box label="buc-bud" source="manual" occluded="0" xtl="2361.86" ytl="1411.12" xbr="2487.12" ybr="1461.10" rotation="25.30" z_order="0">
+    </box>
+    <box label="buc-bud" source="manual" occluded="0" xtl="2472.93" ytl="1468.31" xbr="2598.20" ybr="1518.28" rotation="25.30" z_order="0">
+    </box>
+    <box label="sar-sof" source="manual" occluded="0" xtl="2213.39" ytl="1643.17" xbr="2338.66" ybr="1693.14" rotation="335.80" z_order="0">
+    </box>
+    <box label="sar-sof" source="manual" occluded="0" xtl="2307.97" ytl="1643.17" xbr="2433.24" ybr="1693.14" rotation="65.90" z_order="0">
+    </box>
+    <box label="buc-sof" source="manual" occluded="0" xtl="2442.14" ytl="1678.36" xbr="2567.40" ybr="1728.33" rotation="346.50" z_order="0">
+    </box>
+    <box label="buc-sof" source="manual" occluded="0" xtl="2523.52" ytl="1585.98" xbr="2648.79" ybr="1635.96" rotation="275.50" z_order="0">
+    </box>
+    <box label="buc-kyi" source="manual" occluded="0" xtl="2574.11" ytl="1401.22" xbr="2699.37" ybr="1451.20" rotation="288.60" z_order="0">
+    </box>
+    <box label="buc-kyi" source="manual" occluded="0" xtl="2617.00" ytl="1284.65" xbr="2742.26" ybr="1334.63" rotation="288.60" z_order="0">
+    </box>
+    <box label="buc-kyi" source="manual" occluded="0" xtl="2655.49" ytl="1169.18" xbr="2780.75" ybr="1219.15" rotation="288.60" z_order="0">
+    </box>
+    <box label="buc-kyi" source="manual" occluded="0" xtl="2692.88" ytl="1050.40" xbr="2818.15" ybr="1100.38" rotation="288.60" z_order="0">
+    </box>
+    <box label="buc-sev" source="manual" occluded="0" xtl="2750.30" ytl="1384.00" xbr="2875.57" ybr="1433.98" rotation="345.10" z_order="0">
+    </box>
+    <box label="buc-sev" source="manual" occluded="0" xtl="2637.06" ytl="1444.63" xbr="2762.33" ybr="1494.61" rotation="316.00" z_order="0">
+    </box>
+    <box label="buc-sev" source="manual" occluded="0" xtl="2882.26" ytl="1396.48" xbr="3007.52" ybr="1446.46" rotation="23.40" z_order="0">
+    </box>
+    <box label="buc-sev" source="manual" occluded="0" xtl="2983.90" ytl="1476.73" xbr="3109.17" ybr="1526.71" rotation="51.40" z_order="0">
+    </box>
+    <box label="ros-sev" source="manual" occluded="0" xtl="3070.39" ytl="1466.03" xbr="3195.65" ybr="1516.01" rotation="279.60" z_order="0">
+    </box>
+    <box label="ros-sev" source="manual" occluded="0" xtl="3090.89" ytl="1342.09" xbr="3216.16" ybr="1392.07" rotation="280.30" z_order="0">
+    </box>
+    <box label="erz-soc" source="manual" occluded="0" xtl="3293.29" ytl="1945.71" xbr="3418.55" ybr="1995.69" rotation="276.70" z_order="0">
+    </box>
+    <box label="erz-soc" source="manual" occluded="0" xtl="3310.23" ytl="1820.00" xbr="3435.50" ybr="1869.98" rotation="276.70" z_order="0">
+    </box>
+    <box label="erz-soc" source="manual" occluded="0" xtl="3327.17" ytl="1698.74" xbr="3452.44" ybr="1748.72" rotation="276.70" z_order="0">
+    </box>
+    <box label="ros-soc" source="manual" occluded="0" xtl="3346.34" ytl="1513.26" xbr="3471.61" ybr="1563.24" rotation="273.10" z_order="0">
+    </box>
+    <box label="ros-soc" source="manual" occluded="0" xtl="3357.13" ytl="1388.47" xbr="3482.40" ybr="1438.44" rotation="273.10" z_order="0">
+    </box>
+    <box label="kha-ros" source="manual" occluded="0" xtl="3361.75" ytl="1208.20" xbr="3487.02" ybr="1258.18" rotation="271.40" z_order="0">
+    </box>
+    <box label="ros-sev" source="manual" occluded="0" xtl="3269.31" ytl="1283.70" xbr="3394.58" ybr="1333.67" rotation="7.80" z_order="0">
+    </box>
+    <box label="ros-sev" source="manual" occluded="0" xtl="3142.97" ytl="1262.13" xbr="3268.24" ybr="1312.10" rotation="7.80" z_order="0">
+    </box>
+    <box label="sev-soc" source="manual" occluded="0" xtl="3126.02" ytl="1568.73" xbr="3251.29" ybr="1618.70" rotation="7.80" z_order="0">
+    </box>
+    <box label="sev-soc" source="manual" occluded="0" xtl="3252.36" ytl="1590.30" xbr="3377.63" ybr="1640.27" rotation="9.60" z_order="0">
+    </box>
+    <box label="kha-ros" source="manual" occluded="0" xtl="3323.05" ytl="1122.93" xbr="3448.32" ybr="1172.90" rotation="359.70" z_order="0">
+    </box>
+    <box label="kha-kyi" source="manual" occluded="0" xtl="3004.37" ytl="1163.17" xbr="3129.63" ybr="1213.15" rotation="2.40" z_order="0">
+    </box>
+    <box label="kha-kyi" source="manual" occluded="0" xtl="3131.58" ytl="1147.59" xbr="3256.85" ybr="1197.57" rotation="343.40" z_order="0">
+    </box>
+    <box label="kha-kyi" source="manual" occluded="0" xtl="2877.15" ytl="1125.52" xbr="3002.42" ybr="1175.50" rotation="27.90" z_order="0">
+    </box>
+    <box label="kha-kyi" source="manual" occluded="0" xtl="2792.13" ytl="1031.41" xbr="2917.39" ybr="1081.39" rotation="69.20" z_order="0">
+    </box>
+    <box label="kyi-smo" source="manual" occluded="0" xtl="2855.08" ytl="948.98" xbr="2980.35" ybr="998.96" rotation="3.80" z_order="0">
+    </box>
+    <box label="kyi-smo" source="manual" occluded="0" xtl="2975.16" ytl="901.60" xbr="3100.43" ybr="951.58" rotation="313.70" z_order="0">
+    </box>
+    <box label="kha-mos" source="manual" occluded="0" xtl="3282.81" ytl="1050.88" xbr="3408.08" ybr="1100.86" rotation="314.20" z_order="0">
+    </box>
+    <box label="kha-mos" source="manual" occluded="0" xtl="3345.12" ytl="939.25" xbr="3470.39" ybr="989.22" rotation="284.70" z_order="0">
+    </box>
+    <box label="kha-mos" source="manual" occluded="0" xtl="3352.91" ytl="810.73" xbr="3478.18" ybr="860.71" rotation="261.90" z_order="0">
+    </box>
+    <box label="kha-mos" source="manual" occluded="0" xtl="3311.37" ytl="688.06" xbr="3436.64" ybr="738.04" rotation="242.10" z_order="0">
+    </box>
+    <box label="mos-smo" source="manual" occluded="0" xtl="3193.24" ytl="662.10" xbr="3318.51" ybr="712.08" rotation="320.90" z_order="0">
+    </box>
+    <box label="mos-smo" source="manual" occluded="0" xtl="3068.62" ytl="699.09" xbr="3193.89" ybr="749.07" rotation="4.70" z_order="0">
+    </box>
+    <box label="kyi-smo" source="manual" occluded="0" xtl="3004.04" ytl="780.41" xbr="3129.31" ybr="830.39" rotation="254.00" z_order="0">
+    </box>
+    <box label="war-wie" source="manual" occluded="0" xtl="1956.51" ytl="1126.12" xbr="2081.78" ybr="1176.10" rotation="327.70" z_order="0">
+    </box>
+    <box label="war-wie" source="manual" occluded="0" xtl="2055.43" ytl="1049.79" xbr="2180.70" ybr="1099.77" rotation="318.10" z_order="0">
+    </box>
+    <box label="war-wie" source="manual" occluded="0" xtl="2141.10" ytl="958.66" xbr="2266.37" ybr="1008.64" rotation="305.60" z_order="0">
+    </box>
+    <box label="war-wie" source="manual" occluded="0" xtl="2209.64" ytl="851.96" xbr="2334.91" ybr="901.94" rotation="300.10" z_order="0">
+    </box>
+    <box label="bud-kyi" source="manual" occluded="0" xtl="2096.71" ytl="1185.31" xbr="2221.98" ybr="1235.29" rotation="313.30" z_order="0">
+    </box>
+    <box label="bud-kyi" source="manual" occluded="0" xtl="2192.51" ytl="1101.19" xbr="2317.78" ybr="1151.17" rotation="326.50" z_order="0">
+    </box>
+    <box label="bud-kyi" source="manual" occluded="0" xtl="2300.77" ytl="1035.77" xbr="2426.04" ybr="1085.75" rotation="335.60" z_order="0">
+    </box>
+    <box label="bud-kyi" source="manual" occluded="0" xtl="2413.71" ytl="985.92" xbr="2538.97" ybr="1035.90" rotation="341.00" z_order="0">
+    </box>
+    <box label="bud-kyi" source="manual" occluded="0" xtl="2540.66" ytl="961.00" xbr="2665.93" ybr="1010.98" rotation="356.00" z_order="0">
+    </box>
+    <box label="bud-kyi" source="manual" occluded="0" xtl="2669.17" ytl="961.00" xbr="2794.44" ybr="1010.98" rotation="3.00" z_order="0">
+    </box>
+    <box label="kyi-war" source="manual" occluded="0" xtl="2665.28" ytl="912.71" xbr="2790.55" ybr="962.69" rotation="4.00" z_order="0">
+    </box>
+    <box label="kyi-war" source="manual" occluded="0" xtl="2537.55" ytl="911.93" xbr="2662.81" ybr="961.91" rotation="358.60" z_order="0">
+    </box>
+    <box label="kyi-war" source="manual" occluded="0" xtl="2408.26" ytl="894.02" xbr="2533.52" ybr="943.99" rotation="19.50" z_order="0">
+    </box>
+    <box label="kyi-war" source="manual" occluded="0" xtl="2305.44" ytl="822.36" xbr="2430.71" ybr="872.34" rotation="47.80" z_order="0">
+    </box>
+    <box label="kyi-wil" source="manual" occluded="0" xtl="2762.64" ytl="845.73" xbr="2887.91" ybr="895.70" rotation="91.70" z_order="0">
+    </box>
+    <box label="kyi-wil" source="manual" occluded="0" xtl="2705.78" ytl="732.01" xbr="2831.05" ybr="781.99" rotation="35.00" z_order="0">
+    </box>
+    <box label="smo-wil" source="manual" occluded="0" xtl="2895.83" ytl="646.34" xbr="3021.09" ybr="696.31" rotation="36.70" z_order="0">
+    </box>
+    <box label="smo-wil" source="manual" occluded="0" xtl="2793.79" ytl="574.68" xbr="2919.06" ybr="624.66" rotation="35.80" z_order="0">
+    </box>
+    <box label="smo-wil" source="manual" occluded="0" xtl="2708.90" ytl="619.08" xbr="2834.17" ybr="669.05" rotation="307.20" z_order="0">
+    </box>
+    <box label="mos-pet" source="manual" occluded="0" xtl="3254.40" ytl="517.83" xbr="3379.67" ybr="567.81" rotation="86.40" z_order="0">
+    </box>
+    <box label="mos-pet" source="manual" occluded="0" xtl="3218.88" ytl="396.33" xbr="3344.15" ybr="446.30" rotation="63.90" z_order="0">
+    </box>
+    <box label="mos-pet" source="manual" occluded="0" xtl="3137.57" ytl="296.32" xbr="3262.84" ybr="346.30" rotation="40.80" z_order="0">
+    </box>
+    <box label="mos-pet" source="manual" occluded="0" xtl="3025.41" ytl="234.63" xbr="3150.68" ybr="284.61" rotation="19.40" z_order="0">
+    </box>
+    <box label="pet-wil" source="manual" occluded="0" xtl="2892.69" ytl="288.84" xbr="3017.96" ybr="338.82" rotation="306.80" z_order="0">
+    </box>
+    <box label="pet-wil" source="manual" occluded="0" xtl="2819.79" ytl="387.92" xbr="2945.06" ybr="437.89" rotation="305.40" z_order="0">
+    </box>
+    <box label="pet-wil" source="manual" occluded="0" xtl="2745.95" ytl="488.86" xbr="2871.22" ybr="538.83" rotation="306.50" z_order="0">
+    </box>
+    <box label="pet-wil" source="manual" occluded="0" xtl="2672.12" ytl="591.67" xbr="2797.39" ybr="641.64" rotation="305.90" z_order="0">
+    </box>
+    <box label="ric-wil" source="manual" occluded="0" xtl="2558.09" ytl="599.14" xbr="2683.36" ybr="649.12" rotation="32.40" z_order="0">
+    </box>
+    <box label="war-wil" source="manual" occluded="0" xtl="2531.92" ytl="639.33" xbr="2657.19" ybr="689.31" rotation="32.40" z_order="0">
+    </box>
+    <box label="ric-wil" source="manual" occluded="0" xtl="2452.48" ytl="536.52" xbr="2577.75" ybr="586.50" rotation="32.40" z_order="0">
+    </box>
+    <box label="ric-wil" source="manual" occluded="0" xtl="2370.23" ytl="440.25" xbr="2495.50" ybr="490.23" rotation="66.00" z_order="0">
+    </box>
+    <box label="ric-wil" source="manual" occluded="0" xtl="2355.28" ytl="314.08" xbr="2480.54" ybr="364.06" rotation="101.70" z_order="0">
+    </box>
+    <box label="pet-sto" source="manual" occluded="0" xtl="2850.63" ytl="150.52" xbr="2975.90" ybr="200.50" rotation="25.50" z_order="0">
+    </box>
+    <box label="pet-ric" source="manual" occluded="0" xtl="2831.01" ytl="220.61" xbr="2956.27" ybr="270.59" rotation="0.60" z_order="0">
+    </box>
+    <box label="pet-ric" source="manual" occluded="0" xtl="2705.76" ytl="222.48" xbr="2831.03" ybr="272.46" rotation="0.60" z_order="0">
+    </box>
+    <box label="pet-ric" source="manual" occluded="0" xtl="2583.33" ytl="224.35" xbr="2708.59" ybr="274.33" rotation="0.60" z_order="0">
+    </box>
+    <box label="pet-ric" source="manual" occluded="0" xtl="2454.35" ytl="225.29" xbr="2579.61" ybr="275.27" rotation="0.60" z_order="0">
+    </box>
+    <box label="pet-sto" source="manual" occluded="0" xtl="2725.39" ytl="128.09" xbr="2850.66" ybr="178.06" rotation="0.60" z_order="0">
+    </box>
+    <box label="pet-sto" source="manual" occluded="0" xtl="2600.15" ytl="127.15" xbr="2725.42" ybr="177.13" rotation="0.60" z_order="0">
+    </box>
+    <box label="pet-sto" source="manual" occluded="0" xtl="2472.11" ytl="128.09" xbr="2597.37" ybr="178.06" rotation="0.60" z_order="0">
+    </box>
+    <box label="pet-sto" source="manual" occluded="0" xtl="2346.86" ytl="127.15" xbr="2472.13" ybr="177.13" rotation="0.60" z_order="0">
+    </box>
+    <box label="pet-sto" source="manual" occluded="0" xtl="2223.49" ytl="129.02" xbr="2348.76" ybr="179.00" rotation="0.60" z_order="0">
+    </box>
+    <box label="pet-sto" source="manual" occluded="0" xtl="2104.79" ytl="172.01" xbr="2230.06" ybr="221.99" rotation="319.80" z_order="0">
+    </box>
+    <box label="dan-ric" source="manual" occluded="0" xtl="2273.03" ytl="250.52" xbr="2398.29" ybr="300.50" rotation="341.30" z_order="0">
+    </box>
+    <box label="dan-ric" source="manual" occluded="0" xtl="2168.35" ytl="325.29" xbr="2293.62" ybr="375.27" rotation="307.90" z_order="0">
+    </box>
+    <box label="dan-ric" source="manual" occluded="0" xtl="2106.66" ytl="440.25" xbr="2231.93" ybr="490.23" rotation="289.20" z_order="0">
+    </box>
+    <box label="pet-sto" source="manual" occluded="0" xtl="2016.94" ytl="194.45" xbr="2142.20" ybr="244.42" rotation="52.70" z_order="0">
+    </box>
+    <box label="war-wil" source="manual" occluded="0" xtl="2406.32" ytl="618.23" xbr="2531.58" ybr="668.20" rotation="348.50" z_order="0">
+    </box>
+    <box label="war-wil" source="manual" occluded="0" xtl="2306.24" ytl="695.21" xbr="2431.51" ybr="745.19" rotation="295.80" z_order="0">
+    </box>
+    <box label="ber-war-y" source="manual" occluded="0" xtl="2151.18" ytl="776.59" xbr="2276.44" ybr="826.57" rotation="9.50" z_order="0">
+    </box>
+    <box label="ber-war-p" source="manual" occluded="0" xtl="2153.38" ytl="726.00" xbr="2278.64" ybr="775.98" rotation="9.50" z_order="0">
+    </box>
+    <box label="ber-war-y" source="manual" occluded="0" xtl="2029.10" ytl="767.79" xbr="2154.37" ybr="817.77" rotation="359.70" z_order="0">
+    </box>
+    <box label="ber-war-y" source="manual" occluded="0" xtl="1907.03" ytl="775.49" xbr="2032.30" ybr="825.47" rotation="353.90" z_order="0">
+    </box>
+    <box label="ber-war-y" source="manual" occluded="0" xtl="1784.96" ytl="802.98" xbr="1910.23" ybr="852.96" rotation="342.20" z_order="0">
+    </box>
+    <box label="ber-war-p" source="manual" occluded="0" xtl="1780.56" ytl="755.70" xbr="1905.83" ybr="805.67" rotation="340.50" z_order="0">
+    </box>
+    <box label="ber-war-p" source="manual" occluded="0" xtl="1904.83" ytl="727.10" xbr="2030.10" ybr="777.08" rotation="354.50" z_order="0">
+    </box>
+    <box label="ber-war-p" source="manual" occluded="0" xtl="2029.10" ytl="720.50" xbr="2154.37" ybr="770.48" rotation="359.70" z_order="0">
+    </box>
+    <box label="ber-dan" source="manual" occluded="0" xtl="1714.58" ytl="686.41" xbr="1839.84" ybr="736.39" rotation="276.30" z_order="0">
+    </box>
+    <box label="ber-dan" source="manual" occluded="0" xtl="1762.96" ytl="567.64" xbr="1888.23" ybr="617.62" rotation="306.60" z_order="0">
+    </box>
+    <box label="ber-dan" source="manual" occluded="0" xtl="1871.84" ytl="496.15" xbr="1997.11" ybr="546.13" rotation="348.40" z_order="0">
+    </box>
+    <box label="ber-dan" source="manual" occluded="0" xtl="1997.21" ytl="496.15" xbr="2122.48" ybr="546.13" rotation="11.80" z_order="0">
+    </box>
+    <box label="dan-war" source="manual" occluded="0" xtl="2159.97" ytl="567.64" xbr="2285.24" ybr="617.62" rotation="30.20" z_order="0">
+    </box>
+    <box label="dan-war" source="manual" occluded="0" xtl="2230.36" ytl="673.21" xbr="2355.63" ybr="723.19" rotation="78.90" z_order="0">
+    </box>
+    <box label="kob-sto-w" source="manual" occluded="0" xtl="1682.29" ytl="338.96" xbr="1807.56" ybr="388.93" rotation="313.20" z_order="0">
+    </box>
+    <box label="kob-sto-w" source="manual" occluded="0" xtl="1767.83" ytl="254.18" xbr="1893.10" ybr="304.16" rotation="320.30" z_order="0">
+    </box>
+    <box label="kob-sto-w" source="manual" occluded="0" xtl="1874.75" ytl="183.16" xbr="2000.02" ybr="233.13" rotation="331.90" z_order="0">
+    </box>
+    <box label="kob-sto-y" source="manual" occluded="0" xtl="1845.73" ytl="147.26" xbr="1971.00" ybr="197.24" rotation="330.30" z_order="0">
+    </box>
+    <box label="kob-sto-y" source="manual" occluded="0" xtl="1741.10" ytl="218.29" xbr="1866.37" ybr="268.27" rotation="321.00" z_order="0">
+    </box>
+    <box label="kob-sto-y" source="manual" occluded="0" xtl="1650.98" ytl="306.12" xbr="1776.25" ybr="356.09" rotation="314.30" z_order="0">
+    </box>
+  </image>
+</annotations>
