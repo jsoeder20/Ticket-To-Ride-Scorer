@@ -17,7 +17,7 @@ def getRoutePoints(connections, allConnections):
         routePoints += point
     return routePoints
 
-workbook = load_workbook(filename="data/routes TTR.xlsx")
+workbook = load_workbook(filename="game_data/routes TTR.xlsx")
 
 sheet = workbook['Sheet1']
 

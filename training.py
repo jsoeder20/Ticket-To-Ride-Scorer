@@ -4,7 +4,7 @@ import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 from torch.optim import Adam
 import matplotlib.pyplot as plt
-from torchvision import datasets, transforms
+from torchvision import transforms
 from torch.utils.data import random_split
 import time
 from PIL import Image
@@ -189,43 +189,19 @@ class TrainClassifier:
             plt.imshow(image_np)
             plt.title(f'Actual label: {label.item()}, Predicted label: {prediction.item()}')
             plt.show()
+
+    def save_model(self, save_path='trained_model.pth'):
+        torch.save(self.model.state_dict(), save_path)
+        print(f"Model saved at: {save_path}")
     
 
 def MLP_CNN_experiment():
     cnn_model = CNN()
     cnn_classifier = TrainClassifier(cnn_model.model)
     cnn_classifier.train()
-    #cnn_classifier.visualize_predictions(cnn_classifier.test_loader)
-
-    folder_path = 'messy_train_in_some_spots'
-    cnn_model.eval()
-
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-    ])
-
-    for filename in os.listdir(folder_path):
-        img_path = os.path.join(folder_path, filename)
-        image = cv2.imread(img_path)
-        desired_height, desired_width = 50, 125
-        image = cv2.resize(image, (desired_width, desired_height))
+    cnn_classifier.visualize_predictions(cnn_classifier.test_loader)
         
-        # Apply the same transformations used during training
-        input_tensor = transform(image)
-        input_batch = input_tensor.unsqueeze(0)  # Add a batch dimension
-
-
-        label_map = ['blank', 'blue', 'black', 'green', 'red', 'yellow']
-
-        # Perform model evaluation
-        with torch.no_grad():
-            label = cnn_model(input_batch)
-        
-        predicted_class_index = torch.argmax(label, dim=1).item()
-
-        predicted_label = label_map[predicted_class_index]
-        print(predicted_label)
+    cnn_classifier.save_model()
 
     
 
