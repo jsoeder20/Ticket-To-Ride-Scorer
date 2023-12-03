@@ -43,27 +43,28 @@ class CustomDataset(Dataset):
         # Assuming your data is organized in folders, each representing a class
         big_folder = self.root_dir
         for folder in os.listdir(big_folder):
-            folder_path = os.path.join(big_folder, folder)
-            for filename in os.listdir(folder_path):
-                if filename != '.DS_Store':
-                    img_path = os.path.join(folder_path, filename)
-                    image = cv2.imread(img_path)
-                    desired_height, desired_width = 50, 125
-                    image = cv2.resize(image, (desired_width, desired_height))
-                    label = filename.split('-')[0]
-                    self.data.append(image)
-                    if (label == 'blue'):
-                        self.targets.append(1)
-                    elif (label == 'black'):
-                        self.targets.append(2)
-                    elif (label == 'green'):
-                        self.targets.append(3)
-                    elif (label == 'red'):
-                        self.targets.append(4)
-                    elif (label == 'yellow'):
-                        self.targets.append(5)
-                    else:
-                        self.targets.append(0)
+            if folder != '.DS_Store':
+                folder_path = os.path.join(big_folder, folder)
+                for filename in os.listdir(folder_path):
+                    if filename != '.DS_Store':
+                        img_path = os.path.join(folder_path, filename)
+                        image = cv2.imread(img_path)
+                        desired_height, desired_width = 50, 125
+                        image = cv2.resize(image, (desired_width, desired_height))
+                        label = filename.split('-')[0]
+                        self.data.append(image)
+                        if (label == 'blue'):
+                            self.targets.append(1)
+                        elif (label == 'black'):
+                            self.targets.append(2)
+                        elif (label == 'green'):
+                            self.targets.append(3)
+                        elif (label == 'red'):
+                            self.targets.append(4)
+                        elif (label == 'yellow'):
+                            self.targets.append(5)
+                        else:
+                            self.targets.append(0)
 
     def split_data(self, train_percentage=0.7):
         dataset_size = len(self.data)
@@ -194,8 +195,39 @@ def MLP_CNN_experiment():
     cnn_model = CNN()
     cnn_classifier = TrainClassifier(cnn_model.model)
     cnn_classifier.train()
-    cnn_classifier.visualize_predictions(cnn_classifier.test_loader)
+    #cnn_classifier.visualize_predictions(cnn_classifier.test_loader)
 
+    folder_path = 'messy_train_in_some_spots'
+    cnn_model.eval()
+
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    ])
+
+    for filename in os.listdir(folder_path):
+        img_path = os.path.join(folder_path, filename)
+        image = cv2.imread(img_path)
+        desired_height, desired_width = 50, 125
+        image = cv2.resize(image, (desired_width, desired_height))
+        
+        # Apply the same transformations used during training
+        input_tensor = transform(image)
+        input_batch = input_tensor.unsqueeze(0)  # Add a batch dimension
+
+
+        label_map = ['blank', 'blue', 'black', 'green', 'red', 'yellow']
+
+        # Perform model evaluation
+        with torch.no_grad():
+            label = cnn_model(input_batch)
+        
+        predicted_class_index = torch.argmax(label, dim=1).item()
+
+        predicted_label = label_map[predicted_class_index]
+        print(predicted_label)
+
+    
 
 if __name__ == "__main__":
     MLP_CNN_experiment()

@@ -55,8 +55,8 @@ def process_xml(xml_path, image, output_folder):
 if __name__ == '__main__':
     # Set the path to the XML file and the folder containing images
     xml_path = 't2r_annotations.xml'
-    image_path = 'cropped_trains.jpg'
-    output_folder = 'train_in_spots'
+    image_path = 'cropped_messy_trains.jpg'
+    output_folder = 'messy_train_in_some_spots'
 
     # Read the image
     image = cv2.imread(image_path)
