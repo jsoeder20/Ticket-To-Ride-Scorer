@@ -21,7 +21,7 @@ class CNN(nn.Module):
             nn.MaxPool2d(2),
             nn.ReLU(),
             nn.Flatten(),
-            nn.Linear(2535, 5)
+            nn.Linear(21960, 6)
         )
 
     def forward(self, x):
@@ -48,7 +48,18 @@ class CustomDataset(Dataset):
                 image = cv2.resize(image, (desired_width, desired_height))
                 label = filename.split('-')[0]
                 self.data.append(image)
-                self.targets.append(label)
+                if (label == 'blue'):
+                    self.targets.append(1)
+                elif (label == 'black'):
+                    self.targets.append(2)
+                elif (label == 'green'):
+                    self.targets.append(3)
+                elif (label == 'red'):
+                    self.targets.append(4)
+                elif (label == 'yellow'):
+                    self.targets.append(5)
+                else:
+                    self.targets.append(0)
 
     def __getitem__(self, idx):
         img, target = self.data[idx], self.targets[idx]
@@ -90,9 +101,16 @@ class TrainClassifier:
         return train_dataset, train_loader, test_dataset, test_loader
 
     def train_batch(self, x, y):
+        # print("TRAIN")
         self.model.train()
+        # print("1")
         self.optimizer.zero_grad()
+        # print("2")
+        # print(x.shape)
+        # print(self.model(x))
+        # print(y)
         batch_loss = self.loss_func(self.model(x), y)
+        # print("3")
         batch_loss.backward()
         self.optimizer.step()
         return batch_loss.item()
@@ -114,18 +132,17 @@ class TrainClassifier:
             start_time = time.time()
 
             epoch_losses, epoch_accuracies = [], []
-            print("START")
-            print(self.train_loader)
+            #print("START")
             for batch in self.train_loader:
                 x, y = batch
                 batch_loss = self.train_batch(x, y)
                 epoch_losses.append(batch_loss)
                 batch_acc = self.accuracy(x, y)
                 epoch_accuracies.append(batch_acc)
-            print("DONE")
+            #print("DONE")
             train_losses.append(np.mean(epoch_losses))
             train_accuracies.append(np.mean(epoch_accuracies))
-            print("THERE")
+            #print("THERE")
             epoch_test_accuracies, epoch_test_losses = [], []
             for ix, batch in enumerate(iter(self.test_loader)):
                 x, y = batch
