@@ -5,7 +5,7 @@ from torch.utils.data import Dataset, DataLoader
 from torch.optim import Adam
 import matplotlib.pyplot as plt
 from torchvision import datasets, transforms
-
+from torch.utils.data import random_split
 import time
 from PIL import Image
 import os
@@ -29,8 +29,8 @@ class CNN(nn.Module):
 
 
 class CustomDataset(Dataset):
-    def __init__(self, root_dir1, transform=None):
-        self.root_dir1 = root_dir1
+    def __init__(self, root_dir, transform=None):
+        self.root_dir = root_dir
         self.transform = transform
         self.data = []
         self.targets = []
@@ -39,28 +39,37 @@ class CustomDataset(Dataset):
 
     def load_data(self):
         # Assuming your data is organized in folders, each representing a class
-        folder = self.root_dir1
-        for filename in os.listdir(folder):
-            if filename != '.DS_Store':
-                img_path = os.path.join(folder, filename)
-                image = cv2.imread(img_path)
-                desired_height, desired_width = 125, 50
-                image = cv2.resize(image, (desired_width, desired_height))
-                label = filename.split('-')[0]
-                self.data.append(image)
-                if (label == 'blue'):
-                    self.targets.append(1)
-                elif (label == 'black'):
-                    self.targets.append(2)
-                elif (label == 'green'):
-                    self.targets.append(3)
-                elif (label == 'red'):
-                    self.targets.append(4)
-                elif (label == 'yellow'):
-                    self.targets.append(5)
-                else:
-                    self.targets.append(0)
+        big_folder = self.root_dir
+        for folder in os.listdir(big_folder):
+            folder_path = os.path.join(big_folder, folder)
+            for filename in os.listdir(folder_path):
+                if filename != '.DS_Store':
+                    img_path = os.path.join(folder_path, filename)
+                    image = cv2.imread(img_path)
+                    desired_height, desired_width = 125, 50
+                    image = cv2.resize(image, (desired_width, desired_height))
+                    label = filename.split('-')[0]
+                    self.data.append(image)
+                    if (label == 'blue'):
+                        self.targets.append(1)
+                    elif (label == 'black'):
+                        self.targets.append(2)
+                    elif (label == 'green'):
+                        self.targets.append(3)
+                    elif (label == 'red'):
+                        self.targets.append(4)
+                    elif (label == 'yellow'):
+                        self.targets.append(5)
+                    else:
+                        self.targets.append(0)
 
+    def split_data(self, train_percentage=0.7):
+        dataset_size = len(self.data)
+        train_size = int(train_percentage * dataset_size)
+        test_size = dataset_size - train_size
+        train_dataset, test_dataset = random_split(self, [train_size, test_size])
+        return train_dataset, test_dataset
+    
     def __getitem__(self, idx):
         img, target = self.data[idx], self.targets[idx]
 
@@ -92,9 +101,8 @@ class TrainClassifier:
             transforms.Normalize((0.5,), (0.5,))
         ])
 
-        train_dataset = CustomDataset(root_dir1='train_in_spots', transform=transform)
-        test_dataset = CustomDataset(root_dir1='train_in_spots', transform=transform)
-
+        custom_dataset = CustomDataset(root_dir='test_train_data', transform=transform)
+        train_dataset, test_dataset = custom_dataset.split_data()
         train_loader = DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True)
         test_loader = DataLoader(test_dataset, batch_size=self.batch_size, shuffle=True)
 
@@ -156,7 +164,8 @@ class TrainClassifier:
 
             end_time = time.time()
             time_per_epoch.append(end_time - start_time)
-
+        print(train_accuracies)
+        print(test_accuracies)
     
 
 def MLP_CNN_experiment():
