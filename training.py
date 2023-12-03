@@ -10,6 +10,8 @@ import time
 from PIL import Image
 import os
 import cv2
+import matplotlib.pyplot as plt
+import torchvision
 
 
 class CNN(nn.Module):
@@ -46,7 +48,7 @@ class CustomDataset(Dataset):
                 if filename != '.DS_Store':
                     img_path = os.path.join(folder_path, filename)
                     image = cv2.imread(img_path)
-                    desired_height, desired_width = 125, 50
+                    desired_height, desired_width = 50, 125
                     image = cv2.resize(image, (desired_width, desired_height))
                     label = filename.split('-')[0]
                     self.data.append(image)
@@ -167,11 +169,32 @@ class TrainClassifier:
         print(train_accuracies)
         print(test_accuracies)
     
+    @torch.no_grad()
+    def visualize_predictions(self, loader, num_images=5):
+        self.model.eval()
+
+        images, labels = next(iter(loader))
+
+        images, labels = images.to(self.device), labels.to(self.device)
+
+        outputs = self.model(images)
+        _, predicted = torch.max(outputs, 1)
+
+        for i in range(num_images):
+            image, label, prediction = images[i], labels[i], predicted[i]
+            image_np = image.cpu().numpy().transpose((1, 2, 0))  # Assuming the tensor is in CHW format
+            image_np = (image_np - image_np.min()) / (image_np.max() - image_np.min())
+
+            plt.imshow(image_np)
+            plt.title(f'Actual label: {label.item()}, Predicted label: {prediction.item()}')
+            plt.show()
+    
 
 def MLP_CNN_experiment():
     cnn_model = CNN()
     cnn_classifier = TrainClassifier(cnn_model.model)
     cnn_classifier.train()
+    cnn_classifier.visualize_predictions(cnn_classifier.test_loader)
 
 
 if __name__ == "__main__":
