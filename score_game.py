@@ -1,5 +1,6 @@
 from training import CNN, TrainClassifier
 from torchvision import transforms
+from collections import Counter
 import os
 import cv2
 import torch
@@ -36,11 +37,41 @@ def assign_label(model, folder_path, filename):
     predicted_label = label_map[torch.argmax(label, dim=1).item()]
     return predicted_label
 
-def construct_gamestate(model):
-    image_folder_path = 'messy_train_in_some_spots'
+
+def assign_points(df):
+    point_map = {1 : 1, 2 : 2, 3 : 4, 4 : 7, 6 : 15, 8 : 21}
+    for idx, row in df.iterrows():
+        df.at[idx, 'points'] = point_map[df.at[idx, 'length']]
+    return df
+
+def assign_color(df):
+    count = 0
+    for idx, row in df.iterrows():
+        colors_detected = df.at[idx, 'colors']
+        if len(set(colors_detected)) == 1:
+            df.at[idx, 'color'] = colors_detected[0]
+        else:
+            count += 1
+            print(df.at[idx, 'name'], colors_detected)
+
+            color_counter = Counter(colors_detected)
+            max_value = max(color_counter.values())
+            max_keys = [key for key, value in color_counter.items() if value == max_value]
+
+            if len(max_keys) == 1:
+                df.at[idx, 'color'] = max_keys[0]
+            else:
+                for color in max_keys:
+                    if color != 'blank':
+                        df.at[idx, 'color'] = color
+                        break
+    print(count)
+    return df
+
+def construct_gamestate(model, image_folder_path):
     model.eval()
 
-    columns = ['name', 'fullName', 'length', 'points', 'colors', 'color']
+    columns = ['name', 'location1', 'location2', 'length', 'points', 'colors', 'color']
     game_info = pd.DataFrame(columns=columns)
 
     for image_filename in os.listdir(image_folder_path):
@@ -49,19 +80,26 @@ def construct_gamestate(model):
         train_number = int(image_filename.split('-')[-1][:-4])
         
         if not game_info['name'].isin([name]).any():
-            new_row = {'name': name, 'length': train_number, 'colors': [predicted_label]}
-            game_info = game_info.append(new_row, ignore_index=True)
+            new_row = pd.DataFrame({'name': [name], 'length': [train_number], 'colors': [[predicted_label]]})
+            game_info = pd.concat([game_info, new_row], ignore_index=True)
+
         else:
             idx = game_info.index[game_info['name'] == name][0]
             game_info.at[idx, 'colors'].append(predicted_label)
             
             if int(game_info.at[idx, 'length']) < int(train_number):
                 game_info.at[idx, 'length'] = train_number
+
+    game_info = assign_points(game_info)
+    game_info = assign_color(game_info)
+    game_info
     
     return game_info
 
 if __name__ == '__main__':
     cnn_model = CNN()
     loaded_classifier = load_model(cnn_model)
-    game_state = construct_gamestate(loaded_classifier)
-    print(game_state)
+
+    image_folder_path = 'messy_train_in_some_spots'
+    game_state = construct_gamestate(loaded_classifier, image_folder_path)
+    print(game_state.to_string())

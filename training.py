@@ -86,7 +86,7 @@ class CustomDataset(Dataset):
 
 
 class TrainClassifier:
-    def __init__(self, model, batch_size=32, learning_rate=1e-3, num_epochs=5):
+    def __init__(self, model, batch_size=32, learning_rate=1e-3, num_epochs=10):
         self.batch_size = batch_size
         self.learning_rate = learning_rate
         self.num_epochs = num_epochs
@@ -190,7 +190,7 @@ class TrainClassifier:
             plt.title(f'Actual label: {label.item()}, Predicted label: {prediction.item()}')
             plt.show()
 
-    def save_model(self, save_path='trained_model.pth'):
+    def save_model(self, save_path='trained_model10e.pth'):
         torch.save(self.model.state_dict(), save_path)
         print(f"Model saved at: {save_path}")
     
