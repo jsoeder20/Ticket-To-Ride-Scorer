@@ -68,6 +68,32 @@ def assign_color(df):
     print(count)
     return df
 
+
+def elaborate_names(df):
+    cities_df = pd.read_csv('game_data/cities.csv')
+    city_names = cities_df['City'].to_list()
+
+    alt_name_map = {'ric' : 'Riga', 'kob': 'Khobenhaven'}
+
+    for idx, row in df.iterrows():
+        names = df.at[idx, 'name']
+        name1, name2 = names.split('-')[0], names.split('-')[1]
+
+        if name1 in alt_name_map.keys():
+            df.at[idx, 'location1'] = alt_name_map[name1]
+            
+        if name2 in alt_name_map.keys():
+            df.at[idx, 'location2'] = alt_name_map[name2]
+
+        for full_name in city_names:
+            if full_name[:3].lower() == name1:
+                df.at[idx, 'location1'] = full_name
+            if full_name[:3].lower() == name2:
+                df.at[idx, 'location2'] = full_name
+    
+    return df
+
+
 def construct_gamestate(model, image_folder_path):
     model.eval()
 
@@ -92,7 +118,7 @@ def construct_gamestate(model, image_folder_path):
 
     game_info = assign_points(game_info)
     game_info = assign_color(game_info)
-    game_info
+    game_info = elaborate_names(game_info)
     
     return game_info
 
