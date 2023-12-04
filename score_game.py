@@ -71,27 +71,44 @@ def assign_color(df):
 
 def elaborate_names(df):
     cities_df = pd.read_csv('game_data/cities.csv')
-    city_names = cities_df['City'].to_list()
 
-    alt_name_map = {'ric' : 'Riga', 'kob': 'Khobenhaven'}
+    code_to_city = {}
+    for city in cities_df['City']:
+        if city == 'Khobenhaven':
+            code_to_city['kob'] = 'Khobenhaven'
+        elif city == 'Riga':
+            code_to_city['ric'] = 'Riga'
+        else:
+            code_to_city[city[0:3].lower()] = city
 
     for idx, row in df.iterrows():
-        names = df.at[idx, 'name']
-        name1, name2 = names.split('-')[0], names.split('-')[1]
-
-        if name1 in alt_name_map.keys():
-            df.at[idx, 'location1'] = alt_name_map[name1]
-            
-        if name2 in alt_name_map.keys():
-            df.at[idx, 'location2'] = alt_name_map[name2]
-
-        for full_name in city_names:
-            if full_name[:3].lower() == name1:
-                df.at[idx, 'location1'] = full_name
-            if full_name[:3].lower() == name2:
-                df.at[idx, 'location2'] = full_name
+        curr_name =  df.at[idx, 'name']
+        code1 = curr_name[0:3]
+        code2 = curr_name[4:7]
+        df.at[idx, 'location1'] = code_to_city[code1]
+        df.at[idx, 'location2'] = code_to_city[code2]
     
     return df
+    # city_names = cities_df['City'].to_list()
+    # alt_name_map = {'ric' : 'Riga', 'kob': 'Khobenhaven'}
+
+    # for idx, row in df.iterrows():
+    #     names = df.at[idx, 'name']
+    #     name1, name2 = names.split('-')[0], names.split('-')[1]
+
+    #     if name1 in alt_name_map.keys():
+    #         df.at[idx, 'location1'] = alt_name_map[name1]
+            
+    #     if name2 in alt_name_map.keys():
+    #         df.at[idx, 'location2'] = alt_name_map[name2]
+
+    #     for full_name in city_names:
+    #         if full_name[:3].lower() == name1:
+    #             df.at[idx, 'location1'] = full_name
+    #         if full_name[:3].lower() == name2:
+    #             df.at[idx, 'location2'] = full_name
+    
+    # return df
 
 
 def construct_gamestate(model, image_folder_path):
