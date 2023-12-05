@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations>
+  <version>1.1</version>
+  <meta>
+    <job>
+      <id>433334</id>
+      <size>1</size>
+      <mode>annotation</mode>
+      <overlap>0</overlap>
+      <bugtracker></bugtracker>
+      <created>2023-11-28 18:54:03.503658+00:00</created>
+      <updated>2023-11-28 19:09:37.110857+00:00</updated>
+      <subset>default</subset>
+      <start_frame>0</start_frame>
+      <stop_frame>0</stop_frame>
+      <frame_filter></frame_filter>
+      <segments>
+        <segment>
+          <id>433747</id>
+          <start>0</start>
+          <stop>0</stop>
+          <url>https://app.cvat.ai/api/jobs/433334</url>
+        </segment>
+      </segments>
+      <owner>
+        <username>ian277</username>
+        <email>ianmatheson01@gmail.com</email>
+      </owner>
+      <assignee></assignee>
+      <labels>
+        <label>
+          <name>edi</name>
+          <color>#3c2e56</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>lon</name>
+          <color>#4710b1</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>die</name>
+          <color>#5b8c90</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bre</name>
+          <color>#995ce7</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>par</name>
+          <color>#c2f26d</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>pam</name>
+          <color>#30cb0d</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mad</name>
+          <color>#d84279</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>lis</name>
+          <color>#629160</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>cad</name>
+          <color>#24dab5</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bar</name>
+          <color>#b0eb3f</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ams</name>
+          <color>#671a87</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bru</name>
+          <color>#eb3c7e</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>zur</name>
+          <color>#e2503e</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mar</name>
+          <color>#9e815b</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>fra</name>
+          <color>#cc9c80</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ess</name>
+          <color>#bb084a</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mun</name>
+          <color>#c4ceb0</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ven</name>
+          <color>#3bd11b</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>rom</name>
+          <color>#66857b</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>pal</name>
+          <color>#ce3269</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bri</name>
+          <color>#b09d41</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>zag</name>
+          <color>#f2d603</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>wie</name>
+          <color>#a6d699</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ber</name>
+          <color>#97ada8</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kob</name>
+          <color>#4e2465</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>sto</name>
+          <color>#0f7638</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>dan</name>
+          <color>#015459</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>war</name>
+          <color>#ab87e0</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>bud</name>
+          <color>#5ad29a</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>sof</name>
+          <color>#9f9b9e</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ath</name>
+          <color>#be4c63</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>smy</name>
+          <color>#46db7e</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ang</name>
+          <color>#4de4c8</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>con</name>
+          <color>#2e32d5</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>sev</name>
+          <color>#1eaa40</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kyi</name>
+          <color>#c5d3fe</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>wil</name>
+          <color>#b607e9</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>rig</name>
+          <color>#023438</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>pet</name>
+          <color>#71957f</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>smo</name>
+          <color>#237220</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>mos</name>
+          <color>#07aed1</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>kha</name>
+          <color>#ceac48</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>ros</name>
+          <color>#c256c2</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>soc</name>
+          <color>#eb7f13</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>erz</name>
+          <color>#924db8</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>sar</name>
+          <color>#cf8f44</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>buc</name>
+          <color>#b0b499</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+      </labels>
+    </job>
+    <dumped>2023-12-05 01:19:56.850188+00:00</dumped>
+  </meta>
+  <image id="0" name="cropped_blank.jpg" width="3582" height="2388">
+    <box label="edi" source="manual" occluded="0" xtl="547.85" ytl="162.92" xbr="648.05" ybr="263.12" z_order="0">
+    </box>
+    <box label="lon" source="manual" occluded="0" xtl="773.96" ytl="668.74" xbr="874.16" ybr="768.93" z_order="0">
+    </box>
+    <box label="die" source="manual" occluded="0" xtl="734.09" ytl="974.44" xbr="834.28" ybr="1074.63" z_order="0">
+    </box>
+    <box label="bre" source="manual" occluded="0" xtl="428.39" ytl="1070.80" xbr="528.58" ybr="1171.00" z_order="0">
+    </box>
+    <box label="par" source="manual" occluded="0" xtl="903.55" ytl="1120.64" xbr="1003.75" ybr="1220.84" z_order="0">
+    </box>
+    <box label="pam" source="manual" occluded="0" xtl="684.25" ytl="1642.32" xbr="784.44" ybr="1742.52" z_order="0">
+    </box>
+    <box label="bar" source="manual" occluded="0" xtl="724.12" ytl="1954.67" xbr="824.32" ybr="2054.87" z_order="0">
+    </box>
+    <box label="mad" source="manual" occluded="0" xtl="348.64" ytl="1921.44" xbr="448.84" ybr="2021.64" z_order="0">
+    </box>
+    <box label="lis" source="manual" occluded="0" xtl="116.04" ytl="2001.19" xbr="216.24" ybr="2101.39" z_order="0">
+    </box>
+    <box label="cad" source="manual" occluded="0" xtl="342.00" ytl="2177.30" xbr="442.19" ybr="2277.49" z_order="0">
+    </box>
+    <box label="mar" source="manual" occluded="0" xtl="1199.28" ytl="1625.71" xbr="1299.48" ybr="1725.91" z_order="0">
+    </box>
+    <box label="zur" source="manual" occluded="0" xtl="1295.65" ytl="1310.04" xbr="1395.84" ybr="1410.24" z_order="0">
+    </box>
+    <box label="bru" source="manual" occluded="0" xtl="1023.17" ytl="841.53" xbr="1123.37" ybr="941.72" z_order="0">
+    </box>
+    <box label="ams" source="manual" occluded="0" xtl="1099.60" ytl="685.35" xbr="1199.79" ybr="785.55" z_order="0">
+    </box>
+    <box label="fra" source="manual" occluded="0" xtl="1325.55" ytl="954.50" xbr="1425.75" ybr="1054.70" z_order="0">
+    </box>
+    <box label="mun" source="manual" occluded="0" xtl="1518.27" ytl="1100.71" xbr="1618.47" ybr="1200.90" z_order="0">
+    </box>
+    <box label="ven" source="manual" occluded="0" xtl="1574.76" ytl="1419.70" xbr="1674.96" ybr="1519.89" z_order="0">
+    </box>
+    <box label="rom" source="manual" occluded="0" xtl="1601.34" ytl="1725.40" xbr="1701.54" ybr="1825.59" z_order="0">
+    </box>
+    <box label="wie" source="manual" occluded="0" xtl="1900.40" ytl="1153.87" xbr="2000.59" ybr="1254.07" z_order="0">
+    </box>
+    <box label="zag" source="manual" occluded="0" xtl="1860.52" ytl="1462.89" xbr="1960.72" ybr="1563.09" z_order="0">
+    </box>
+    <box label="bri" source="manual" occluded="0" xtl="1890.43" ytl="1811.79" xbr="1990.63" ybr="1911.98" z_order="0">
+    </box>
+    <box label="pal" source="manual" occluded="0" xtl="1727.61" ytl="2170.65" xbr="1827.81" ybr="2270.85" z_order="0">
+    </box>
+    <box label="ath" source="manual" occluded="0" xtl="2312.43" ytl="2080.94" xbr="2412.62" ybr="2181.13" z_order="0">
+    </box>
+    <box label="sof" source="manual" occluded="0" xtl="2372.24" ytl="1692.17" xbr="2472.43" ybr="1792.36" z_order="0">
+    </box>
+    <box label="sar" source="manual" occluded="0" xtl="2142.96" ytl="1658.94" xbr="2243.16" ybr="1759.14" z_order="0">
+    </box>
+    <box label="bud" source="manual" occluded="0" xtl="2063.22" ytl="1236.94" xbr="2163.41" ybr="1337.14" z_order="0">
+    </box>
+    <box label="ber" source="manual" occluded="0" xtl="1707.67" ytl="765.10" xbr="1807.87" ybr="865.30" z_order="0">
+    </box>
+    <box label="kob" source="manual" occluded="0" xtl="1614.64" ytl="359.72" xbr="1714.83" ybr="459.91" z_order="0">
+    </box>
+    <box label="ess" source="manual" occluded="0" xtl="1375.39" ytl="715.26" xbr="1475.59" ybr="815.45" z_order="0">
+    </box>
+    <box label="dan" source="manual" occluded="0" xtl="2093.12" ytl="499.27" xbr="2193.32" ybr="599.47" z_order="0">
+    </box>
+    <box label="sto" source="manual" occluded="0" xtl="1966.85" ytl="93.89" xbr="2067.05" ybr="194.09" z_order="0">
+    </box>
+    <box label="rig" source="manual" occluded="0" xtl="2375.56" ytl="193.57" xbr="2475.76" ybr="293.77" z_order="0">
+    </box>
+    <box label="wil" source="manual" occluded="0" xtl="2641.39" ytl="648.80" xbr="2741.58" ybr="749.00" z_order="0">
+    </box>
+    <box label="war" source="manual" occluded="0" xtl="2259.26" ytl="735.20" xbr="2359.46" ybr="835.39" z_order="0">
+    </box>
+    <box label="kyi" source="manual" occluded="0" xtl="2774.30" ytl="914.63" xbr="2874.50" ybr="1014.82" z_order="0">
+    </box>
+    <box label="smo" source="manual" occluded="0" xtl="2990.28" ytl="665.42" xbr="3090.48" ybr="765.61" z_order="0">
+    </box>
+    <box label="mos" source="manual" occluded="0" xtl="3279.37" ytl="582.35" xbr="3379.56" ybr="682.54" z_order="0">
+    </box>
+    <box label="pet" source="manual" occluded="0" xtl="2950.41" ytl="173.64" xbr="3050.60" ybr="273.83" z_order="0">
+    </box>
+    <box label="kha" source="manual" occluded="0" xtl="3236.17" ytl="1094.06" xbr="3336.37" ybr="1194.26" z_order="0">
+    </box>
+    <box label="ros" source="manual" occluded="0" xtl="3375.73" ytl="1273.49" xbr="3475.93" ybr="1373.69" z_order="0">
+    </box>
+    <box label="soc" source="manual" occluded="0" xtl="3355.79" ytl="1579.19" xbr="3455.99" ybr="1679.39" z_order="0">
+    </box>
+    <box label="sev" source="manual" occluded="0" xtl="3050.09" ytl="1526.03" xbr="3150.29" ybr="1626.22" z_order="0">
+    </box>
+    <box label="buc" source="manual" occluded="0" xtl="2581.58" ytl="1479.51" xbr="2681.77" ybr="1579.70" z_order="0">
+    </box>
+    <box label="con" source="manual" occluded="0" xtl="2754.36" ytl="1898.18" xbr="2854.56" ybr="1998.38" z_order="0">
+    </box>
+    <box label="ang" source="manual" occluded="0" xtl="3016.87" ytl="2080.94" xbr="3117.06" ybr="2181.13" z_order="0">
+    </box>
+    <box label="erz" source="manual" occluded="0" xtl="3289.34" ytl="2004.51" xbr="3389.53" ybr="2104.71" z_order="0">
+    </box>
+    <box label="smy" source="manual" occluded="0" xtl="2604.84" ytl="2167.33" xbr="2705.03" ybr="2267.53" z_order="0">
+    </box>
+  </image>
+</annotations>
