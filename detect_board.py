@@ -25,8 +25,13 @@ for meth in methods:
     print(top_left[0])
     #print(top_left[1])
     bottom_right = (top_left[0] + w, top_left[1] + h)
-    cv.rectangle(img,top_left, bottom_right, (203, 192, 255), 2)
-    plt.imshow(img,cmap = 'gray')
+    # Specify a bright pink color (you can adjust the values for brightness)
+    bright_pink = (255, 182, 193)
+
+    # Draw a thick rectangle with bright pink color
+    cv.rectangle(img, top_left, bottom_right, color=bright_pink, thickness=10)
+    plt.imshow(img)
+    
     plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
     plt.suptitle(meth)
     plt.show()
