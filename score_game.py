@@ -52,6 +52,11 @@ if __name__ == "__main__":
     longest_route(game_state, scores)
     print(scores)
 
+    '''
+    SCORING STILL NEEDS:
+        - account for stations (destination and +4 per not used)
+        - destination tickets
+    '''
     # tickets = {'red':{}}
     # destination_tickets(game_state, scores, tickets)
 
