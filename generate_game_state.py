@@ -124,5 +124,5 @@ def create_game_state(input_file):
     loaded_classifier = load_model(cnn_model)
 
     game_state = build_df(loaded_classifier, input_file)
-
+    print(game_state.to_string())
     return game_state
