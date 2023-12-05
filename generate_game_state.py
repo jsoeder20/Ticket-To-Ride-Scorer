@@ -6,7 +6,7 @@ import cv2
 import torch
 import pandas as pd
 
-def load_model(model, model_path='trained_model.pth'):
+def load_model(model, model_path='trained_model2.pth'):
     model_state_dict = torch.load(model_path)
     
     # Remove the "model." prefix from the keys
