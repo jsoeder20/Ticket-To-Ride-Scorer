@@ -57,7 +57,7 @@ if __name__ == '__main__':
     # Set the path to the XML file and the folder containing images
     train_xml_path = 'route_annotations.xml'
     station_xml_path = 'city_annotations.xml'
-    image_path = 'cropped_board_images/cropped_messy2.jpg'
+    image_path = 'cropped_board_images/cropped_messy2_stations.jpg'
     #train_output = 'messy2_trains_in_some_spots'
     station_output = 'messy2_stations_in_some_spots'
 

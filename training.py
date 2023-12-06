@@ -24,6 +24,18 @@ class CNN(nn.Module):
             nn.ReLU(),
             nn.Flatten(),
             nn.Linear(21960, 6)
+            # nn.Conv2d(3, 32, kernel_size=3),
+            # nn.Conv2d(32, 32, kernel_size=3),
+            # nn.ReLU(),
+            # nn.MaxPool2d(kernel_size=2, stride=2),
+            # nn.Conv2d(32, 64, kernel_size=3),
+            # nn.Conv2d(64, 64, kernel_size=3),
+            # nn.ReLU(),
+            # nn.MaxPool2d(kernel_size=2, stride=2),
+            # nn.Flatten(),
+            # nn.Linear(16128, 128),
+            # nn.ReLU(),
+            # nn.Linear(128, 6),
         )
 
     def forward(self, x):
