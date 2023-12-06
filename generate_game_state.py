@@ -1,4 +1,4 @@
-from training import CNN, TrainClassifier
+from training_trains import CNN, TrainClassifier
 from torchvision import transforms
 from collections import Counter
 import os
@@ -6,12 +6,23 @@ import cv2
 import torch
 import pandas as pd
 
-def load_model(model, model_path='trained_model2.pth'):
+def load_train_model(model, model_path='trained_model2.pth'):
     model_state_dict = torch.load(model_path)
     
     # Remove the "model." prefix from the keys
     model_state_dict = {'model.' + k: v for k, v in model_state_dict.items()}
     model.load_state_dict(model_state_dict)
+    return model
+
+def load_station_model(model, model_path='trained_station_model.pth'):
+    model_state_dict = torch.load(model_path)
+    
+    # Remove the "model." prefix from the keys
+    print("hi")
+    model_state_dict = {'model.' + k: v for k, v in model_state_dict.items()}
+    print("hello")
+    model.load_state_dict(model_state_dict)
+    print('ahu')
     return model
 
 def assign_label(model, folder_path, filename):
@@ -91,7 +102,7 @@ def elaborate_names(df):
     return df
 
 
-def build_df(model, image_folder_path):
+def build_train_df(model, image_folder_path):
     model.eval()
 
     columns = ['name', 'location1', 'location2', 'length', 'points', 'colors', 'color']
@@ -119,10 +130,42 @@ def build_df(model, image_folder_path):
     
     return game_info
 
-def create_game_state(input_file):
-    cnn_model = CNN()
-    loaded_classifier = load_model(cnn_model)
+def build_station_df(model, image_folder_path):
+    model.eval()
 
-    game_state = build_df(loaded_classifier, input_file)
-    print(game_state.to_string())
-    return game_state
+    columns = ['city', 'color']
+    game_info = pd.DataFrame(columns=columns)
+
+    # for image_filename in os.listdir(image_folder_path):
+        # predicted_label = assign_label(model, image_folder_path, image_filename)
+        # name = image_filename[:-6]
+        # train_number = int(image_filename.split('-')[-1][:-4])
+        
+        # if not game_info['name'].isin([name]).any():
+        #     new_row = pd.DataFrame({'name': [name], 'length': [train_number], 'colors': [[predicted_label]]})
+        #     game_info = pd.concat([game_info, new_row], ignore_index=True)
+
+        # else:
+        #     idx = game_info.index[game_info['name'] == name][0]
+        #     game_info.at[idx, 'colors'].append(predicted_label)
+            
+        #     if int(game_info.at[idx, 'length']) < int(train_number):
+        #         game_info.at[idx, 'length'] = train_number
+
+    # game_info = assign_points(game_info)
+    game_info = assign_color(game_info)
+    game_info = elaborate_names(game_info)
+    
+    return game_info
+
+def create_game_state(train_input_file, station_input_file):
+    cnn_model = CNN()
+    loaded_classifier = load_train_model(cnn_model)
+    train_game_state = build_train_df(loaded_classifier, train_input_file)
+    print(train_game_state.to_string())
+
+    cnn_model2 = CNN()
+    loaded_classifier = load_station_model(cnn_model2)
+    station_game_state = build_station_df(loaded_classifier, station_input_file)
+    print(station_game_state.to_string())
+    return train_game_state

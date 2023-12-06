@@ -82,7 +82,7 @@ def destination_tickets(df, scores, tickets):
 
     
 if __name__ == "__main__":
-    game_state = create_game_state('clean_trains_in_some_spots')
+    game_state = create_game_state('clean_trains_in_some_spots', 'trained_station_model')
     scores = {'red':0, 'blue':0, 'yellow':0, 'green':0, 'black':0}
 
     train_points(game_state, scores)
