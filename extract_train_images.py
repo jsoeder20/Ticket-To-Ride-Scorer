@@ -16,8 +16,12 @@ def rotate_image(image, angle):
 def process_box(box, image, output_folder, count):
     label = box.attrib['label']
     xtl, ytl, xbr, ybr = map(float, [box.attrib['xtl'], box.attrib['ytl'], box.attrib['xbr'], box.attrib['ybr']])
-    rotation = float(box.attrib.get('rotation', 0))
+    
     pad = 40
+    if 'rotation' in box.attrib:
+        rotation = float(box.attrib.get('rotation', 0))
+    else:
+        rotation = 0
 
     # Crop the region defined by the bounding box
     # Padding to capture parts of the image that may be rotated in
@@ -26,9 +30,6 @@ def process_box(box, image, output_folder, count):
     # Rotate the cropped image if rotation is specified
     if rotation != 0:
         cropped_image = rotate_image(cropped_image, rotation)
-
-    # Specify the number of pixels to crop from the top and bottom
-    pad = 40
 
     trimmed_image = cropped_image[pad:-pad, :]
     # Save the cropped and rotated image to the output folder
@@ -54,9 +55,11 @@ def process_xml(xml_path, image, output_folder):
 
 if __name__ == '__main__':
     # Set the path to the XML file and the folder containing images
-    xml_path = 'route_annotations.xml'
+    train_xml_path = 'route_annotations.xml'
+    station_xml_path = 'city_annotations.xml'
     image_path = 'cropped_board_images/cropped_messy2.jpg'
-    #output_folder = 'messy2_trains_in_some_spots'
+    #train_output = 'messy2_trains_in_some_spots'
+    station_output = 'messy2_stations_in_some_spots'
 
     # Read the image
     image = cv2.imread(image_path)
@@ -64,4 +67,7 @@ if __name__ == '__main__':
     if image.shape != (desired_height, desired_width, channels):
         image = cv2.resize(image, (desired_width, desired_height))
 
-    process_xml(xml_path, image, output_folder)
+    process_xml(station_xml_path, image, station_output)
+    #process_xml(train_xml_path, image, train_output)
+
+    
