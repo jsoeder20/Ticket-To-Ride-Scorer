@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import torchvision
 
 
-class CNN(nn.Module):
+class CNN2(nn.Module):
     def __init__(self):
         super().__init__()
         self.model = nn.Sequential(
@@ -183,13 +183,13 @@ class TrainClassifier:
             plt.title(f'Actual label: {label.item()}, Predicted label: {prediction.item()}')
             plt.show()
 
-    def save_model(self, save_path='trained_station_model.pth'):
+    def save_model(self, save_path='models/train_spot_classifiers/trained_station_model.pth'):
         torch.save(self.model.state_dict(), save_path)
         print(f"Model saved at: {save_path}")
     
 
 def MLP_CNN_experiment():
-    cnn_model = CNN()
+    cnn_model = CNN2()
     cnn_classifier = TrainClassifier(cnn_model.model)
     cnn_classifier.train()
     cnn_classifier.visualize_predictions(cnn_classifier.test_loader)

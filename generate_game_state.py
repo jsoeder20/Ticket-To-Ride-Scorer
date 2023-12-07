@@ -1,4 +1,5 @@
 from training_trains import CNN, TrainClassifier
+from training_stations import CNN2
 from torchvision import transforms
 from collections import Counter
 import os
@@ -6,24 +7,26 @@ import cv2
 import torch
 import pandas as pd
 
-def load_train_model(model, model_path='trained_model2.pth'):
+def load_train_model(model_path='models/train_spot_classifiers/trained_model2.pth'):
+    cnn_model = CNN()
     model_state_dict = torch.load(model_path)
     
     # Remove the "model." prefix from the keys
     model_state_dict = {'model.' + k: v for k, v in model_state_dict.items()}
-    model.load_state_dict(model_state_dict)
-    return model
+    cnn_model.load_state_dict(model_state_dict)
+    return cnn_model
 
-def load_station_model(model, model_path='trained_station_model.pth'):
-    model_state_dict = torch.load(model_path)
+def load_station_model(model_path='models/train_spot_classifiers/trained_station_model.pth'):
+    cnn_model = CNN2()
+    print(model_path)
+    model_state_dict2 = torch.load(model_path)
     
-    # Remove the "model." prefix from the keys
-    print("hi")
-    model_state_dict = {'model.' + k: v for k, v in model_state_dict.items()}
-    print("hello")
-    model.load_state_dict(model_state_dict)
-    print('ahu')
-    return model
+    model_state_dict = {'model.' + k: v for k, v in model_state_dict2.items()}
+    cnn_model.load_state_dict(model_state_dict)
+    # compatible_state_dict = {k.replace('model.', ''): v for k, v in model_state_dict2.items() if 'model.' in k and k.endswith('.weight')}
+    # cnn_model.load_state_dict(compatible_state_dict, strict=False)
+
+    return cnn_model
 
 def assign_label(model, folder_path, filename):
     label_map = ['blank', 'blue', 'black', 'green', 'red', 'yellow']
@@ -45,6 +48,28 @@ def assign_label(model, folder_path, filename):
     with torch.no_grad():
         label = model(input_batch)
     
+    predicted_label = label_map[torch.argmax(label, dim=1).item()]
+    return predicted_label
+
+def assign_label_station(model, folder_path, filename):
+    label_map = ['blank', 'blue', 'black', 'green', 'red', 'yellow']
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    ])
+
+    img_path = os.path.join(folder_path, filename)
+    cropped_image = cv2.imread(img_path)
+    desired_height, desired_width = 100, 100
+
+    image = cv2.resize(cropped_image, (desired_width, desired_height))
+    # Apply the same transformations used during training
+    input_tensor = transform(image)
+    input_batch = input_tensor.unsqueeze(0)  # Add a batch dimension
+    
+    with torch.no_grad():
+        label = model(input_batch)
+
     predicted_label = label_map[torch.argmax(label, dim=1).item()]
     return predicted_label
 
@@ -101,7 +126,6 @@ def elaborate_names(df):
     
     return df
 
-
 def build_train_df(model, image_folder_path):
     model.eval()
 
@@ -130,42 +154,48 @@ def build_train_df(model, image_folder_path):
     
     return game_info
 
+def elaborate_names_stations(df):
+    cities_df = pd.read_csv('game_data/cities.csv')
+
+    code_to_city = {}
+    for city in cities_df['City']:
+        if city == 'Khobenhaven':
+            code_to_city['kob'] = 'Khobenhaven'
+        else:
+            code_to_city[city[0:3].lower()] = city
+
+    for idx, row in df.iterrows():
+        curr_name =  df.at[idx, 'name']
+        code1 = curr_name[0:3]
+        df.at[idx, 'city'] = code_to_city[code1]
+    
+    return df
+
 def build_station_df(model, image_folder_path):
     model.eval()
 
-    columns = ['city', 'color']
+    columns = ['name', 'city', 'color']
     game_info = pd.DataFrame(columns=columns)
 
-    # for image_filename in os.listdir(image_folder_path):
-        # predicted_label = assign_label(model, image_folder_path, image_filename)
-        # name = image_filename[:-6]
-        # train_number = int(image_filename.split('-')[-1][:-4])
-        
-        # if not game_info['name'].isin([name]).any():
-        #     new_row = pd.DataFrame({'name': [name], 'length': [train_number], 'colors': [[predicted_label]]})
-        #     game_info = pd.concat([game_info, new_row], ignore_index=True)
+    for image_filename in os.listdir(image_folder_path):
+        if image_filename != '.DS_Store':
+            predicted_label = assign_label_station(model, image_folder_path, image_filename)
 
-        # else:
-        #     idx = game_info.index[game_info['name'] == name][0]
-        #     game_info.at[idx, 'colors'].append(predicted_label)
-            
-        #     if int(game_info.at[idx, 'length']) < int(train_number):
-        #         game_info.at[idx, 'length'] = train_number
+            name = image_filename[:-6]
 
-    # game_info = assign_points(game_info)
-    game_info = assign_color(game_info)
-    game_info = elaborate_names(game_info)
+            new_row = pd.DataFrame({'name': [name], 'color': [[predicted_label]]})
+            game_info = pd.concat([game_info, new_row], ignore_index=True)
+
+    game_info = elaborate_names_stations(game_info)
     
     return game_info
 
 def create_game_state(train_input_file, station_input_file):
-    cnn_model = CNN()
-    loaded_classifier = load_train_model(cnn_model)
+    loaded_classifier = load_train_model()
     train_game_state = build_train_df(loaded_classifier, train_input_file)
     print(train_game_state.to_string())
 
-    cnn_model2 = CNN()
-    loaded_classifier = load_station_model(cnn_model2)
-    station_game_state = build_station_df(loaded_classifier, station_input_file)
+    loaded_classifier2 = load_station_model()
+    station_game_state = build_station_df(loaded_classifier2, station_input_file)
     print(station_game_state.to_string())
-    return train_game_state
+    return train_game_state, station_game_state

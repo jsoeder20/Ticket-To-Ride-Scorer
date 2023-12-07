@@ -58,11 +58,11 @@ def destination_complete(color_df, curr, finish, visited):
     return False
 
 
-def destination_tickets(df, scores, tickets):
+def destination_tickets(train_df, station_df, scores, tickets):
     destination_tickets_df = pd.read_csv('game_data/destinations.csv')
 
     for key in scores.keys():
-        color_df = df[df['color']==key][['location1', 'location2']]
+        color_df = train_df[train_df['color']==key][['location1', 'location2']]
         color_connections = tickets[key]
         for start, end in color_connections.items():
             start_to_finish_values = destination_tickets_df[(destination_tickets_df['Source'] == start) & (destination_tickets_df['Target'] == end)]['Points'].values
@@ -82,19 +82,19 @@ def destination_tickets(df, scores, tickets):
 
     
 if __name__ == "__main__":
-    game_state = create_game_state('clean_trains_in_some_spots', 'trained_station_model')
+    train_game_state, station_game_state = create_game_state('unlabeled_data/clean_trains_in_some_spots', 'unlabeled_data/messy2_stations_in_some_spots')
     scores = {'red':0, 'blue':0, 'yellow':0, 'green':0, 'black':0}
 
-    train_points(game_state, scores)
+    train_points(train_game_state, scores)
     print(scores)
 
-    longest_route(game_state, scores)
+    longest_route(train_game_state, scores)
     print(scores)
 
     ##ISSUE WHEN SAME KEYS
     tickets = {'blue':{'Lisboa': 'Danzic', 'Danzic':'Bruxelles'}, 'yellow': {'Madrid':'Zurich','Madrid':'Dieppe'}, 
                'green':{'Edinburgh':'Paris', 'Athina':'Edinburgh', 'Rostov':'Smolensk'}, 'black':{'Cadiz':'Stockholm'}, 'red':{'London':'Berlin'}}
-    destination_tickets(game_state, scores, tickets)
+    destination_tickets(train_game_state, station_game_state, scores, tickets)
     print(scores)
 
     '''
