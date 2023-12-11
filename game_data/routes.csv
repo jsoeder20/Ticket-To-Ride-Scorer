@@ -78,8 +78,8 @@ Moskva,Petrograd,4,true,false,0
 Petrograd,Wilno,4,true,false,0
 Petrograd,Riga,4,false,false,0
 Petrograd,Stockholm,8,false,true,0
-Stockholm,Khobenhaven,3,true,false,0
-Khobenhaven,Essen,3,false,false,1
+Stockholm,Kobenhavn,3,true,false,0
+Kobenhavn,Essen,3,false,false,1
 Riga,Danzic,3,true,false,0
 Danzic,Berlin,3,false,false,0
 Danzic,Warzawa,2,false,false,0
