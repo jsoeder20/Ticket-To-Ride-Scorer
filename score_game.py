@@ -92,16 +92,30 @@ def destination_tickets(train_df, station_df, scores, tickets):
 
         max_points = 0
         all_combinations = list(product(*potential_station_routes.values()))
+        print("YEEEEEET")
+        # print(potential_station_routes)
         print(all_combinations)
         for combination in all_combinations:
-            color_df_train.concat(combination)
+            color_df_train_with_stations = color_df_train.copy()
+            print(combination)
+            print(color_df_train)
+            for connection in combination:
+                print(connection)
+                new_row = pd.DataFrame(columns=color_df_train.columns)
+                new_row.at[0, 'location1'] = connection[0]
+                new_row.at[0, 'location2'] = connection[1]
+                print(new_row)
+                color_df_train_with_stations = pd.concat([color_df_train, new_row], ignore_index=True)
+                print(color_df_train_with_stations)
+            print('toot')
+            print(color_df_train_with_stations)
             color_connections = tickets[key]
             for start, end in color_connections.items():
                 points = destination_tickets_df[((destination_tickets_df['Source'] == start) & (destination_tickets_df['Target'] == end)) | ((destination_tickets_df['Source'] == end) & (destination_tickets_df['Target'] == start))]['Points'].values[0]
                 if points == 0:
                     raise Exception("Cities DNE")
 
-                if destination_complete(color_df_train, start, end, set()):
+                if destination_complete(color_df_train_with_stations, start, end, set()):
                     scores[key] += points
                 else:
                     scores[key] -= points
