@@ -59,15 +59,39 @@ def destination_complete(color_df, curr, finish, visited):
         
     return False
 
+def get_no_connections(train_df):
+    no_connections = set()
+    blank_df_train = train_df[train_df['color']=='blank'][['location1', 'location2']]
+    for index, row in blank_df_train.iterrows():
+        no_connections.add((row['location1'], row['location2']))
+    return no_connections
+
+def get_surrounding_cities(station_cities, no_connections, all_connections_df):
+    connections = {}
+    for city in station_cities:
+        adjacent_cities_df = all_connections_df[(all_connections_df['Source'] == city) | (all_connections_df['Target'] == city)]
+        print("AAAAHAHAHAH")
+        print(adjacent_cities_df.to_string())
+        possible_segments = []
+        for idx, row in adjacent_cities_df.iterrows():
+            location1, location2 = row['Source'], row['Target']
+            if (location1, location2) not in no_connections and (location2, location1) not in no_connections:
+                possible_segments.append((location1, location2))
+        connections[city] = possible_segments
+    print(connections)
+
 
 def destination_tickets(train_df, station_df, scores, tickets):
     destination_tickets_df = pd.read_csv('game_data/destinations.csv')
+    all_connections_df = pd.read_csv('game_data/routes.csv')
+    no_connections = get_no_connections(train_df)
     for key in scores.keys():
         color_df_train = train_df[train_df['color']==key][['location1', 'location2']]
         print(key)
         print(color_df_train)
-        color_df_station = station_df[station_df['color']==key][['city']]
-        print(color_df_station)
+        station_cities = station_df[station_df['color']==key]['city'].values
+        dict = get_surrounding_cities(station_cities, no_connections, all_connections_df)
+        print(station_cities)
         color_connections = tickets[key]
         for start, end in color_connections.items():
             start_to_finish_values = destination_tickets_df[(destination_tickets_df['Source'] == start) & (destination_tickets_df['Target'] == end)]['Points'].values
@@ -103,6 +127,7 @@ if __name__ == "__main__":
     ##ISSUE WHEN SAME KEYS
     # for key in scores.keys():
     #     x = input(key + "desination ticket 1 (input three letter code *space* then three letter code)")
+    
     tickets = {'blue':{'Lisboa': 'Danzic', 'Danzic':'Bruxelles'}, 'yellow': {'Madrid':'Zurich','Madrid':'Dieppe'}, 
                'green':{'Edinburgh':'Paris', 'Athina':'Edinburgh', 'Rostov':'Smolensk'}, 'black':{'Cadiz':'Stockholm'}, 'red':{'London':'Berlin'}}
     destination_tickets(train_game_state, station_game_state, scores, tickets)
