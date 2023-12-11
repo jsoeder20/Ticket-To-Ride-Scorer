@@ -183,7 +183,7 @@ class TrainClassifier:
             plt.title(f'Actual label: {label.item()}, Predicted label: {prediction.item()}')
             plt.show()
 
-    def save_model(self, save_path='models/train_spot_classifiers/trained_station_model.pth'):
+    def save_model(self, save_path='models/train_spot_classifiers/trained_station_model_01.pth'):
         torch.save(self.model.state_dict(), save_path)
         print(f"Model saved at: {save_path}")
     

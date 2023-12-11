@@ -116,7 +116,7 @@ class TrainClassifier:
             transforms.Normalize((0.5,), (0.5,))
         ])
 
-        custom_dataset = CustomDataset(root_dir='test_train_data', transform=transform)
+        custom_dataset = CustomDataset(root_dir='test_train_train_data', transform=transform)
         train_dataset, test_dataset = custom_dataset.split_data()
         train_loader = DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True)
         test_loader = DataLoader(test_dataset, batch_size=self.batch_size, shuffle=True)
@@ -202,7 +202,7 @@ class TrainClassifier:
             plt.title(f'Actual label: {label.item()}, Predicted label: {prediction.item()}')
             plt.show()
 
-    def save_model(self, save_path='trained_model2.pth'):
+    def save_model(self, save_path='models/train_spot_classifiers/trained_train_model_01.pth'):
         torch.save(self.model.state_dict(), save_path)
         print(f"Model saved at: {save_path}")
     

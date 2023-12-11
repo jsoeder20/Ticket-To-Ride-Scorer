@@ -7,7 +7,7 @@ import cv2
 import torch
 import pandas as pd
 
-def load_train_model(model_path='models/train_spot_classifiers/trained_model2.pth'):
+def load_train_model(model_path='models/train_spot_classifiers/trained_train_model_01.pth'):
     cnn_model = CNN()
     model_state_dict = torch.load(model_path)
     
@@ -16,7 +16,7 @@ def load_train_model(model_path='models/train_spot_classifiers/trained_model2.pt
     cnn_model.load_state_dict(model_state_dict)
     return cnn_model
 
-def load_station_model(model_path='models/train_spot_classifiers/trained_station_model.pth'):
+def load_station_model(model_path='models/train_spot_classifiers/trained_station_model_01.pth'):
     cnn_model = CNN2()
     print(model_path)
     model_state_dict2 = torch.load(model_path)
