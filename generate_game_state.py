@@ -183,7 +183,7 @@ def build_station_df(model, image_folder_path):
 
             name = image_filename[:-6]
 
-            new_row = pd.DataFrame({'name': [name], 'color': [[predicted_label]]})
+            new_row = pd.DataFrame({'name': [name], 'color': [predicted_label]})
             game_info = pd.concat([game_info, new_row], ignore_index=True)
 
     game_info = elaborate_names_stations(game_info)

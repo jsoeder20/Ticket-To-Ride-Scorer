@@ -2,6 +2,8 @@ from generate_game_state import create_game_state
 import pandas as pd
 
 LONGEST_ROUTE_POINTS = 10
+POINTS_PER_UNUSED_STATION = 4
+NUM_STATIONS = 3
 
 def train_points(df, scores):
     for key in scores.keys():
@@ -60,9 +62,12 @@ def destination_complete(color_df, curr, finish, visited):
 
 def destination_tickets(train_df, station_df, scores, tickets):
     destination_tickets_df = pd.read_csv('game_data/destinations.csv')
-
     for key in scores.keys():
-        color_df = train_df[train_df['color']==key][['location1', 'location2']]
+        color_df_train = train_df[train_df['color']==key][['location1', 'location2']]
+        print(key)
+        print(color_df_train)
+        color_df_station = station_df[station_df['color']==key][['city']]
+        print(color_df_station)
         color_connections = tickets[key]
         for start, end in color_connections.items():
             start_to_finish_values = destination_tickets_df[(destination_tickets_df['Source'] == start) & (destination_tickets_df['Target'] == end)]['Points'].values
@@ -75,11 +80,15 @@ def destination_tickets(train_df, station_df, scores, tickets):
             else:
                 raise Exception("Cities DNE")
             
-            if destination_complete(color_df, start, end, set()):
+            if destination_complete(color_df_train, start, end, set()):
                 scores[key] += points
             else:
                 scores[key] -= points
 
+def remaining_stations(station_df, scores):
+    for key in scores.keys():
+        num_used_stations = station_df[station_df['color'] == key].shape[0]
+        scores[key] += POINTS_PER_UNUSED_STATION * (NUM_STATIONS - num_used_stations)
     
 if __name__ == "__main__":
     train_game_state, station_game_state = create_game_state('unlabeled_data/clean_trains_in_some_spots', 'unlabeled_data/messy2_stations_in_some_spots')
@@ -92,9 +101,14 @@ if __name__ == "__main__":
     print(scores)
 
     ##ISSUE WHEN SAME KEYS
+    # for key in scores.keys():
+    #     x = input(key + "desination ticket 1 (input three letter code *space* then three letter code)")
     tickets = {'blue':{'Lisboa': 'Danzic', 'Danzic':'Bruxelles'}, 'yellow': {'Madrid':'Zurich','Madrid':'Dieppe'}, 
                'green':{'Edinburgh':'Paris', 'Athina':'Edinburgh', 'Rostov':'Smolensk'}, 'black':{'Cadiz':'Stockholm'}, 'red':{'London':'Berlin'}}
     destination_tickets(train_game_state, station_game_state, scores, tickets)
+    print(scores)
+
+    remaining_stations(station_game_state, scores)
     print(scores)
 
     '''
