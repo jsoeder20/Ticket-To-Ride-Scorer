@@ -147,10 +147,10 @@ if __name__ == "__main__":
     #     x = input(key + "desination ticket 1 (input three letter code *space* then three letter code)")
     
     tickets = {'blue':{'lisboa': 'danzic', 'paris':'wien', 'madrid':'zurich', 'berlin':'roma'},
-                'yellow': {'erzurum':'rostov','sofia':'smyrna','riga':'bucuresti','Kobenhavn':'Erzurum'}, 
-               'green':{'London':'Berlin', 'Sarajevo':'Sevastopol','Palermo':'Moskva'}, 
-               'black':{'smolensk':'Rostov','athina':'wilno','edinburgh':'athina'}, 
-               'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
+                'yellow': {'erzurum':'rostov', 'sofia':'smyrna', 'riga':'bucuresti', 'Kobenhavn':'Erzurum'}, 
+                'green':{'London':'Berlin', 'Sarajevo':'Sevastopol', 'Palermo':'Moskva'}, 
+                'black':{'smolensk':'Rostov', 'athina':'wilno', 'edinburgh':'athina'}, 
+                'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
     destination_tickets(train_game_state, station_game_state, scores, tickets)
     print(scores)
 
