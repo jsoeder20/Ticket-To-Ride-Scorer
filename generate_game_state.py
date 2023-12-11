@@ -7,24 +7,22 @@ import cv2
 import torch
 import pandas as pd
 
-def load_train_model(model_path='models/train_spot_classifiers/trained_train_model_01.pth'):
+def load_train_model(model_path):
+    print(model_path)
     cnn_model = CNN()
     model_state_dict = torch.load(model_path)
     
-    # Remove the "model." prefix from the keys
     model_state_dict = {'model.' + k: v for k, v in model_state_dict.items()}
     cnn_model.load_state_dict(model_state_dict)
     return cnn_model
 
-def load_station_model(model_path='models/train_spot_classifiers/trained_station_model_01.pth'):
-    cnn_model = CNN2()
+def load_station_model(model_path):
     print(model_path)
+    cnn_model = CNN2()
     model_state_dict2 = torch.load(model_path)
     
     model_state_dict = {'model.' + k: v for k, v in model_state_dict2.items()}
     cnn_model.load_state_dict(model_state_dict)
-    # compatible_state_dict = {k.replace('model.', ''): v for k, v in model_state_dict2.items() if 'model.' in k and k.endswith('.weight')}
-    # cnn_model.load_state_dict(compatible_state_dict, strict=False)
 
     return cnn_model
 
@@ -190,12 +188,12 @@ def build_station_df(model, image_folder_path):
     
     return game_info
 
-def create_game_state(train_input_file, station_input_file):
-    loaded_classifier = load_train_model()
+def create_game_state(train_input_file, station_input_file, train_model, station_model):
+    loaded_classifier = load_train_model(train_model)
     train_game_state = build_train_df(loaded_classifier, train_input_file)
     print(train_game_state.to_string())
 
-    loaded_classifier2 = load_station_model()
+    loaded_classifier2 = load_station_model(station_model)
     station_game_state = build_station_df(loaded_classifier2, station_input_file)
     print(station_game_state.to_string())
     return train_game_state, station_game_state
