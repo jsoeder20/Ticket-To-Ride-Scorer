@@ -17,13 +17,23 @@ import torchvision
 class CNN2(nn.Module):
     def __init__(self):
         super().__init__()
+        # self.model = nn.Sequential(
+        #     nn.Conv2d(3, 15, kernel_size=3),
+        #     nn.ReLU(),
+        #     nn.MaxPool2d(2),
+        #     nn.ReLU(),
+        #     nn.Flatten(),
+        #     nn.Linear(36015, 6)
+        # )
         self.model = nn.Sequential(
             nn.Conv2d(3, 15, kernel_size=3),
             nn.ReLU(),
             nn.MaxPool2d(2),
             nn.ReLU(),
             nn.Flatten(),
-            nn.Linear(36015, 6)
+            nn.Linear(36015, 512),
+            nn.ReLU(),
+            nn.Linear(512, 6)
         )
 
     def forward(self, x):
@@ -183,7 +193,7 @@ class TrainClassifier:
             plt.title(f'Actual label: {label.item()}, Predicted label: {prediction.item()}')
             plt.show()
 
-    def save_model(self, save_path='models/train_spot_classifiers/trained_station_model_01.pth'):
+    def save_model(self, save_path='models/train_spot_classifiers/trained_station_model_03.pth'):
         torch.save(self.model.state_dict(), save_path)
         print(f"Model saved at: {save_path}")
     
