@@ -96,18 +96,11 @@ def destination_tickets(train_df, station_df, scores, tickets):
         all_combinations = list(product(*potential_station_routes.values()))
         for combination in all_combinations:
             color_df_train_with_stations = color_df_train.copy()
-            # print("YEET")
-            # print(color_df_train_with_stations)
             for connection in combination:
-                # new_row = pd.DataFrame(columns=color_df_train.columns)
-                # new_row.at[0, 'location1'] = connection[0]
-                # new_row.at[0, 'location2'] = connection[1]
                 new_row = pd.DataFrame({'location1': connection[0], 'location2': connection[1]},index=[0])
                 color_df_train_with_stations = pd.concat([color_df_train_with_stations, new_row], ignore_index=True)
-            # print(color_df_train_with_stations)
-            player_all_tickets = tickets[key]
             score = 0
-            for start, end in player_all_tickets.items():
+            for start, end in tickets[key]:
                 start = start.capitalize()
                 end = end.capitalize()
                 points = destination_tickets_df[((destination_tickets_df['Source'] == start) & (destination_tickets_df['Target'] == end)) | ((destination_tickets_df['Source'] == end) & (destination_tickets_df['Target'] == start))]['Points'].values[0]
@@ -135,12 +128,11 @@ def remaining_stations(station_df, scores):
         scores[key] += POINTS_PER_UNUSED_STATION * (NUM_STATIONS - num_used_stations)
     
 def get_user_destination_tickets(color, tickets, num_tickets):
+    tickets[color] = []
     for i in range(num_tickets):
-        start = input(f"Enter the first three letters of the starting city for destination ticket {i + 1}: ")
-        end = input(f"Enter the first three letters of the ending city for destination ticket {i + 1}: ")
-        tickets[color][start] = end
-    print(color)
-    print(tickets[color])
+        start = input(f"Enter the starting city for destination ticket {i + 1} (no special characters): ")
+        end = input(f"Enter the ending city for destination ticket {i + 1} (no special characters): ")
+        tickets[color].append((start, end))
     return tickets
 
 if __name__ == "__main__":
@@ -152,11 +144,12 @@ if __name__ == "__main__":
     station_model = 'models/train_spot_classifiers/trained_station_model_03.pth'
     train_game_state, station_game_state = create_game_state(train_file, station_file, train_model, station_model)
 
-    # tickets = {'red':{}, 'blue':{}, 'yellow':{}, 'green':{}, 'black':{}}
-    # #ISSUE WHEN SAME KEYS
-    # for key in scores.keys():
-    #     player_num_tickets = int(input("How many desination tickets does " + key + " have?"))
-    #     get_user_destination_tickets(key, tickets, player_num_tickets)
+    tickets = {'red':{}, 'blue':{}, 'yellow':{}, 'green':{}, 'black':{}}
+    #ISSUE WHEN SAME KEYS
+    for key in scores.keys():
+        player_num_tickets = int(input("How many desination tickets does " + key + " have?"))
+        get_user_destination_tickets(key, tickets, player_num_tickets)
+    print(tickets)
 
     train_points(train_game_state, scores)
     print(scores)
@@ -165,11 +158,11 @@ if __name__ == "__main__":
     print(scores)
 
 
-    tickets = {'blue':{'lisboa': 'danzic', 'paris':'wien', 'madrid':'zurich', 'berlin':'roma'},
-                'yellow': {'erzurum':'rostov', 'sofia':'smyrna', 'riga':'bucuresti', 'Kobenhavn':'Erzurum'}, 
-                'green':{'London':'Berlin', 'Sarajevo':'Sevastopol', 'Palermo':'Moskva'}, 
-                'black':{'smolensk':'Rostov', 'athina':'wilno', 'edinburgh':'athina'}, 
-                'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
+    # tickets = {'blue':{'lisboa': 'danzic', 'paris':'wien', 'madrid':'zurich', 'berlin':'roma'},
+    #             'yellow': {'erzurum':'rostov', 'sofia':'smyrna', 'riga':'bucuresti', 'Kobenhavn':'Erzurum'}, 
+    #             'green':{'London':'Berlin', 'Sarajevo':'Sevastopol', 'Palermo':'Moskva'}, 
+    #             'black':{'smolensk':'Rostov', 'athina':'wilno', 'edinburgh':'athina'}, 
+    #             'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
     destination_tickets(train_game_state, station_game_state, scores, tickets)
     print(scores)
 
