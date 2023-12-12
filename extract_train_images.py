@@ -57,9 +57,9 @@ if __name__ == '__main__':
     # Set the path to the XML file and the folder containing images
     train_xml_path = 'route_annotations.xml'
     station_xml_path = 'city_annotations.xml'
-    image_path = 'cropped_board_images/cropped_station_data1.jpg'
-    train_output = 'unlabeled_data/training_train_all_down_1'
-    station_output = 'test_train_station_data/labelled_stations2'
+    image_path = 'cropped_board_images/cropped5s_12-12.jpg'
+    train_output = 'unlabeled_data/trains_2_12-12'
+    station_output = 'unlabeled_data/stations_5s_12-12'
 
     # Read the image
     image = cv2.imread(image_path)
