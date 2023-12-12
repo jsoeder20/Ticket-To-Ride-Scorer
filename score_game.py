@@ -90,7 +90,7 @@ def destination_tickets(train_df, station_df, scores, tickets):
         station_cities = station_df[station_df['color']==key]['city'].values
         potential_station_routes = get_surrounding_cities(station_cities, no_connections, all_connections_df)
 
-        max_score = 0
+        max_score = float('-inf')
         best_combination = []
         all_combinations = list(product(*potential_station_routes.values()))
         for combination in all_combinations:
@@ -105,7 +105,7 @@ def destination_tickets(train_df, station_df, scores, tickets):
                 color_df_train_with_stations = pd.concat([color_df_train_with_stations, new_row], ignore_index=True)
             # print(color_df_train_with_stations)
             player_all_tickets = tickets[key]
-            score = 0 
+            score = 0
             for start, end in player_all_tickets.items():
                 start = start.capitalize()
                 end = end.capitalize()
@@ -121,6 +121,7 @@ def destination_tickets(train_df, station_df, scores, tickets):
             if score > max_score:
                 max_score = score
                 best_combination = combination
+        # print()
         # print(key)
         # print(max_score)
         # print(best_combination)
