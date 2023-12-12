@@ -1,6 +1,7 @@
 from generate_game_state import create_game_state
 import pandas as pd
 from itertools import product
+from collections import Counter
 
 
 LONGEST_ROUTE_POINTS = 10
@@ -38,10 +39,13 @@ def longest_route(df, scores):
 
         longest_roads[key] = longest_path
 
-    longest_road_color = max(longest_roads, key=longest_roads.get)
-    scores[longest_road_color] += LONGEST_ROUTE_POINTS
+    longest_road_counter = Counter(longest_roads)
+    max_value = max(longest_road_counter.values())
+    max_keys = [key for key, value in longest_road_counter.items() if value == max_value]
+    for color in max_keys:
+        scores[color] += LONGEST_ROUTE_POINTS
     print("Longest road lengths: " + str(longest_roads))
-    print("Longest road winner: " + longest_road_color)
+    print("Longest road winner(s): " + str(max_keys))
 
 
 def destination_complete(color_df, curr, finish, visited):
@@ -100,7 +104,7 @@ def destination_tickets(train_df, station_df, scores, tickets):
                 new_row = pd.DataFrame({'location1': connection[0], 'location2': connection[1]},index=[0])
                 color_df_train_with_stations = pd.concat([color_df_train_with_stations, new_row], ignore_index=True)
             score = 0
-            for start, end in tickets[key]:
+            for start, end in tickets[key].items(): #remove .items() !!!
                 start = start.capitalize()
                 end = end.capitalize()
                 points = destination_tickets_df[((destination_tickets_df['Source'] == start) & (destination_tickets_df['Target'] == end)) | ((destination_tickets_df['Source'] == end) & (destination_tickets_df['Target'] == start))]['Points'].values[0]
@@ -146,10 +150,10 @@ if __name__ == "__main__":
 
     tickets = {'red':{}, 'blue':{}, 'yellow':{}, 'green':{}, 'black':{}}
     #ISSUE WHEN SAME KEYS
-    for key in scores.keys():
-        player_num_tickets = int(input("How many desination tickets does " + key + " have?"))
-        get_user_destination_tickets(key, tickets, player_num_tickets)
-    print(tickets)
+    # for key in scores.keys():
+    #     player_num_tickets = int(input("How many desination tickets does " + key + " have?"))
+    #     get_user_destination_tickets(key, tickets, player_num_tickets)
+    # print(tickets)
 
     train_points(train_game_state, scores)
     print(scores)
@@ -158,11 +162,11 @@ if __name__ == "__main__":
     print(scores)
 
 
-    # tickets = {'blue':{'lisboa': 'danzic', 'paris':'wien', 'madrid':'zurich', 'berlin':'roma'},
-    #             'yellow': {'erzurum':'rostov', 'sofia':'smyrna', 'riga':'bucuresti', 'Kobenhavn':'Erzurum'}, 
-    #             'green':{'London':'Berlin', 'Sarajevo':'Sevastopol', 'Palermo':'Moskva'}, 
-    #             'black':{'smolensk':'Rostov', 'athina':'wilno', 'edinburgh':'athina'}, 
-    #             'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
+    tickets = {'blue':{'lisboa': 'danzic', 'paris':'wien', 'madrid':'zurich', 'berlin':'roma'},
+                'yellow': {'erzurum':'rostov', 'sofia':'smyrna', 'riga':'bucuresti', 'Kobenhavn':'Erzurum'}, 
+                'green':{'London':'Berlin', 'Sarajevo':'Sevastopol', 'Palermo':'Moskva'}, 
+                'black':{'smolensk':'Rostov', 'athina':'wilno', 'edinburgh':'athina'}, 
+                'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
     destination_tickets(train_game_state, station_game_state, scores, tickets)
     print(scores)
 
