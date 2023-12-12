@@ -111,8 +111,8 @@ def destination_tickets(train_df, station_df, scores, tickets):
             score = 0
             num_tickets_completed = 0
             for start, end in tickets[key].items(): #remove .items() !!!
-                start = start.capitalize()
-                end = end.capitalize()
+                start = start.lower().capitalize()
+                end = end.lower().capitalize()
                 points = destination_tickets_df[((destination_tickets_df['Source'] == start) & (destination_tickets_df['Target'] == end)) | ((destination_tickets_df['Source'] == end) & (destination_tickets_df['Target'] == start))]['Points'].values[0]
                 if points == 0:
                     raise Exception("Cities DNE")
@@ -168,8 +168,8 @@ if __name__ == "__main__":
 
     train_file = 'unlabeled_data/real_game_train_spots'
     station_file = 'unlabeled_data/real_game_station_spots'
-    train_model = 'models/train_spot_classifiers/trained_train_model_03.pth'
-    station_model = 'models/train_spot_classifiers/trained_station_model_03.pth'
+    train_model = 'models/train_spot_classifiers/trained_train_model_05.pth'
+    station_model = 'models/train_spot_classifiers/trained_station_model_05.pth'
     train_game_state, station_game_state = create_game_state(train_file, station_file, train_model, station_model)
 
 
@@ -212,9 +212,6 @@ if __name__ == "__main__":
                     print(longest_route_winner[0] + " is the winner!")
         else:
             print(max_keys[0] + " is the winner!")
-    '''
-    SCORING STILL NEEDS:
-        - account for stations (destination and +4 per not used)
-        - destination tickets input method
-    '''
+
+
 
