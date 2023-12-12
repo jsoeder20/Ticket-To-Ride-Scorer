@@ -93,7 +93,10 @@ def assign_color(df):
             max_keys = [key for key, value in color_counter.items() if value == max_value]
 
             if len(max_keys) == 1:
-                df.at[idx, 'color'] = max_keys[0]
+                if max_keys[0] == 'blank' and 'yellow' in color_counter:
+                    df.at[idx, 'color'] = 'yellow'
+                else:
+                    df.at[idx, 'color'] = max_keys[0]
             else:
                 for color in max_keys:
                     if color != 'blank':
