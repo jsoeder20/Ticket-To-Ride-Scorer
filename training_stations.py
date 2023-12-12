@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 from torchvision import transforms
 from torch.utils.data import random_split
 import time
+from scipy.ndimage import rotate
+
 from PIL import Image
 import os
 import cv2
@@ -41,16 +43,16 @@ class CNN2(nn.Module):
 
 
 class CustomDataset(Dataset):
-    def __init__(self, root_dir, transform=None):
+    def __init__(self, root_dir, transform):
         self.root_dir = root_dir
-        self.transform = transform
         self.data = []
         self.targets = []
+        self.transform = transform
+        self.color_mapping = {'blue': 1, 'black': 2, 'green': 3, 'red': 4, 'yellow': 5}
 
         self.load_data()
 
     def load_data(self):
-        # Assuming your data is organized in folders, each representing a class
         big_folder = self.root_dir
         for folder in os.listdir(big_folder):
             if folder != '.DS_Store':
@@ -58,23 +60,17 @@ class CustomDataset(Dataset):
                 for filename in os.listdir(folder_path):
                     if filename != '.DS_Store':
                         img_path = os.path.join(folder_path, filename)
-                        image = cv2.imread(img_path)
+                        original_image = cv2.imread(img_path)
+                        
                         desired_height, desired_width = 100, 100
-                        image = cv2.resize(image, (desired_width, desired_height))
-                        label = filename.split('-')[0]
-                        self.data.append(image)
-                        if (label == 'blue'):
-                            self.targets.append(1)
-                        elif (label == 'black'):
-                            self.targets.append(2)
-                        elif (label == 'green'):
-                            self.targets.append(3)
-                        elif (label == 'red'):
-                            self.targets.append(4)
-                        elif (label == 'yellow'):
-                            self.targets.append(5)
-                        else:
-                            self.targets.append(0)
+                        resized_image = cv2.resize(original_image, (desired_width, desired_height))
+                        
+                        for rotation_angle in [0, 90, 180, 270]:
+                            rotated_image = rotate(resized_image, rotation_angle, reshape=False)
+                            label = filename.split('-')[0]
+                            self.data.append(rotated_image)
+                            self.targets.append(self.color_mapping.get(label, 0))
+
 
     def split_data(self, train_percentage=0.7):
         dataset_size = len(self.data)
@@ -193,7 +189,7 @@ class TrainClassifier:
             plt.title(f'Actual label: {label.item()}, Predicted label: {prediction.item()}')
             plt.show()
 
-    def save_model(self, save_path='models/train_spot_classifiers/trained_station_model_05.pth'):
+    def save_model(self, save_path='models/train_spot_classifiers/trained_station_model_06.pth'):
         torch.save(self.model.state_dict(), save_path)
         print(f"Model saved at: {save_path}")
     

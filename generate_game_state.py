@@ -198,5 +198,5 @@ def create_game_state(train_input_file, station_input_file, train_model, station
 
     loaded_classifier2 = load_station_model(station_model)
     station_game_state = build_station_df(loaded_classifier2, station_input_file)
-    print(station_game_state.to_string())
+    print(station_game_state[station_game_state['color'] != 'blank'].to_string())
     return train_game_state, station_game_state
