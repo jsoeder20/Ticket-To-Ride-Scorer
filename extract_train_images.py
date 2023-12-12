@@ -57,9 +57,9 @@ if __name__ == '__main__':
     # Set the path to the XML file and the folder containing images
     train_xml_path = 'route_annotations.xml'
     station_xml_path = 'city_annotations.xml'
-    image_path = 'cropped_board_images/cropped_trainning.jpg'
+    image_path = 'cropped_board_images/cropped_station_data1.jpg'
     train_output = 'unlabeled_data/training_train_all_down_1'
-    station_output = 'unlabeled_data/training_station_all_down_1'
+    station_output = 'test_train_station_data/labelled_stations2'
 
     # Read the image
     image = cv2.imread(image_path)
@@ -68,6 +68,6 @@ if __name__ == '__main__':
         image = cv2.resize(image, (desired_width, desired_height))
 
     process_xml(station_xml_path, image, station_output)
-    process_xml(train_xml_path, image, train_output)
+    # process_xml(train_xml_path, image, train_output)
 
     
