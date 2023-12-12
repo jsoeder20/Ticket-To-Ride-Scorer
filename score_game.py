@@ -10,7 +10,10 @@ NUM_STATIONS = 3
 
 def train_points(df, scores):
     for key in scores.keys():
-        scores[key] += df[df['color']==key]['points'].sum()
+        score = df[df['color']==key]['points'].sum()
+        scores[key] += score
+        print("-----------------------------------")
+        print(key.capitalize() + " scored " + str(score) + " points from trains")
 
 def single_longest_route(color_df, visited, city, curr_path_length, longest_path):    
     for index, row in color_df.iterrows():
@@ -45,9 +48,11 @@ def longest_route(df, scores):
 
     for color in max_keys:
         scores[color] += LONGEST_ROUTE_POINTS
-
-    print("Longest road lengths: " + str(longest_roads))
-    print("Longest road winner(s): " + str(max_keys))
+    print("-----------------------------------")
+    if len(max_keys) > 1:
+        print("The longest road winners are: " + ", ".join([f"{color.capitalize()}" for color in max_keys]) + " with " + str(longest_roads[max_keys][0]) + " roads!")
+    else:
+        print("Longest road winner is " + max_keys[0] + " with " + str(longest_roads[max_keys[0]]) + " roads!")
     return max_keys
 
 
@@ -94,6 +99,7 @@ def destination_tickets(train_df, station_df, scores, tickets):
     all_connections_df = pd.read_csv('game_data/routes.csv')
     no_connections = get_no_connections(train_df)
     num_tickets_completed_dict = {}
+
     for key in scores.keys():
         color_df_train = train_df[train_df['color']==key][['location1', 'location2']]
         station_cities = station_df[station_df['color']==key]['city'].values
@@ -103,6 +109,8 @@ def destination_tickets(train_df, station_df, scores, tickets):
         best_combination = []
         max_num_tickets_completed = 0
         all_combinations = list(product(*potential_station_routes.values()))
+        all_best_completed = []
+        all_best_failed = []
         for combination in all_combinations:
             color_df_train_with_stations = color_df_train.copy()
             for connection in combination:
@@ -110,6 +118,8 @@ def destination_tickets(train_df, station_df, scores, tickets):
                 color_df_train_with_stations = pd.concat([color_df_train_with_stations, new_row], ignore_index=True)
             score = 0
             num_tickets_completed = 0
+            current_all_best_completed = []
+            current_all_best_failed = []
             for start, end in tickets[key].items(): #remove .items() !!!
                 start = start.lower().capitalize()
                 end = end.lower().capitalize()
@@ -120,19 +130,35 @@ def destination_tickets(train_df, station_df, scores, tickets):
                 if destination_complete(color_df_train_with_stations, start, end, set()):
                     num_tickets_completed += 1
                     score += points
+                    current_all_best_completed.append((start, end))
                 else:
                     score -= points
+                    current_all_best_failed.append((start, end))
             
             if score > max_score:
+                all_best_completed = current_all_best_completed
+                all_best_failed = current_all_best_failed
                 max_score = score
                 best_combination = combination
                 max_num_tickets_completed = num_tickets_completed
-        # print()
-        # print(key)
-        # print(max_score)
-        # print(best_combination)
         scores[key] += max_score
         num_tickets_completed_dict[key] = max_num_tickets_completed
+
+        print("-----------------------------------")
+        print(key.capitalize() + " scored " + str(max_score) + " points from destination tickets")
+        if len(all_best_completed) > 0:
+            print("Completed: " + ", ".join([f"{start} to {finish}" for start, finish in all_best_completed]))
+        else:
+            print("Completed no routes :(")
+        if len(all_best_failed) > 0:
+            print("Failed: " + ", ".join([f"{start} to {finish}" for start, finish in all_best_failed]))
+        else:
+            print("Failed none")
+        if len(best_combination) > 0:
+            print("Used station connections: " + ", ".join([f"{start} to {finish}" for start, finish in best_combination]))
+        else:
+            print("Used no stations")
+
     return num_tickets_completed_dict
 
 
@@ -140,8 +166,11 @@ def remaining_stations(station_df, scores):
     num_stations_left_dict = {}
     for key in scores.keys():
         num_used_stations = station_df[station_df['color'] == key].shape[0]
-        scores[key] += POINTS_PER_UNUSED_STATION * (NUM_STATIONS - num_used_stations)
+        score = POINTS_PER_UNUSED_STATION * (NUM_STATIONS - num_used_stations)
+        scores[key] += score
         num_stations_left_dict[key] = scores[key]
+        print("-----------------------------------")
+        print(key.capitalize() + " had " + str(num_used_stations) + " stations remaining and scored " + str(score) + " points!")
     return num_stations_left_dict
 
 def get_user_destination_tickets(color, tickets, num_tickets):
@@ -169,15 +198,13 @@ if __name__ == "__main__":
     train_file = 'unlabeled_data/real_game_train_spots'
     station_file = 'unlabeled_data/real_game_station_spots'
     train_model = 'models/train_spot_classifiers/trained_train_model_07.pth'
-    station_model = 'models/train_spot_classifiers/trained_station_model_06.pth'
+    station_model = 'models/station_spot_classifiers/trained_station_model_07.pth'
     train_game_state, station_game_state = create_game_state(train_file, station_file, train_model, station_model)
 
 
     train_points(train_game_state, scores)
-    print(scores)
-
+    print("-----------------------------------")
     longest_route_winner = longest_route(train_game_state, scores)
-    print(scores)
 
 
     tickets = {'blue':{'lisboa': 'danzic', 'paris':'wien', 'madrid':'zurich', 'berlin':'roma'},
@@ -185,18 +212,23 @@ if __name__ == "__main__":
                 'green':{'London':'Berlin', 'Sarajevo':'Sevastopol', 'Palermo':'Moskva'}, 
                 'black':{'smolensk':'Rostov', 'athina':'wilno', 'edinburgh':'athina'}, 
                 'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
-    num_tickets_completed_dict = destination_tickets(train_game_state, station_game_state, scores, tickets)
-    print(scores)
+    print("-----------------------------------")
+    num_tickets_completed_dict= destination_tickets(train_game_state, station_game_state, scores, tickets)
 
+    print("-----------------------------------")
     num_stations_left_dict = remaining_stations(station_game_state, scores)
-    print(scores)
 
     scores_counter = Counter(scores)
     max_value = max(scores_counter.values())
     max_keys = [key for key, value in scores_counter.items() if value == max_value]
 
+    print("-----------------------------------")
+    print("-----------------------------------")
+    for color, score in scores.items():
+        print(color.capitalize() + " final score is " + str(score) + "!")
+    print("-----------------------------------")
     if len(max_keys) == 1:
-        print(max_keys[0] + " is the winner!")
+        print(max_keys[0].capitalize() + " is the winner!")
     else:
         num_tickets_counter = Counter(num_tickets_completed_dict)
         max_value = max(num_tickets_counter.values())
@@ -209,9 +241,10 @@ if __name__ == "__main__":
                 if len(longest_route_winner) > 1:
                     print("Holy guacamole! " + str(longest_route_winner) + " all won!")
                 else:
-                    print(longest_route_winner[0] + " is the winner!")
+                    print(longest_route_winner[0].capitalize() + " is the winner!")
         else:
-            print(max_keys[0] + " is the winner!")
+            print(max_keys[0].capitalize() + " is the winner!")
+    print("-----------------------------------")
 
 
 
