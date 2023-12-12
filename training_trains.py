@@ -23,20 +23,26 @@ class CNN(nn.Module):
             nn.MaxPool2d(2),
             nn.ReLU(),
             nn.Flatten(),
-            nn.Linear(21960, 6)
-            # nn.Conv2d(3, 32, kernel_size=3),
-            # nn.Conv2d(32, 32, kernel_size=3),
-            # nn.ReLU(),
-            # nn.MaxPool2d(kernel_size=2, stride=2),
-            # nn.Conv2d(32, 64, kernel_size=3),
-            # nn.Conv2d(64, 64, kernel_size=3),
-            # nn.ReLU(),
-            # nn.MaxPool2d(kernel_size=2, stride=2),
-            # nn.Flatten(),
-            # nn.Linear(16128, 128),
-            # nn.ReLU(),
-            # nn.Linear(128, 6),
+            nn.Linear(21960, 6),
+            nn.ReLU(),
+            nn.Linear(256, 6)
         )
+
+        # self.model = nn.Sequential(
+        #     nn.Conv2d(3, 32, kernel_size=3),
+        #     nn.Conv2d(32, 32, kernel_size=3),
+        #     nn.ReLU(),
+        #     nn.MaxPool2d(kernel_size=2, stride=2),
+        #     nn.Conv2d(32, 64, kernel_size=3),
+        #     nn.Conv2d(64, 64, kernel_size=3),
+        #     nn.ReLU(),
+        #     nn.MaxPool2d(kernel_size=2, stride=2),
+        #     nn.Flatten(),
+        #     nn.Linear(16128, 256),
+        #     nn.ReLU(),
+        #     nn.Dropout(0.9),
+        #     nn.Linear(256, 6),
+        # )
 
     def forward(self, x):
         return self.model(x)
