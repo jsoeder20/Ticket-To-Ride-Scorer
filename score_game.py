@@ -135,7 +135,7 @@ def remaining_stations(station_df, scores):
 if __name__ == "__main__":
     train_file = 'unlabeled_data/real_game_train_spots'
     station_file = 'unlabeled_data/real_game_station_spots'
-    train_model = 'models/train_spot_classifiers/trained_train_model_01.pth'
+    train_model = 'models/train_spot_classifiers/trained_train_model_03.pth'
     station_model = 'models/train_spot_classifiers/trained_station_model_01.pth'
     train_game_state, station_game_state = create_game_state(train_file, station_file, train_model, station_model)
     scores = {'red':0, 'blue':0, 'yellow':0, 'green':0, 'black':0}

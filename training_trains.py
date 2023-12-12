@@ -23,9 +23,9 @@ class CNN(nn.Module):
             nn.MaxPool2d(2),
             nn.ReLU(),
             nn.Flatten(),
-            nn.Linear(21960, 6),
+            nn.Linear(21960, 512),
             nn.ReLU(),
-            nn.Linear(256, 6)
+            nn.Linear(512, 6)
         )
 
         # self.model = nn.Sequential(
@@ -208,7 +208,7 @@ class TrainClassifier:
             plt.title(f'Actual label: {label.item()}, Predicted label: {prediction.item()}')
             plt.show()
 
-    def save_model(self, save_path='models/train_spot_classifiers/trained_train_model_01.pth'):
+    def save_model(self, save_path='models/train_spot_classifiers/trained_train_model_03.pth'):
         torch.save(self.model.state_dict(), save_path)
         print(f"Model saved at: {save_path}")
     
