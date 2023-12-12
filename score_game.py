@@ -132,13 +132,29 @@ def remaining_stations(station_df, scores):
         num_used_stations = station_df[station_df['color'] == key].shape[0]
         scores[key] += POINTS_PER_UNUSED_STATION * (NUM_STATIONS - num_used_stations)
     
+def get_user_destination_tickets(color, tickets, num_tickets):
+    for i in range(num_tickets):
+        start = input(f"Enter the first three letters of the starting city for destination ticket {i + 1}: ")
+        end = input(f"Enter the first three letters of the ending city for destination ticket {i + 1}: ")
+        tickets[color][start] = end
+    print(color)
+    print(tickets[color])
+    return tickets
+
 if __name__ == "__main__":
+    scores = {'red':0, 'blue':0, 'yellow':0, 'green':0, 'black':0}
+
     train_file = 'unlabeled_data/real_game_train_spots'
     station_file = 'unlabeled_data/real_game_station_spots'
     train_model = 'models/train_spot_classifiers/trained_train_model_03.pth'
     station_model = 'models/train_spot_classifiers/trained_station_model_03.pth'
     train_game_state, station_game_state = create_game_state(train_file, station_file, train_model, station_model)
-    scores = {'red':0, 'blue':0, 'yellow':0, 'green':0, 'black':0}
+
+    # tickets = {'red':{}, 'blue':{}, 'yellow':{}, 'green':{}, 'black':{}}
+    # #ISSUE WHEN SAME KEYS
+    # for key in scores.keys():
+    #     player_num_tickets = int(input("How many desination tickets does " + key + " have?"))
+    #     get_user_destination_tickets(key, tickets, player_num_tickets)
 
     train_points(train_game_state, scores)
     print(scores)
@@ -146,10 +162,7 @@ if __name__ == "__main__":
     longest_route(train_game_state, scores)
     print(scores)
 
-    ##ISSUE WHEN SAME KEYS
-    # for key in scores.keys():
-    #     x = input(key + "desination ticket 1 (input three letter code *space* then three letter code)")
-    
+
     tickets = {'blue':{'lisboa': 'danzic', 'paris':'wien', 'madrid':'zurich', 'berlin':'roma'},
                 'yellow': {'erzurum':'rostov', 'sofia':'smyrna', 'riga':'bucuresti', 'Kobenhavn':'Erzurum'}, 
                 'green':{'London':'Berlin', 'Sarajevo':'Sevastopol', 'Palermo':'Moskva'}, 
