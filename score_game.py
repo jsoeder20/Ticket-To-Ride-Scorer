@@ -114,9 +114,8 @@ def get_surrounding_cities(station_cities, no_connections, all_connections_df):
     return connections
     
 
-def destination_tickets(train_df, station_df, scores, tickets):
-    destination_tickets_df = pd.read_csv('game_data/destinations.csv')
-    all_connections_df = pd.read_csv('game_data/routes.csv')
+def destination_tickets(train_df, station_df, all_destination_tickets_df, all_connections_df, scores, tickets):
+
     no_connections = get_no_connections(train_df)
     num_tickets_completed_dict = {}
 
@@ -126,26 +125,20 @@ def destination_tickets(train_df, station_df, scores, tickets):
         potential_station_routes = get_surrounding_cities(station_cities, no_connections, all_connections_df)
 
         max_score = float('-inf')
-        best_combination = []
+        best_combination, all_best_completed, all_best_failed = [], [], []
         max_num_tickets_completed = 0
         all_combinations = list(product(*potential_station_routes.values()))
-        all_best_completed = []
-        all_best_failed = []
         for combination in all_combinations:
             color_df_train_with_stations = color_df_train.copy()
             for connection in combination:
                 new_row = pd.DataFrame({'location1': connection[0], 'location2': connection[1]},index=[0])
                 color_df_train_with_stations = pd.concat([color_df_train_with_stations, new_row], ignore_index=True)
-            score = 0
-            num_tickets_completed = 0
-            current_all_best_completed = []
-            current_all_best_failed = []
-            for start, end in tickets[key].items(): #remove .items() !!!
+            score, num_tickets_completed = 0, 0
+            current_all_best_completed, current_all_best_failed = [], []
+            for start, end in tickets[key].items(): ###DELETE .items() WHEN DONE!!!
                 start = start.lower().capitalize()
                 end = end.lower().capitalize()
-                points = destination_tickets_df[((destination_tickets_df['Source'] == start) & (destination_tickets_df['Target'] == end)) | ((destination_tickets_df['Source'] == end) & (destination_tickets_df['Target'] == start))]['Points'].values[0]
-                if points == 0:
-                    raise Exception("Cities DNE")
+                points = all_destination_tickets_df[((all_destination_tickets_df['Source'] == start) & (all_destination_tickets_df['Target'] == end)) | ((destination_tickets_df['Source'] == end) & (destination_tickets_df['Target'] == start))]['Points'].values[0]
 
                 if destination_complete(color_df_train_with_stations, start, end, set()):
                     num_tickets_completed += 1
@@ -185,12 +178,43 @@ def remaining_stations(station_df, scores):
         
     return num_stations_left_dict
 
-def get_user_destination_tickets(color, tickets, num_tickets):
+def get_user_destination_tickets(color, tickets, num_tickets, all_cities, all_destination_tickets):
+    print(all_destination_tickets)
     for i in range(num_tickets):
-        start = input(f"Enter the starting city for destination ticket {i + 1} (no special characters): ")
-        end = input(f"Enter the ending city for destination ticket {i + 1} (no special characters): ")
+        start, end = "", ""
+        while (start, end) not in all_destination_tickets and (end, start) not in all_destination_tickets:
+            start, end = "", ""
+            while start not in all_cities:
+                start = input(f"Enter the starting city for destination ticket {i + 1} (no special characters): ").lower().capitalize()
+                if start not in all_cities:
+                    print(start + " is not a valid city. Try again!")
+            while end not in all_cities:
+                end = input(f"Enter the ending city for destination ticket {i + 1} (no special characters): ").lower().capitalize()
+                if end not in all_cities:
+                    print(end + " is not a valid city. Try again!")
+            if (start, end) not in all_destination_tickets and (end, start) not in all_destination_tickets:
+                print(start + " and " + end + " do not form a valid destination ticket (order does NOT matter).")
         tickets[color].append((start, end))
     return tickets
+
+def get_all_user_destination_tickets(scores, all_cities_df, all_destination_tickets_df):
+    tickets = {}
+    all_destination_tickets = set(zip(all_destination_tickets_df['Source'], all_destination_tickets_df['Target']))
+    all_cities = set(all_cities_df['City'])
+    print(all_destination_tickets)
+    for color in ['red', 'blue', 'green', 'black', 'yellow']:
+        player_num_tickets = ""
+        while not player_num_tickets.isdigit():
+            player_num_tickets = input("How many desination tickets does " + color + " have?")
+            if not player_num_tickets.isdigit():
+                print("Input must be a number! Try again")
+        player_num_tickets = int(player_num_tickets)
+        if player_num_tickets > 0:
+            tickets[color] = []
+            scores[color] = 0
+            get_user_destination_tickets(color, tickets, player_num_tickets, all_cities, all_destination_tickets)
+    return tickets
+
 
 def print_final_scores_and_winner(scores, num_tickets_completed_dict, num_stations_left_dict, longest_route_winner):
     scores_counter = Counter(scores)
@@ -222,18 +246,22 @@ def print_final_scores_and_winner(scores, num_tickets_completed_dict, num_statio
     print("-----------------------------------")
 
 if __name__ == "__main__":
-    # scores = {}
-    # tickets = {}
+    scores = {}
 
-    # for color in ['red', 'blue', 'green', 'black', 'yellow']:
-    #     player_num_tickets = int(input("How many desination tickets does " + color + " have?"))
-    #     if player_num_tickets > 0:
-    #         tickets[color] = []
-    #         scores[color] = 0
-    #         get_user_destination_tickets(color, tickets, player_num_tickets)
-    # print(tickets)
+    all_cities_df = pd.read_csv('game_data/cities.csv')
+    all_destination_tickets_df = pd.read_csv('game_data/destinations.csv')
+    all_connections_df = pd.read_csv('game_data/routes.csv')
 
+    ##USER SELECTED TICKETS
+    # tickets = get_all_user_destination_tickets(scores, all_cities_df, all_destination_tickets_df)
+
+    ##DELETE WHEN DONE
     scores = {'red':0, 'blue':0, 'yellow':0, 'green':0, 'black':0}
+    tickets = {'blue':{'lisboa': 'danzic', 'paris':'wien', 'madrid':'zurich', 'berlin':'roma'},
+            'yellow': {'erzurum':'rostov', 'sofia':'smyrna', 'riga':'bucuresti', 'Kobenhavn':'Erzurum'}, 
+            'green':{'London':'Berlin', 'Sarajevo':'Sevastopol', 'Palermo':'Moskva'}, 
+            'black':{'smolensk':'Rostov', 'athina':'wilno', 'edinburgh':'athina'}, 
+            'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
 
     train_file = 'unlabeled_data/real_game_train_spots'
     station_file = 'unlabeled_data/real_game_station_spots'
@@ -247,13 +275,8 @@ if __name__ == "__main__":
     longest_route_winner = longest_route(train_game_state, scores)
 
 
-    tickets = {'blue':{'lisboa': 'danzic', 'paris':'wien', 'madrid':'zurich', 'berlin':'roma'},
-                'yellow': {'erzurum':'rostov', 'sofia':'smyrna', 'riga':'bucuresti', 'Kobenhavn':'Erzurum'}, 
-                'green':{'London':'Berlin', 'Sarajevo':'Sevastopol', 'Palermo':'Moskva'}, 
-                'black':{'smolensk':'Rostov', 'athina':'wilno', 'edinburgh':'athina'}, 
-                'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
     print("-----------------------------------")
-    num_tickets_completed_dict= destination_tickets(train_game_state, station_game_state, scores, tickets)
+    num_tickets_completed_dict= destination_tickets(train_game_state, station_game_state, all_destination_tickets_df, all_connections_df, scores, tickets)
 
     print("-----------------------------------")
     num_stations_left_dict = remaining_stations(station_game_state, scores)
