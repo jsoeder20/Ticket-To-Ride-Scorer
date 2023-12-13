@@ -1,7 +1,9 @@
 from generate_game_state import create_game_state
+from extract_train_images import extract_images
 import pandas as pd
 from itertools import product
 from collections import Counter
+import os
 
 
 LONGEST_ROUTE_POINTS = 10
@@ -21,9 +23,9 @@ def train_points(df, scores):
 def print_longest_route_scores(max_keys, longest_roads):
     print("-----------------------------------")
     if len(max_keys) > 1:
-        print("The longest road winners are: " + ", ".join([f"{color.capitalize()}" for color in max_keys]) + " with " + str(longest_roads[max_keys][0]) + " roads!")
+        print("The longest route winners are: " + ", ".join([f"{color.capitalize()}" for color in max_keys]) + " with " + str(longest_roads[max_keys][0]) + " roads!")
     else:
-        print("Longest road winner is " + max_keys[0] + " with " + str(longest_roads[max_keys[0]]) + " roads!")
+        print("Longest route winner is " + max_keys[0] + " with " + str(longest_roads[max_keys[0]]) + " consectutive trains!")
 
 def single_longest_route(color_df, visited, city, curr_path_length, longest_path):    
     for index, row in color_df.iterrows():
@@ -138,7 +140,9 @@ def destination_tickets(train_df, station_df, all_destination_tickets_df, all_co
             for start, end in tickets[key].items(): ###DELETE .items() WHEN DONE!!!
                 start = start.lower().capitalize()
                 end = end.lower().capitalize()
-                points = all_destination_tickets_df[((all_destination_tickets_df['Source'] == start) & (all_destination_tickets_df['Target'] == end)) | ((destination_tickets_df['Source'] == end) & (destination_tickets_df['Target'] == start))]['Points'].values[0]
+                df = all_destination_tickets_df
+                points = df[((df['Source'] == start) & (df['Target'] == end)) | 
+                            ((df['Source'] == end) & (df['Target'] == start))]['Points'].values[0]
 
                 if destination_complete(color_df_train_with_stations, start, end, set()):
                     num_tickets_completed += 1
@@ -177,6 +181,7 @@ def remaining_stations(station_df, scores):
         print_remaining_station_scores(key, num_used_stations, score)
         
     return num_stations_left_dict
+
 
 def get_user_destination_tickets(color, tickets, num_tickets, all_cities, all_destination_tickets):
     print(all_destination_tickets)
@@ -245,7 +250,37 @@ def print_final_scores_and_winner(scores, num_tickets_completed_dict, num_statio
             print(max_keys[0].capitalize() + " is the winner!")
     print("-----------------------------------")
 
+
+def clear_dir(directory_path):
+    # Check if the directory exists
+    if not os.path.exists(directory_path):
+        # Create the directory if it doesn't exist
+        os.makedirs(directory_path)
+    else:
+        # If the directory exists, empty it
+        for filename in os.listdir(directory_path):
+            file_path = os.path.join(directory_path, filename)
+            try:
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    os.rmdir(file_path)
+            except Exception as e:
+                print(f"Failed to delete {file_path}. Reason: {e}")
+
+
 if __name__ == "__main__":
+    image_path = input("Enter the path to the cropped board image: ")
+    #image_path = 'cropped_board_images/cropped5s_12-12.jpg'
+    
+    train_dir = 'unlabeled_data/train_data/real_game_train_spots1'
+    station_dir = 'unlabeled_data/station_data/real_game_station_spots1'
+
+    clear_dir(train_dir)
+    clear_dir(station_dir)
+
+    extract_images(image_path, station_output=station_dir, train_output=train_dir)
+
     scores = {}
 
     all_cities_df = pd.read_csv('game_data/cities.csv')
@@ -263,12 +298,10 @@ if __name__ == "__main__":
             'black':{'smolensk':'Rostov', 'athina':'wilno', 'edinburgh':'athina'}, 
             'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
 
-    train_file = 'unlabeled_data/real_game_train_spots'
-    station_file = 'unlabeled_data/real_game_station_spots'
+    
     train_model = 'models/train_spot_classifiers/trained_train_model_07.pth'
     station_model = 'models/station_spot_classifiers/trained_station_model_06.pth'
-    train_game_state, station_game_state = create_game_state(train_file, station_file, train_model, station_model)
-
+    train_game_state, station_game_state = create_game_state(train_dir, station_dir, train_model, station_model)
 
     train_points(train_game_state, scores)
     
@@ -283,6 +316,5 @@ if __name__ == "__main__":
 
     print_final_scores_and_winner(scores, num_tickets_completed_dict, num_stations_left_dict, longest_route_winner)
 
-
-
-
+    clear_dir(train_dir)
+    clear_dir(station_dir)

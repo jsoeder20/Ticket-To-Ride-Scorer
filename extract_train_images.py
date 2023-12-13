@@ -53,13 +53,10 @@ def process_xml(xml_path, image, output_folder):
         new_count = process_box(box, image, output_folder, count)
         count = new_count
 
-if __name__ == '__main__':
+def extract_images(image_path, station_output, train_output):
     # Set the path to the XML file and the folder containing images
     train_xml_path = 'route_annotations.xml'
     station_xml_path = 'city_annotations.xml'
-    image_path = 'cropped_board_images/cropped5s_12-12.jpg'
-    train_output = 'unlabeled_data/trains_2_12-12'
-    station_output = 'unlabeled_data/stations_5s_12-12'
 
     # Read the image
     image = cv2.imread(image_path)
@@ -68,6 +65,9 @@ if __name__ == '__main__':
         image = cv2.resize(image, (desired_width, desired_height))
 
     process_xml(station_xml_path, image, station_output)
-    # process_xml(train_xml_path, image, train_output)
+    process_xml(train_xml_path, image, train_output)
 
+
+if __name__ == '__main__':
+    extract_images()
     

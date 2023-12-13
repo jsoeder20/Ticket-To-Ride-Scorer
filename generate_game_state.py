@@ -1,5 +1,4 @@
-from training_trains import CNN, TrainClassifier
-from training_stations import CNN2
+from training import StationsCNN, TrainsCNN, Classifier
 from torchvision import transforms
 from collections import Counter
 import os
@@ -7,9 +6,11 @@ import cv2
 import torch
 import pandas as pd
 
+
+
 def load_train_model(model_path):
     print(model_path)
-    cnn_model = CNN()
+    cnn_model = TrainsCNN()
     model_state_dict = torch.load(model_path)
     
     model_state_dict = {'model.' + k: v for k, v in model_state_dict.items()}
@@ -18,7 +19,7 @@ def load_train_model(model_path):
 
 def load_station_model(model_path):
     print(model_path)
-    cnn_model = CNN2()
+    cnn_model = StationsCNN()
     model_state_dict2 = torch.load(model_path)
     
     model_state_dict = {'model.' + k: v for k, v in model_state_dict2.items()}
@@ -122,6 +123,9 @@ def elaborate_names(df):
         curr_name =  df.at[idx, 'name']
         code1 = curr_name[0:3]
         code2 = curr_name[4:7]
+        print(code1)
+        print('2')
+        print(code2)
         df.at[idx, 'location1'] = code_to_city[code1]
         df.at[idx, 'location2'] = code_to_city[code2]
     
@@ -194,9 +198,9 @@ def build_station_df(model, image_folder_path):
 def create_game_state(train_input_file, station_input_file, train_model, station_model):
     loaded_classifier = load_train_model(train_model)
     train_game_state = build_train_df(loaded_classifier, train_input_file)
-    # print(train_game_state.to_string())
+    print(train_game_state.to_string())
 
     loaded_classifier2 = load_station_model(station_model)
     station_game_state = build_station_df(loaded_classifier2, station_input_file)
-    # print(station_game_state[station_game_state['color'] != 'blank'].to_string())
+    print(station_game_state[station_game_state['color'] != 'blank'].to_string())
     return train_game_state, station_game_state

@@ -24,7 +24,7 @@ class TrainsCNN(nn.Module):
             nn.MaxPool2d(2),
             nn.ReLU(),
             nn.Flatten(),
-            nn.Linear(36015, 512),
+            nn.Linear(21960, 512),
             nn.ReLU(),
             nn.Linear(512, 6)
         )
@@ -32,56 +32,6 @@ class TrainsCNN(nn.Module):
 
     def forward(self, x):
         return self.model(x)
-
-
-class TrainsDataset(Dataset):
-    def __init__(self, root_dir, transform=None):
-        self.root_dir = root_dir
-        self.transform = transform
-        self.data = []
-        self.targets = []
-        self.label_mapping = {'blue': 1, 'black': 2, 'green': 3, 'red': 4, 'yellow': 5}
-
-        self.load_data()
-
-    def load_data(self):
-        # Assuming your data is organized in folders, each representing a class
-        big_folder = self.root_dir
-        for folder in os.listdir(big_folder):
-            if folder != '.DS_Store':
-                folder_path = os.path.join(big_folder, folder)
-                for filename in os.listdir(folder_path):
-                    if filename != '.DS_Store':
-                        img_path = os.path.join(folder_path, filename)
-                        image = Image.open(img_path).convert('RGB')
-                        if self.transform:
-                            image = self.transform(image)
-                        
-                        label = filename.split('-')[0]
-                        target = self.label_mapping.get(label, 0)
-                        
-                        self.data.append(image)
-                        self.targets.append(target)
-
-
-    def split_data(self, train_percentage=0.7):
-        dataset_size = len(self.data)
-        train_size = int(train_percentage * dataset_size)
-        test_size = dataset_size - train_size
-        train_dataset, test_dataset = random_split(self, [train_size, test_size])
-        return train_dataset, test_dataset
-    
-    def __getitem__(self, idx):
-        img, target = self.data[idx], self.targets[idx]
-
-        if self.transform:
-            img = self.transform(img)
-
-        return img, target
-
-    def __len__(self):
-        return len(self.data)
-
 
 
 class StationsCNN(nn.Module):
@@ -102,17 +52,17 @@ class StationsCNN(nn.Module):
         return self.model(x)
 
 
-class StationsDataset(Dataset):
-    def __init__(self, root_dir, transform):
+class T2RDataset(Dataset):
+    def __init__(self, root_dir, transform, dtype):
         self.root_dir = root_dir
         self.data = []
         self.targets = []
         self.transform = transform
         self.color_mapping = {'blue': 1, 'black': 2, 'green': 3, 'red': 4, 'yellow': 5}
 
-        self.load_data()
+        self.load_data(dtype)
 
-    def load_data(self):
+    def load_data(self, dtype):
         big_folder = self.root_dir
         for folder in os.listdir(big_folder):
             if folder != '.DS_Store':
@@ -122,14 +72,28 @@ class StationsDataset(Dataset):
                         img_path = os.path.join(folder_path, filename)
                         original_image = cv2.imread(img_path)
                         
-                        desired_height, desired_width = 100, 100
-                        resized_image = cv2.resize(original_image, (desired_width, desired_height))
-                        
-                        for rotation_angle in [0, 90, 180, 270]:
-                            rotated_image = rotate(resized_image, rotation_angle, reshape=False)
-                            label = filename.split('-')[0]
-                            self.data.append(rotated_image)
-                            self.targets.append(self.color_mapping.get(label, 0))
+                        if dtype == 'station':
+                            self.load_station_image(original_image, filename)
+                        elif dtype == 'train':
+                            self.load_train_image(original_image, filename)
+
+
+    def load_station_image(self, original_image, filename):
+        desired_height, desired_width = 100, 100
+        resized_image = cv2.resize(original_image, (desired_width, desired_height))
+        
+        for rotation_angle in [0, 90, 180, 270]:
+            rotated_image = rotate(resized_image, rotation_angle, reshape=False)
+            label = filename.split('-')[0]
+            self.data.append(rotated_image)
+            self.targets.append(self.color_mapping.get(label, 0))
+
+    def load_train_image(self, original_image, filename):
+        desired_height, desired_width = 50, 125
+        image = cv2.resize(original_image, (desired_width, desired_height))
+        label = filename.split('-')[0]
+        self.data.append(image)
+        self.targets.append(self.color_mapping.get(label, 0))
 
 
     def split_data(self, train_percentage=0.7):
@@ -152,11 +116,12 @@ class StationsDataset(Dataset):
 
 
 class Classifier:
-    def __init__(self, model, root_dir, batch_size=32, learning_rate=1e-3, num_epochs=10):
+    def __init__(self, model, root_dir, dtype, batch_size=32, learning_rate=1e-3, num_epochs=2):
         self.batch_size = batch_size
         self.learning_rate = learning_rate
         self.num_epochs = num_epochs
         self.root_dir = root_dir
+        self.dtype = dtype
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
         self.model = model.to(self.device)
@@ -171,7 +136,7 @@ class Classifier:
             transforms.Normalize((0.5,), (0.5,))
         ])
 
-        custom_dataset = StationsDataset(self.root_dir, transform=transform)
+        custom_dataset = T2RDataset(self.root_dir, transform=transform, dtype=self.dtype)
         train_dataset, test_dataset = custom_dataset.split_data()
         train_loader = DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True)
         test_loader = DataLoader(test_dataset, batch_size=self.batch_size, shuffle=True)
@@ -258,7 +223,7 @@ class Classifier:
 def train_models():
     station_cnn_model = StationsCNN()
     station_dir = 'test_train_station_data'
-    station_cnn_classifier = Classifier(station_cnn_model.model, station_dir)
+    station_cnn_classifier = Classifier(station_cnn_model.model, station_dir, 'station')
     station_cnn_classifier.train()
     station_cnn_classifier.visualize_predictions(station_cnn_classifier.test_loader)
     
@@ -267,7 +232,7 @@ def train_models():
 
     train_cnn_model = TrainsCNN()
     train_dir = 'test_train_train_data'
-    train_cnn_classifier = Classifier(train_cnn_model.model, train_dir)
+    train_cnn_classifier = Classifier(train_cnn_model.model, train_dir, 'train')
     train_cnn_classifier.train()
     train_cnn_classifier.visualize_predictions(train_cnn_classifier.test_loader)
     
