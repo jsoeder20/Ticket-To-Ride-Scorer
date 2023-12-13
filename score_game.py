@@ -283,7 +283,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"An error occurred: {e}")
 
-    ##FOR FASTER TESTING
+    
     #image_path = 'cropped_board_images/cropped_12-11.jpg'
     
     train_dir = 'unlabeled_data/train_data/real_game_train_spots1'
