@@ -7,7 +7,6 @@ import torch
 import pandas as pd
 
 
-
 def load_train_model(model_path):
     print(model_path)
     cnn_model = TrainsCNN()
