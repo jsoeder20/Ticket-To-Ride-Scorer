@@ -123,9 +123,6 @@ def elaborate_names(df):
         curr_name =  df.at[idx, 'name']
         code1 = curr_name[0:3]
         code2 = curr_name[4:7]
-        print(code1)
-        print('2')
-        print(code2)
         df.at[idx, 'location1'] = code_to_city[code1]
         df.at[idx, 'location2'] = code_to_city[code2]
     

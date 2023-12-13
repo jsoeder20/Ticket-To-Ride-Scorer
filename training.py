@@ -29,7 +29,6 @@ class TrainsCNN(nn.Module):
             nn.Linear(512, 6)
         )
 
-
     def forward(self, x):
         return self.model(x)
 
@@ -116,7 +115,7 @@ class T2RDataset(Dataset):
 
 
 class Classifier:
-    def __init__(self, model, root_dir, dtype, batch_size=32, learning_rate=1e-3, num_epochs=2):
+    def __init__(self, model, root_dir, dtype, batch_size=32, learning_rate=1e-3, num_epochs=10):
         self.batch_size = batch_size
         self.learning_rate = learning_rate
         self.num_epochs = num_epochs
@@ -222,7 +221,7 @@ class Classifier:
 
 def train_models():
     station_cnn_model = StationsCNN()
-    station_dir = 'test_train_station_data'
+    station_dir = 'test_train_data/station_data'
     station_cnn_classifier = Classifier(station_cnn_model.model, station_dir, 'station')
     station_cnn_classifier.train()
     station_cnn_classifier.visualize_predictions(station_cnn_classifier.test_loader)
@@ -231,7 +230,7 @@ def train_models():
     station_cnn_classifier.save_model(station_path)
 
     train_cnn_model = TrainsCNN()
-    train_dir = 'test_train_train_data'
+    train_dir = 'test_train_data/train_data'
     train_cnn_classifier = Classifier(train_cnn_model.model, train_dir, 'train')
     train_cnn_classifier.train()
     train_cnn_classifier.visualize_predictions(train_cnn_classifier.test_loader)

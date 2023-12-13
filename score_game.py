@@ -270,8 +270,21 @@ def clear_dir(directory_path):
 
 
 if __name__ == "__main__":
-    image_path = input("Enter the path to the cropped board image: ")
-    #image_path = 'cropped_board_images/cropped5s_12-12.jpg'
+    try:
+        # Prompt the user to input the path to the cropped board image
+        image_path = input("Enter the path to the cropped board image: ")
+
+        # Check if the entered path is valid
+        if os.path.exists(image_path) and os.path.isfile(image_path):
+            print(f"Image path: {image_path}")
+        else:
+            raise FileNotFoundError(f"The file '{image_path}' does not exist.")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    ##FOR FASTER TESTING
+    #image_path = 'cropped_board_images/cropped_12-11.jpg'
     
     train_dir = 'unlabeled_data/train_data/real_game_train_spots1'
     station_dir = 'unlabeled_data/station_data/real_game_station_spots1'
@@ -288,15 +301,15 @@ if __name__ == "__main__":
     all_connections_df = pd.read_csv('game_data/routes.csv')
 
     ##USER SELECTED TICKETS
-    # tickets = get_all_user_destination_tickets(scores, all_cities_df, all_destination_tickets_df)
+    tickets = get_all_user_destination_tickets(scores, all_cities_df, all_destination_tickets_df)
 
-    ##DELETE WHEN DONE
-    scores = {'red':0, 'blue':0, 'yellow':0, 'green':0, 'black':0}
+    ##FOR FASTER TESTING
+    """scores = {'red':0, 'blue':0, 'yellow':0, 'green':0, 'black':0}
     tickets = {'blue':{'lisboa': 'danzic', 'paris':'wien', 'madrid':'zurich', 'berlin':'roma'},
             'yellow': {'erzurum':'rostov', 'sofia':'smyrna', 'riga':'bucuresti', 'Kobenhavn':'Erzurum'}, 
             'green':{'London':'Berlin', 'Sarajevo':'Sevastopol', 'Palermo':'Moskva'}, 
             'black':{'smolensk':'Rostov', 'athina':'wilno', 'edinburgh':'athina'}, 
-            'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}
+            'red':{'Cadiz':'Stockholm', 'Berlin':'Bucuresti', 'Kyiv':'Sochi'}}"""
 
     
     train_model = 'models/train_spot_classifiers/trained_train_model_07.pth'
