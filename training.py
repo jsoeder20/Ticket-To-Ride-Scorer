@@ -9,7 +9,6 @@ from torch.utils.data import random_split
 import time
 from scipy.ndimage import rotate
 
-from PIL import Image
 import os
 import cv2
 import matplotlib.pyplot as plt
@@ -191,6 +190,9 @@ class Classifier:
 
             end_time = time.time()
             time_per_epoch.append(end_time - start_time)
+
+        results = (train_losses, train_accuracies, test_losses, test_accuracies, time_per_epoch)
+        self.plot_results(results)
         print(train_accuracies)
         print(test_accuracies)
     
@@ -217,6 +219,34 @@ class Classifier:
     def save_model(self, save_path):
         torch.save(self.model.state_dict(), save_path)
         print(f"Model saved at: {save_path}")
+
+    def plot_results(self, results):
+        """
+        Plot training and testing results.
+
+        Args:
+            results: Tuple of training and testing results.
+        """
+        train_losses, train_accuracies, test_losses, test_accuracies, time_per_epoch = results
+        plt.figure(figsize=(15, 5))
+
+        plt.subplot(131)
+        plt.title('Training and Testing Loss value over epochs')
+        plt.plot(np.arange(10) + 1, train_losses, label='Training Loss')
+        plt.plot(np.arange(10) + 1, test_losses, label='Test Loss')
+        plt.legend()
+
+        plt.subplot(132)
+        plt.title('Train Accuracy value over epochs')
+        plt.plot(np.arange(10) + 1, train_accuracies, label='Training Accuracy')
+        plt.plot(np.arange(10) + 1, test_accuracies, label='Test Accuracy')
+        plt.legend()
+
+        plt.subplot(133)
+        plt.title('Time in Seconds per Epoch')
+        plt.plot(np.arange(10) + 1, time_per_epoch)
+
+        plt.show()
     
 
 def train_models():
