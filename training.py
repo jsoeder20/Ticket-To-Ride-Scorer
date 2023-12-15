@@ -15,7 +15,10 @@ import matplotlib.pyplot as plt
 
 
 class TrainsCNN(nn.Module):
+    """Convolutional Neural Network for train spot image classification."""
+
     def __init__(self):
+        """Initialize the CNN model."""
         super().__init__()
         self.model = nn.Sequential(
             nn.Conv2d(3, 15, kernel_size=3),
@@ -29,11 +32,15 @@ class TrainsCNN(nn.Module):
         )
 
     def forward(self, x):
+        """Forward pass through the CNN model."""
         return self.model(x)
 
 
 class StationsCNN(nn.Module):
+    """Convolutional Neural Network for station spot image classification."""
+
     def __init__(self):
+        """Initialize the CNN model."""
         super().__init__()
         self.model = nn.Sequential(
             nn.Conv2d(3, 15, kernel_size=3),
@@ -47,11 +54,24 @@ class StationsCNN(nn.Module):
         )
 
     def forward(self, x):
+        """Forward pass through the CNN model."""
         return self.model(x)
 
 
 class T2RDataset(Dataset):
+    """Custom dataset class for Train/Station Spot images."""
+
     def __init__(self, root_dir, transform, dtype):
+        """
+        Initialize T2RDataset.
+
+        Loads data from the specified root directory and sets up necessary attributes.
+
+        Args:
+        - root_dir (str): Root directory containing image folders.
+        - transform (callable): Optional transform to be applied to images.
+        - dtype (str): Type of data ('station' or 'train').
+        """
         self.root_dir = root_dir
         self.data = []
         self.targets = []
@@ -61,6 +81,12 @@ class T2RDataset(Dataset):
         self.load_data(dtype)
 
     def load_data(self, dtype):
+        """
+        Load images from the specified data type folder.
+
+        Args:
+        - dtype (str): Type of data ('station' or 'train').
+        """
         big_folder = self.root_dir
         for folder in os.listdir(big_folder):
             if folder != '.DS_Store':
@@ -77,6 +103,13 @@ class T2RDataset(Dataset):
 
 
     def load_station_image(self, original_image, filename):
+        """
+        Load and augment station images to increase training data.
+
+        Args:
+        - original_image: Original station image.
+        - filename (str): Image filename.
+        """
         desired_height, desired_width = 100, 100
         resized_image = cv2.resize(original_image, (desired_width, desired_height))
         
@@ -87,6 +120,13 @@ class T2RDataset(Dataset):
             self.targets.append(self.color_mapping.get(label, 0))
 
     def load_train_image(self, original_image, filename):
+        """
+        Load and process train images.
+
+        Args:
+        - original_image: Original train image.
+        - filename (str): Image filename.
+        """
         desired_height, desired_width = 50, 125
         image = cv2.resize(original_image, (desired_width, desired_height))
         label = filename.split('-')[0]
@@ -95,6 +135,16 @@ class T2RDataset(Dataset):
 
 
     def split_data(self, train_percentage=0.7):
+        """
+        Split the dataset into training and testing sets.
+
+        Args:
+        - train_percentage (float): Percentage of data to be used for training.
+
+        Returns:
+        - train_dataset (Subset): Subset for training.
+        - test_dataset (Subset): Subset for testing.
+        """
         dataset_size = len(self.data)
         train_size = int(train_percentage * dataset_size)
         test_size = dataset_size - train_size
@@ -102,6 +152,16 @@ class T2RDataset(Dataset):
         return train_dataset, test_dataset
     
     def __getitem__(self, idx):
+        """
+        Get image and target at the specified index.
+
+        Args:
+        - idx (int): Index of the data.
+
+        Returns:
+        - img: Image at the specified index.
+        - target: Target label for the image.
+        """
         img, target = self.data[idx], self.targets[idx]
 
         if self.transform:
@@ -110,11 +170,32 @@ class T2RDataset(Dataset):
         return img, target
 
     def __len__(self):
+        """
+        Get the total number of images in the dataset.
+
+        Returns:
+        - int: Total number of images in the dataset.
+        """
         return len(self.data)
 
 
 class Classifier:
+    """Simple image classifier using a PyTorch model."""
+
     def __init__(self, model, root_dir, dtype, batch_size=32, learning_rate=1e-3, num_epochs=10):
+        """
+        Initialize the Classifier.
+
+        Sets up the model, optimizer, loss function, and data loaders.
+
+        Args:
+        - model (nn.Module): PyTorch model for classification.
+        - root_dir (str): Root directory containing image folders.
+        - dtype (str): Type of data ('station' or 'train').
+        - batch_size (int): Batch size for training and testing. Default is 32.
+        - learning_rate (float): Learning rate for optimization. Default is 1e-3.
+        - num_epochs (int): Number of training epochs. Default is 10.
+        """
         self.batch_size = batch_size
         self.learning_rate = learning_rate
         self.num_epochs = num_epochs
@@ -129,6 +210,15 @@ class Classifier:
         self.train_dataset, self.train_loader, self.test_dataset, self.test_loader = self.load_data()
 
     def load_data(self):
+        """
+        Load and split the dataset into training and testing sets.
+
+        Returns:
+        - train_dataset (Subset): Training dataset.
+        - train_loader (DataLoader): Training data loader.
+        - test_dataset (Subset): Testing dataset.
+        - test_loader (DataLoader): Testing data loader.
+        """
         transform = transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize((0.5,), (0.5,))
@@ -142,6 +232,16 @@ class Classifier:
         return train_dataset, train_loader, test_dataset, test_loader
 
     def train_batch(self, x, y):
+        """
+        Train the model on a batch of data.
+
+        Args:
+        - x: Input data.
+        - y: Target labels.
+
+        Returns:
+        - float: Batch loss value.
+        """
         self.model.train()
         self.optimizer.zero_grad()
         batch_loss = self.loss_func(self.model(x), y)
@@ -151,6 +251,16 @@ class Classifier:
 
     @torch.no_grad()
     def accuracy(self, x, y):
+        """
+        Calculate the accuracy of the model on a batch of data.
+
+        Args:
+        - x: Input data.
+        - y: Target labels.
+
+        Returns:
+        - float: Batch accuracy.
+        """
         self.model.eval()
         prediction = self.model(x)
         argmaxes = prediction.argmax(dim=1)
@@ -159,6 +269,11 @@ class Classifier:
 
 
     def train(self):
+        """
+        Train the model for a specified number of epochs.
+
+        Prints and plots training and testing results.
+        """
         train_losses, train_accuracies, test_losses, test_accuracies, time_per_epoch = [], [], [], [], []
         
         for epoch in range(self.num_epochs):
@@ -198,6 +313,13 @@ class Classifier:
     
     @torch.no_grad()
     def visualize_predictions(self, loader, num_images=5):
+        """
+        Visualize model predictions on a subset of the dataset.
+
+        Args:
+        - loader (DataLoader): Data loader for visualization.
+        - num_images (int): Number of images to visualize. Default is 5.
+        """
         self.model.eval()
 
         images, labels = next(iter(loader))
@@ -217,6 +339,12 @@ class Classifier:
             plt.show()
 
     def save_model(self, save_path):
+        """
+        Save the trained model to a file.
+
+        Args:
+        - save_path (str): File path to save the model.
+        """
         torch.save(self.model.state_dict(), save_path)
         print(f"Model saved at: {save_path}")
 
@@ -225,7 +353,7 @@ class Classifier:
         Plot training and testing results.
 
         Args:
-            results: Tuple of training and testing results.
+            results (tuple): Tuple of training and testing results.
         """
         train_losses, train_accuracies, test_losses, test_accuracies, time_per_epoch = results
         plt.figure(figsize=(15, 5))
@@ -250,6 +378,13 @@ class Classifier:
     
 
 def train_models():
+    """
+    Train and save models for station and train spot classification.
+
+    Creates instances of StationsCNN and TrainsCNN models, trains them using the Classifier,
+    visualizes predictions, and saves the trained models.
+
+    """
     station_cnn_model = StationsCNN()
     station_dir = 'test_train_data/station_data'
     station_cnn_classifier = Classifier(station_cnn_model.model, station_dir, 'station')
