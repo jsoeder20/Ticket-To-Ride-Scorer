@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 """
 THIS IS NOT FUNCTIONAL. We tried to use this implementation
 adapted from the OpenCV template matching tutorial to automate 
-our image cropping process, but we wereunsuccessful. 
+our image cropping process, but we were unsuccessful. 
 
 We attempted to recognize the corners of the board to pass into a 
 perspective cropping function. Unfortunately, this implementation
