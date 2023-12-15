@@ -1,6 +1,16 @@
 import cv2 as cv
-import numpy as np
 from matplotlib import pyplot as plt
+
+"""
+THIS IS NOT FUNCTIONAL. We tried to use this implementation
+adapted from the OpenCV template matching tutorial to automate 
+our image cropping process, but we wereunsuccessful. 
+
+We attempted to recognize the corners of the board to pass into a 
+perspective cropping function. Unfortunately, this implementation
+did come close to recognizing any of the corners of our game 
+board. We have left this here for future additions on this project.
+"""
 
 img = cv.imread('uncropped_board.jpg', cv.IMREAD_GRAYSCALE)
 img2 = img.copy()

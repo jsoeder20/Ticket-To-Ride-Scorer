@@ -1,4 +1,4 @@
-from training import StationsCNN, TrainsCNN, Classifier
+from training import StationsCNN, TrainsCNN
 from torchvision import transforms
 from collections import Counter
 import os
@@ -8,6 +8,15 @@ import pandas as pd
 
 
 def load_train_model(model_path):
+    """
+    Load and return a trained TrainsCNN model from the specified file.
+
+    Args:
+    - model_path (str): File path of the trained model.
+
+    Returns:
+    - TrainsCNN: Loaded TrainsCNN model.
+    """
     print(model_path)
     cnn_model = TrainsCNN()
     model_state_dict = torch.load(model_path)
@@ -17,6 +26,15 @@ def load_train_model(model_path):
     return cnn_model
 
 def load_station_model(model_path):
+    """
+    Load and return a trained StationsCNN model from the specified file.
+
+    Args:
+    - model_path (str): File path of the trained model.
+
+    Returns:
+    - StationsCNN: Loaded StationsCNN model.
+    """
     print(model_path)
     cnn_model = StationsCNN()
     model_state_dict2 = torch.load(model_path)
@@ -27,6 +45,17 @@ def load_station_model(model_path):
     return cnn_model
 
 def assign_label(model, folder_path, filename):
+    """
+    Assign a label to an image based on the specified model.
+
+    Args:
+    - model: Trained image classification model.
+    - folder_path (str): Path to the folder containing the image.
+    - filename (str): Image filename.
+
+    Returns:
+    - str: Predicted label.
+    """
     label_map = ['blank', 'blue', 'black', 'green', 'red', 'yellow']
     transform = transforms.Compose([
         transforms.ToTensor(),
@@ -50,6 +79,17 @@ def assign_label(model, folder_path, filename):
     return predicted_label
 
 def assign_label_station(model, folder_path, filename):
+    """
+    Assign a label to a station image based on the specified model.
+
+    Args:
+    - model: Trained image classification model.
+    - folder_path (str): Path to the folder containing the image.
+    - filename (str): Image filename.
+
+    Returns:
+    - str: Predicted label.
+    """
     label_map = ['blank', 'blue', 'black', 'green', 'red', 'yellow']
     transform = transforms.Compose([
         transforms.ToTensor(),
@@ -73,12 +113,30 @@ def assign_label_station(model, folder_path, filename):
 
 
 def assign_points(df):
+    """
+    Assign points to each train route in the dataframe based on its length.
+
+    Args:
+    - df (pd.DataFrame): DataFrame containing train information.
+
+    Returns:
+    - pd.DataFrame: Updated DataFrame with 'points' column.
+    """
     point_map = {1 : 1, 2 : 2, 3 : 4, 4 : 7, 6 : 15, 8 : 21}
     for idx, row in df.iterrows():
         df.at[idx, 'points'] = point_map[df.at[idx, 'length']]
     return df
 
 def assign_color(df):
+    """
+    Assign a color to each train in the dataframe based on the detected colors.
+
+    Args:
+    - df (pd.DataFrame): DataFrame containing train information.
+
+    Returns:
+    - pd.DataFrame: Updated DataFrame with 'color' column.
+    """
     count = 0
     for idx, row in df.iterrows():
         colors_detected = df.at[idx, 'colors']
@@ -107,6 +165,16 @@ def assign_color(df):
 
 
 def elaborate_names(df):
+    """
+    Elaborate train names by extracting city information. Handled alternative
+    spellings.
+
+    Args:
+    - df (pd.DataFrame): DataFrame containing train information.
+
+    Returns:
+    - pd.DataFrame: Updated DataFrame with 'location1' and 'location2' columns.
+    """
     cities_df = pd.read_csv('game_data/cities.csv')
 
     code_to_city = {}
@@ -128,6 +196,17 @@ def elaborate_names(df):
     return df
 
 def build_train_df(model, image_folder_path):
+    """
+    Build a DataFrame containing train location information from the specified image
+    folder.
+
+    Args:
+    - model: Trained image classification model.
+    - image_folder_path (str): Path to the folder containing train images.
+
+    Returns:
+    - pd.DataFrame: DataFrame containing train information.
+    """
     model.eval()
 
     columns = ['name', 'location1', 'location2', 'length', 'points', 'colors', 'color']
@@ -156,6 +235,15 @@ def build_train_df(model, image_folder_path):
     return game_info
 
 def elaborate_names_stations(df):
+    """
+    Elaborate station city names by extracting city information.
+
+    Args:
+    - df (pd.DataFrame): DataFrame containing station information.
+
+    Returns:
+    - pd.DataFrame: Updated DataFrame with 'city' column.
+    """
     cities_df = pd.read_csv('game_data/cities.csv')
 
     code_to_city = {}
@@ -173,6 +261,17 @@ def elaborate_names_stations(df):
     return df
 
 def build_station_df(model, image_folder_path):
+    """
+    Build a DataFrame containing station location information from the specified image 
+    folder.
+
+    Args:
+    - model: Trained image classification model.
+    - image_folder_path (str): Path to the folder containing station images.
+
+    Returns:
+    - pd.DataFrame: DataFrame containing station information.
+    """
     model.eval()
 
     columns = ['name', 'city', 'color']
@@ -192,6 +291,18 @@ def build_station_df(model, image_folder_path):
     return game_info
 
 def create_game_state(train_input_file, station_input_file, train_model, station_model):
+    """
+    Create a game state by loading models and building DataFrames for trains and stations.
+
+    Args:
+    - train_input_file (str): Path to the folder containing train images.
+    - station_input_file (str): Path to the folder containing station images.
+    - train_model (str): Path to the trained TrainsCNN model file.
+    - station_model (str): Path to the trained StationsCNN model file.
+
+    Returns:
+    - tuple: DataFrames containing train and station information.
+    """
     loaded_classifier = load_train_model(train_model)
     train_game_state = build_train_df(loaded_classifier, train_input_file)
     print(train_game_state.to_string())
