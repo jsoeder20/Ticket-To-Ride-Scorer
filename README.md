@@ -22,7 +22,7 @@ When we have played this game with our families and friends, we have always save
 
 ## System Overview
 
-1. **Detecting Trains:** Utilizing a specialized solution involving object detection models and labeled masks, the system identifies individual train spots on the board, classifying them as red, blue, yellow, black, green, or empty. Shown on the left, is a visual representation of the bounding boxes used to extract individual train spot images out of the cropped and resized image of final state of the game board. These bounding boxes were created using CVAT and each one is a associated with a label that will allow the scoring system to determine where each space is on the game board. On the right are the extract images showing individual spots from a completed game. These images are cropped, rotated, then cropped again to ensure that they all have the same orientation. The extracted images are classified using a simple CNN Trained on over 1000 train spot images. 
+1. **Detecting and Classifying Trains:** Utilizing a specialized solution involving object detection models and labeled masks, the system identifies individual train spots on the board, classifying them as red, blue, yellow, black, green, or empty. Shown on the left, is a visual representation of the bounding boxes used to extract individual train spot images out of the cropped and resized image of final state of the game board. These bounding boxes were created using CVAT and each one is a associated with a label that will allow the scoring system to determine where each space is on the game board. On the right are the extract images showing individual spots from a completed game. These images are cropped, rotated, then cropped again to ensure that they all have the same orientation. The extracted images are classified using a simple CNN Trained on over 1000 train spot images. 
 
 <p align="center">
 <img width="300" alt="Screenshot 2023-12-19 at 10 13 12 PM" src="https://github.com/jsoeder20/Ticket-To-Ride-Scorer/assets/97808250/b4529280-985e-41b3-931a-f2ccf83d173c">
@@ -30,7 +30,7 @@ When we have played this game with our families and friends, we have always save
 <img width="530" alt="Screenshot 2023-12-19 at 10 13 39 PM" src="https://github.com/jsoeder20/Ticket-To-Ride-Scorer/assets/97808250/4553ece6-2f2c-4aca-ad0a-13447ed7d94a">
 </p>
 
-2. **Detecting Train Stations:** Similar to the train detection process, the system identifies train stations on cities, classifying them by color. In this step, another simple CNN is used to classify the spots on the game boad where train stations would be placed. This model was trained on over 300 labelled city spot images.
+2. **Detecting and Classifying Train Stations:** Similar to the train detection process, the system identifies train stations on cities, classifying them by color. In this step, another simple CNN is used to classify the spots on the game boad where train stations would be placed. This model was trained on over 300 labelled city spot images.
 
 <p align="center">
 <img width="300" alt="Screenshot 2023-12-19 at 10 14 11 PM" src="https://github.com/jsoeder20/Ticket-To-Ride-Scorer/assets/97808250/1e2b545c-e5e1-406e-b60b-61fa2914d1aa">
@@ -38,7 +38,7 @@ When we have played this game with our families and friends, we have always save
 <img width="530" alt="Screenshot 2023-12-19 at 10 14 29 PM" src="https://github.com/jsoeder20/Ticket-To-Ride-Scorer/assets/97808250/22a8a7ef-7474-48ac-b573-7be451b49c76">
 </p>
 
-4. **Scoring the Game:** Once the game state is determined, the system proceeds to score the game, including summing track values, adding route card bonuses, determining the longest consecutive track, and accounting for unused train stations.  
+3. **Scoring the Game:** Once the game state is determined, the system proceeds to score the game, including summing track values, adding route card bonuses, determining the longest consecutive track, and accounting for unused train stations.  
 
 ## How to Use
 
