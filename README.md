@@ -4,21 +4,21 @@
 
 ## Introduction
 
-Welcome to the Ticket to Ride Scoring System, a solution we created to enhance the gaming experience of one of our favorite board games, Ticket to Ride Europe. Say goodbye to tedious and error-prone manual scoring, and dive into a new era of efficient and accurate score calculation!
+Welcome to the Ticket to Ride Scoring System, a solution we created to enhance the gaming experience of one of our favorite childhood board games, Ticket to Ride Europe. Say goodbye to tedious and error-prone manual scoring, and dive into a new era of efficient and accurate score calculation!
 
 ## What is Ticket to Ride?
 
 Ticket to Ride, designed by Alan R. Moon, is a captivating train-themed board game where players strategically collect train cards to claim routes and earn points. Originally set in the US, various versions, such as Ticket to Ride: Europe, have added exciting twists to the gameplay.
 
-The primary goal of Ticket to Ride is to accumulate the most points by completing destination tickets, connecting cities with train routes, and claiming the longest continuous route. An example final game state is shown below with key features labelled. We hope this image highlights the complexity of the scoring process and established the inefficiencies in the scoring process.
+The primary goal of Ticket to Ride is to accumulate the most points by completing destination tickets, connecting cities with train routes, and claiming the longest continuous route. An example final game state is shown below with key features labelled. We hope this image highlights the intricacies of the scoring process.
 
 <p align="center">
 <img width="650" alt="Screenshot 2023-12-19 at 10 12 08 PM" src="https://github.com/jsoeder20/Ticket-To-Ride-Scorer/assets/97808250/a5d096ce-4677-49dd-a858-219dfbcfb543">
 </p>
 
-## The Challenge
+## Our Goal
 
-Scoring in Ticket to Ride can be time-consuming and prone to errors, especially with larger games. This scoring system aims to streamline the process using computer vision, reducing the scoring time and eliminating human errors.
+When we have played this game with our families and friends, we have always saved all of the scoring to the end. This usually results in at least 5-10 minutes of tallying up scores with occasional recounts for close games. This is our least favorite part of the game. Scoring in Ticket to Ride can be time-consuming and prone to errors, especially with larger games. This scoring system aims to streamline the process using computer vision, reducing the scoring time and eliminating human errors.
 
 ## System Overview
 
